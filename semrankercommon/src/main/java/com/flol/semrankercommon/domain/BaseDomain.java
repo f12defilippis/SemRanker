@@ -1,4 +1,4 @@
-package com.flol.domain;
+package com.flol.semrankercommon.domain;
 
 import java.io.Serializable;
 

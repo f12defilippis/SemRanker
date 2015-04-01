@@ -1,4 +1,4 @@
-package com.flol.domain;
+package com.flol.semrankercommon.domain;
 
 import java.io.Serializable;
 import javax.persistence.*;
@@ -6,13 +6,13 @@ import java.util.Date;
 
 
 /**
- * The persistent class for the search_report database table.
+ * The persistent class for the search_report_account database table.
  * 
  */
 @Entity
-@Table(name="search_report")
-@NamedQuery(name="SearchReport.findAll", query="SELECT s FROM SearchReport s")
-public class SearchReport extends BaseDomain implements Serializable {
+@Table(name="search_report_account")
+@NamedQuery(name="SearchReportAccount.findAll", query="SELECT s FROM SearchReportAccount s")
+public class SearchReportAccount extends BaseDomain implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -27,14 +27,14 @@ public class SearchReport extends BaseDomain implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateLastSeen;
 
-	@Column(name="keyword_searchengine")
-	private String keywordSearchengine;
+	@Column(name="keyword_searchengine_account_domain")
+	private int keywordSearchengineAccountDomain;
 
 	private int position;
 
 	private int url;
 
-	public SearchReport() {
+	public SearchReportAccount() {
 	}
 
 	public int getId() {
@@ -69,12 +69,12 @@ public class SearchReport extends BaseDomain implements Serializable {
 		this.dateLastSeen = dateLastSeen;
 	}
 
-	public String getKeywordSearchengine() {
-		return this.keywordSearchengine;
+	public int getKeywordSearchengineAccountDomain() {
+		return this.keywordSearchengineAccountDomain;
 	}
 
-	public void setKeywordSearchengine(String keywordSearchengine) {
-		this.keywordSearchengine = keywordSearchengine;
+	public void setKeywordSearchengineAccountDomain(int keywordSearchengineAccountDomain) {
+		this.keywordSearchengineAccountDomain = keywordSearchengineAccountDomain;
 	}
 
 	public int getPosition() {
