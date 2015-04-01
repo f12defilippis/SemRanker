@@ -15,7 +15,7 @@ public class Keyword extends BaseDomain implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private int id;
+	private Long id;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date datecreate;
@@ -30,11 +30,11 @@ public class Keyword extends BaseDomain implements Serializable {
 	public Keyword() {
 	}
 
-	public int getId() {
+	public Long getId() {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

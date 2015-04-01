@@ -6,16 +6,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.flol.semrankercommon.domain.Keyword;
+
 @RestController
 public class TestController {
 
-    private static final String template = "Hello, %s!";
     private final AtomicLong counter = new AtomicLong();
     
-    @RequestMapping("/greeting")
-    public Greeting greeting(@RequestParam(value="name", defaultValue="World") String name) {
-        return new Greeting(counter.incrementAndGet(),
-                            String.format(template, name));
+    @RequestMapping("/keyword")
+    public Keyword keyword(@RequestParam(value="text", defaultValue="World") String text) {
+
+    	Keyword keyword = new Keyword();
+    	keyword.setId(counter.incrementAndGet());
+    	keyword.setText(text);
+    	return keyword;
     }
 	
 }
