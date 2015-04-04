@@ -11,21 +11,28 @@
 		<version>1.2.3.RELEASE</version>
 	</parent>
 	<dependencies>
-	    <dependency>
-	      <groupId>com.flol</groupId>
-	      <artifactId>semrankercommon</artifactId>
-	      <version>0.0.1-SNAPSHOT</version>
-	    </dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 		<dependency>
-			<!-- jsoup HTML parser library @ http://jsoup.org/ -->
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>org.jsoup</groupId>
 			<artifactId>jsoup</artifactId>
 			<version>1.8.1</version>
-		</dependency>   		
+		</dependency>
+		<dependency>
+			<groupId>net.sf.opencsv</groupId>
+			<artifactId>opencsv</artifactId>
+			<version>2.0</version>
+		</dependency>
 	</dependencies>
 
 	<build>
