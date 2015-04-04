@@ -1,9 +1,12 @@
 package com.flol.semrankerengine.dto;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SearchResultItemsTO {
+public class SearchResultItemsTO implements Serializable{
+
+	private static final long serialVersionUID = 6166255254888909328L;
 
 	private String keyword;
 	private boolean error;

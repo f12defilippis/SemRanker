@@ -1,7 +1,10 @@
 package com.flol.semrankerengine.dto;
 
-public class SearchResultItemTO {
+import java.io.Serializable;
 
+public class SearchResultItemTO implements Serializable{
+
+	private static final long serialVersionUID = -3185893698211721271L;
 	private String domain;
 	private String url;
 	private Integer position;

@@ -5,6 +5,7 @@ import java.util.concurrent.atomic.AtomicLong;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,7 +18,7 @@ public class TestController {
     private final Logger log = LoggerFactory.getLogger(this.getClass());    
     
     
-    @RequestMapping("/keyword")
+    @RequestMapping(value = "/keyword", method = RequestMethod.POST)
     public Keyword keyword(@RequestParam(value="text", defaultValue="World") String text) {
     	log.info("Chiamata funzione keyword");
     	System.out.println(System.getProperty("LOG_FILE"));

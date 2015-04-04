@@ -1,4 +1,4 @@
-package com.flol.semrankerengine.service;
+package com.flol.semrankerengine.service.impl;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -12,13 +12,15 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 
 import com.flol.semrankerengine.dto.SearchKeywordParameterTO;
 import com.flol.semrankerengine.dto.SearchResultItemTO;
 import com.flol.semrankerengine.dto.SearchResultItemsTO;
 import com.flol.semrankerengine.util.ProxyUtil;
 
-public class GoogleService {
+@Service("googleService")
+public class SearchengineGoogleService{
 
 	private static Pattern patternDomainName;
 	private static Pattern patternUrlName;
@@ -32,13 +34,13 @@ public class GoogleService {
 	
     private final Logger logger = LoggerFactory.getLogger(this.getClass());  
 	
-	public GoogleService()
+	public SearchengineGoogleService()
 	{
 		patternDomainName = Pattern.compile(DOMAIN_NAME_PATTERN);
 		patternUrlName = Pattern.compile(URL_NAME_PATTERN, Pattern.CASE_INSENSITIVE);
 	}
 
-	public SearchResultItemsTO searchKeyword(SearchKeywordParameterTO parameter) throws Exception
+	public SearchResultItemsTO searchKeyword(SearchKeywordParameterTO parameter) throws IOException
 	{
 		SearchResultItemsTO returnValue = new SearchResultItemsTO();
 		try {
@@ -46,7 +48,7 @@ public class GoogleService {
 				List<SearchResultItemTO> items = parseSearchResult(doc);
 				returnValue.getItems().addAll(items);
 				logger.debug("KEYWORD: " + parameter.getKeyword() + " UserAgent: " + parameter.getUserAgent() + " Proxy: " + parameter.getProxyHost() + ":" + parameter.getProxyPort() + " Successful processed");
-		} catch (Exception e) {
+		} catch (IOException e) {
 			logger.error("KEYWORD=" + parameter.getKeyword() + " UserAgent: " + parameter.getUserAgent() + " Proxy: " + parameter.getProxyHost() + ":" + parameter.getProxyPort());
 			throw e;
 		}

@@ -2,6 +2,8 @@ package com.flol.semrankerengine.dto;
 
 public class SearchKeywordParameterTO {
 
+	private Integer searchEngine;
+	
 	private String keyword;
 	private String proxyHost;
 	private String proxyPort;
@@ -60,6 +62,13 @@ public class SearchKeywordParameterTO {
 	public void setProxyPassword(String proxyPassword) {
 		this.proxyPassword = proxyPassword;
 	}
+	public Integer getSearchEngine() {
+		return searchEngine;
+	}
+	public void setSearchEngine(Integer searchEngine) {
+		this.searchEngine = searchEngine;
+	}
+
 	
 	
 	
