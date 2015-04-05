@@ -58,7 +58,7 @@ public class SearchengineGoogleService{
 	
 	private Document executeGoogleCall(String keyword, String userAgent, String proxyHost, String proxyPort, String proxyUser, String proxyPassword, String tld, String numResultToSearch, String uule) throws IOException
 	{
-		String request = GOOGLE_REQUEST.replace("{TLD}", tld).replace("{KEYWORD}", keyword).replace("{NUM_RESULTS}", numResultToSearch).replace("{UULE}", uule);
+		String request = GOOGLE_REQUEST.replace("{TLD}", tld).replace("{KEYWORD}", keyword).replace("{NUM_RESULTS}", numResultToSearch).replace("{UULE}", uule!=null ? uule : "");
 		ProxyUtil.setProxy(proxyHost, proxyPort, proxyUser, proxyPassword);
 		Document doc = Jsoup
 				.connect(request)
