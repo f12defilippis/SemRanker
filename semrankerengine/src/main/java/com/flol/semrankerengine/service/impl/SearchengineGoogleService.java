@@ -30,7 +30,7 @@ public class SearchengineGoogleService{
 	private static final String URL_NAME_PATTERN = "https?://[^/&]+(/[^/&]+){0,4}";	
 
 	
-	private static final String GOOGLE_REQUEST = "https://www.google.{TLD}/search?q={KEYWORD}&num={NUM_RESULTS}";
+	private static final String GOOGLE_REQUEST = "https://www.google.{TLD}/search?q={KEYWORD}&num={NUM_RESULTS}&uule={UULE}";
 	
     private final Logger logger = LoggerFactory.getLogger(this.getClass());  
 	
@@ -44,7 +44,7 @@ public class SearchengineGoogleService{
 	{
 		SearchResultItemsTO returnValue = new SearchResultItemsTO();
 		try {
-				Document doc = executeGoogleCall(parameter.getKeyword(), parameter.getUserAgent(), parameter.getProxyHost(), parameter.getProxyPort(), parameter.getProxyUser(), parameter.getProxyPassword(), parameter.getTld(), parameter.getNumResultToSearch());
+				Document doc = executeGoogleCall(parameter.getKeyword(), parameter.getUserAgent(), parameter.getProxyHost(), parameter.getProxyPort(), parameter.getProxyUser(), parameter.getProxyPassword(), parameter.getTld(), parameter.getNumResultToSearch(), parameter.getUule());
 				List<SearchResultItemTO> items = parseSearchResult(doc);
 				returnValue.getItems().addAll(items);
 				logger.debug("KEYWORD: " + parameter.getKeyword() + " UserAgent: " + parameter.getUserAgent() + " Proxy: " + parameter.getProxyHost() + ":" + parameter.getProxyPort() + " Successful processed");
@@ -56,9 +56,9 @@ public class SearchengineGoogleService{
 	}
 	
 	
-	private Document executeGoogleCall(String keyword, String userAgent, String proxyHost, String proxyPort, String proxyUser, String proxyPassword, String tld, String numResultToSearch) throws IOException
+	private Document executeGoogleCall(String keyword, String userAgent, String proxyHost, String proxyPort, String proxyUser, String proxyPassword, String tld, String numResultToSearch, String uule) throws IOException
 	{
-		String request = GOOGLE_REQUEST.replace("{TLD}", tld).replace("{KEYWORD}", keyword).replace("{NUM_RESULTS}", numResultToSearch);
+		String request = GOOGLE_REQUEST.replace("{TLD}", tld).replace("{KEYWORD}", keyword).replace("{NUM_RESULTS}", numResultToSearch).replace("{UULE}", uule);
 		ProxyUtil.setProxy(proxyHost, proxyPort, proxyUser, proxyPassword);
 		Document doc = Jsoup
 				.connect(request)

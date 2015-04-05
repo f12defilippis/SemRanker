@@ -13,6 +13,7 @@ public class SearchKeywordParameterTO {
 	private String userAgent;
 	private String tld;
 	private String numResultToSearch;
+	private String uule;
 	
 	public String getKeyword() {
 		return keyword;
@@ -67,6 +68,12 @@ public class SearchKeywordParameterTO {
 	}
 	public void setSearchEngine(Integer searchEngine) {
 		this.searchEngine = searchEngine;
+	}
+	public String getUule() {
+		return uule;
+	}
+	public void setUule(String uule) {
+		this.uule = uule;
 	}
 
 	
