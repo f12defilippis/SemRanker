@@ -10,7 +10,6 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name="geographical_targeting")
-@NamedQuery(name="GeographicalTargeting.findAll", query="SELECT g FROM GeographicalTargeting g")
 public class GeographicalTargeting extends BaseDomain implements Serializable {
 	private static final long serialVersionUID = 1L;
 
