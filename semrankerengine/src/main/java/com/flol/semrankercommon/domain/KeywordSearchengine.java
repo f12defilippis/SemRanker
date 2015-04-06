@@ -38,6 +38,8 @@ public class KeywordSearchengine extends BaseDomain implements Serializable {
 	@ManyToOne
     @JoinColumn(name = "searchengine_country", referencedColumnName = "id", nullable = false)
 	private SearchengineCountry searchengineCountry;
+	
+	private Integer mobile;
 
 	public KeywordSearchengine() {
 	}
@@ -80,6 +82,14 @@ public class KeywordSearchengine extends BaseDomain implements Serializable {
 
 	public void setSearchengineCountry(SearchengineCountry searchengineCountry) {
 		this.searchengineCountry = searchengineCountry;
+	}
+
+	public Integer getMobile() {
+		return mobile;
+	}
+
+	public void setMobile(Integer mobile) {
+		this.mobile = mobile;
 	}
 
 

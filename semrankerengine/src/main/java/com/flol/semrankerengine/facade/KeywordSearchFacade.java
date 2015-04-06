@@ -24,7 +24,6 @@ import com.flol.semrankerengine.dto.SearchKeywordParameterTO;
 import com.flol.semrankerengine.dto.SearchResultItemTO;
 import com.flol.semrankerengine.dto.SearchResultItemsTO;
 import com.flol.semrankerengine.service.SearchengineService;
-import com.flol.semrankerengine.util.UserAgentMap;
 
 @Component
 public class KeywordSearchFacade {
@@ -196,6 +195,7 @@ public class KeywordSearchFacade {
 		parameter.setProxyPort(proxy.getPort());
 		parameter.setSearchEngine(keywordSearchengineAccountDomain.getKeywordSearchengine().getSearchengine().getId());
 		parameter.setTld(keywordSearchengineAccountDomain.getKeywordSearchengine().getSearchengineCountry().getTld());
+		parameter.setMobile(keywordSearchengineAccountDomain.getKeywordSearchengine().getMobile());
 		
 		SearchResultItemsTO ret = searchEngineService.searchKeyword(parameter);
 		

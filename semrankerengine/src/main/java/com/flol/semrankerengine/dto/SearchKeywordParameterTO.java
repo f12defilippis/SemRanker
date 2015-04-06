@@ -15,6 +15,8 @@ public class SearchKeywordParameterTO {
 	private String numResultToSearch;
 	private String uule;
 	
+	private Integer mobile;
+	
 	public String getKeyword() {
 		return keyword;
 	}
@@ -74,6 +76,12 @@ public class SearchKeywordParameterTO {
 	}
 	public void setUule(String uule) {
 		this.uule = uule;
+	}
+	public Integer getMobile() {
+		return mobile;
+	}
+	public void setMobile(Integer mobile) {
+		this.mobile = mobile;
 	}
 
 	
