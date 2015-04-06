@@ -1,7 +1,14 @@
 package com.flol.semrankercommon.domain;
 
 import java.io.Serializable;
-import javax.persistence.*;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 
 
 /**
@@ -15,48 +22,54 @@ public class AccountDomain extends BaseDomain implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private int id;
+	private Integer id;
 
-	private int account;
+	@ManyToOne
+    @JoinColumn(name = "account", referencedColumnName = "id", nullable = false)
+	private Account account;
 
-	@Column(name="account_domain_type")
-	private int accountDomainType;
+	@Column(name="account_domain_type", nullable = true)
+	private Integer accountDomainType;
 
-	private int domain;
+	@ManyToOne
+    @JoinColumn(name = "domain", referencedColumnName = "id", nullable = false)
+	private Domain domain;
 
 	public AccountDomain() {
 	}
 
-	public int getId() {
-		return this.id;
+	public Integer getId() {
+		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
-	public int getAccount() {
-		return this.account;
+	public Account getAccount() {
+		return account;
 	}
 
-	public void setAccount(int account) {
+	public void setAccount(Account account) {
 		this.account = account;
 	}
 
-	public int getAccountDomainType() {
-		return this.accountDomainType;
+	public Integer getAccountDomainType() {
+		return accountDomainType;
 	}
 
-	public void setAccountDomainType(int accountDomainType) {
+	public void setAccountDomainType(Integer accountDomainType) {
 		this.accountDomainType = accountDomainType;
 	}
 
-	public int getDomain() {
-		return this.domain;
+	public Domain getDomain() {
+		return domain;
 	}
 
-	public void setDomain(int domain) {
+	public void setDomain(Domain domain) {
 		this.domain = domain;
 	}
+
+
 
 }

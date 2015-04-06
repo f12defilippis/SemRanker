@@ -1,7 +1,11 @@
 package com.flol.semrankercommon.domain;
 
 import java.io.Serializable;
-import javax.persistence.*;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 
 
 /**
@@ -15,7 +19,7 @@ public class SearchengineCountry extends BaseDomain implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private int id;
+	private Integer id;
 
 	private String name;
 
@@ -24,13 +28,7 @@ public class SearchengineCountry extends BaseDomain implements Serializable {
 	public SearchengineCountry() {
 	}
 
-	public int getId() {
-		return this.id;
-	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
 
 	public String getName() {
 		return this.name;
@@ -46,6 +44,18 @@ public class SearchengineCountry extends BaseDomain implements Serializable {
 
 	public void setTld(String tld) {
 		this.tld = tld;
+	}
+
+
+
+	public Integer getId() {
+		return id;
+	}
+
+
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 }

@@ -1,8 +1,13 @@
 package com.flol.semrankercommon.domain;
 
 import java.io.Serializable;
-import javax.persistence.*;
 import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 
 /**
@@ -10,12 +15,11 @@ import java.util.Date;
  * 
  */
 @Entity
-@NamedQuery(name="Proxy.findAll", query="SELECT p FROM Proxy p")
 public class Proxy extends BaseDomain implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private int id;
+	private Integer id;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="date_lastfail")
@@ -24,11 +28,16 @@ public class Proxy extends BaseDomain implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="date_lastsuccess")
 	private Date dateLastsuccess;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name="date_lastscan")
+	private Date dateLastsscan;
 
+	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date datecreate;
 
-	private int errors;
+	private Integer errors;
 
 	private String ip;
 
@@ -36,16 +45,14 @@ public class Proxy extends BaseDomain implements Serializable {
 
 	private String type;
 
+	private String username;
+
+	private String password;
+
 	public Proxy() {
 	}
 
-	public int getId() {
-		return this.id;
-	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
 
 	public Date getDateLastfail() {
 		return this.dateLastfail;
@@ -71,13 +78,6 @@ public class Proxy extends BaseDomain implements Serializable {
 		this.datecreate = datecreate;
 	}
 
-	public int getErrors() {
-		return this.errors;
-	}
-
-	public void setErrors(int errors) {
-		this.errors = errors;
-	}
 
 	public String getIp() {
 		return this.ip;
@@ -101,6 +101,54 @@ public class Proxy extends BaseDomain implements Serializable {
 
 	public void setType(String type) {
 		this.type = type;
+	}
+
+	public Date getDateLastsscan() {
+		return dateLastsscan;
+	}
+
+	public void setDateLastsscan(Date dateLastsscan) {
+		this.dateLastsscan = dateLastsscan;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+
+
+	public Integer getId() {
+		return id;
+	}
+
+
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+
+
+	public Integer getErrors() {
+		return errors;
+	}
+
+
+
+	public void setErrors(Integer errors) {
+		this.errors = errors;
 	}
 
 }

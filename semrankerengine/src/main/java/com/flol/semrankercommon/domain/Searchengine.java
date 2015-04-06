@@ -14,20 +14,14 @@ public class Searchengine extends BaseDomain implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private int id;
+	private Integer id;
 
 	private String name;
 
 	public Searchengine() {
 	}
 
-	public int getId() {
-		return this.id;
-	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
 
 	public String getName() {
 		return this.name;
@@ -35,6 +29,18 @@ public class Searchengine extends BaseDomain implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+
+
+	public Integer getId() {
+		return id;
+	}
+
+
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 }

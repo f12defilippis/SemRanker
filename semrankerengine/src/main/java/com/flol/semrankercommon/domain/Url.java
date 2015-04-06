@@ -1,8 +1,14 @@
 package com.flol.semrankercommon.domain;
 
 import java.io.Serializable;
-import javax.persistence.*;
 import java.util.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 
 /**
@@ -10,30 +16,25 @@ import java.util.Date;
  * 
  */
 @Entity
-@NamedQuery(name="Url.findAll", query="SELECT u FROM Url u")
 public class Url extends BaseDomain implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private int id;
+	private Integer id;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date datecreate;
 
-	private int domain;
+	@ManyToOne
+    @JoinColumn(name = "domain", referencedColumnName = "id", nullable = false)
+	private Domain domain;
 
 	private String url;
 
 	public Url() {
 	}
 
-	public int getId() {
-		return this.id;
-	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
 
 	public Date getDatecreate() {
 		return this.datecreate;
@@ -43,13 +44,7 @@ public class Url extends BaseDomain implements Serializable {
 		this.datecreate = datecreate;
 	}
 
-	public int getDomain() {
-		return this.domain;
-	}
 
-	public void setDomain(int domain) {
-		this.domain = domain;
-	}
 
 	public String getUrl() {
 		return this.url;
@@ -57,6 +52,30 @@ public class Url extends BaseDomain implements Serializable {
 
 	public void setUrl(String url) {
 		this.url = url;
+	}
+
+
+
+	public Integer getId() {
+		return id;
+	}
+
+
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+
+
+	public Domain getDomain() {
+		return domain;
+	}
+
+
+
+	public void setDomain(Domain domain) {
+		this.domain = domain;
 	}
 
 }

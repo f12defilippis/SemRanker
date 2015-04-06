@@ -15,7 +15,7 @@ public class Domain extends BaseDomain implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private int id;
+	private Integer id;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date datecreate;
@@ -25,13 +25,7 @@ public class Domain extends BaseDomain implements Serializable {
 	public Domain() {
 	}
 
-	public int getId() {
-		return this.id;
-	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
 
 	public Date getDatecreate() {
 		return this.datecreate;
@@ -47,6 +41,18 @@ public class Domain extends BaseDomain implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+
+
+	public Integer getId() {
+		return id;
+	}
+
+
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 }

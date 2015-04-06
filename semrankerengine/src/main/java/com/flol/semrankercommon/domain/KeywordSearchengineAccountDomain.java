@@ -1,8 +1,16 @@
 package com.flol.semrankercommon.domain;
 
 import java.io.Serializable;
-import javax.persistence.*;
 import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 
 /**
@@ -11,15 +19,15 @@ import java.util.Date;
  */
 @Entity
 @Table(name="keyword_searchengine_account_domain")
-@NamedQuery(name="KeywordSearchengineAccountDomain.findAll", query="SELECT k FROM KeywordSearchengineAccountDomain k")
 public class KeywordSearchengineAccountDomain extends BaseDomain implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private int id;
+	private Integer id;
 
-	@Column(name="account_domain")
-	private int accountDomain;
+	@ManyToOne
+    @JoinColumn(name = "account_domain", referencedColumnName = "id", nullable = false)
+	private AccountDomain accountDomain;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="date_closed")
@@ -29,26 +37,11 @@ public class KeywordSearchengineAccountDomain extends BaseDomain implements Seri
 	@Column(name="date_created")
 	private Date dateCreated;
 
-	@Column(name="keyword_searchengine")
-	private int keywordSearchengine;
+	@ManyToOne
+    @JoinColumn(name = "keyword_searchengine", referencedColumnName = "id", nullable = false)
+	private KeywordSearchengine keywordSearchengine;
 
 	public KeywordSearchengineAccountDomain() {
-	}
-
-	public int getId() {
-		return this.id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public int getAccountDomain() {
-		return this.accountDomain;
-	}
-
-	public void setAccountDomain(int accountDomain) {
-		this.accountDomain = accountDomain;
 	}
 
 	public Date getDateClosed() {
@@ -67,11 +60,19 @@ public class KeywordSearchengineAccountDomain extends BaseDomain implements Seri
 		this.dateCreated = dateCreated;
 	}
 
-	public int getKeywordSearchengine() {
-		return this.keywordSearchengine;
+	public AccountDomain getAccountDomain() {
+		return accountDomain;
 	}
 
-	public void setKeywordSearchengine(int keywordSearchengine) {
+	public void setAccountDomain(AccountDomain accountDomain) {
+		this.accountDomain = accountDomain;
+	}
+
+	public KeywordSearchengine getKeywordSearchengine() {
+		return keywordSearchengine;
+	}
+
+	public void setKeywordSearchengine(KeywordSearchengine keywordSearchengine) {
 		this.keywordSearchengine = keywordSearchengine;
 	}
 

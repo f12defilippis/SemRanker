@@ -23,7 +23,7 @@ public class SearchengineServiceImpl implements SearchengineService{
 		try {
 			if(parameter.getSearchEngine().equals(SearchengineMap.GOOGLE))
 			{
-				return googleService.searchKeyword(parameter);
+				ret = googleService.searchKeyword(parameter);
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
