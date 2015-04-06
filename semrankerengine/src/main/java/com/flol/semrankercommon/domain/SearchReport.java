@@ -1,8 +1,18 @@
 package com.flol.semrankercommon.domain;
 
 import java.io.Serializable;
-import javax.persistence.*;
 import java.util.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 
 /**
@@ -16,7 +26,8 @@ public class SearchReport extends BaseDomain implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private int id;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Integer id;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateClosed;
@@ -27,23 +38,20 @@ public class SearchReport extends BaseDomain implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateLastSeen;
 
-	@Column(name="keyword_searchengine")
-	private String keywordSearchengine;
+	@ManyToOne
+    @JoinColumn(name = "keyword_searchengine", referencedColumnName = "id", nullable = false)
+	private KeywordSearchengine keywordSearchengine;
 
 	private int position;
 
-	private int url;
+	@ManyToOne
+    @JoinColumn(name = "url", referencedColumnName = "id", nullable = false)
+	private Url url;
 
 	public SearchReport() {
 	}
 
-	public int getId() {
-		return this.id;
-	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
 
 	public Date getDateClosed() {
 		return this.dateClosed;
@@ -69,13 +77,7 @@ public class SearchReport extends BaseDomain implements Serializable {
 		this.dateLastSeen = dateLastSeen;
 	}
 
-	public String getKeywordSearchengine() {
-		return this.keywordSearchengine;
-	}
 
-	public void setKeywordSearchengine(String keywordSearchengine) {
-		this.keywordSearchengine = keywordSearchengine;
-	}
 
 	public int getPosition() {
 		return this.position;
@@ -85,11 +87,39 @@ public class SearchReport extends BaseDomain implements Serializable {
 		this.position = position;
 	}
 
-	public int getUrl() {
-		return this.url;
+
+
+	public Integer getId() {
+		return id;
 	}
 
-	public void setUrl(int url) {
+
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+
+
+	public KeywordSearchengine getKeywordSearchengine() {
+		return keywordSearchengine;
+	}
+
+
+
+	public void setKeywordSearchengine(KeywordSearchengine keywordSearchengine) {
+		this.keywordSearchengine = keywordSearchengine;
+	}
+
+
+
+	public Url getUrl() {
+		return url;
+	}
+
+
+
+	public void setUrl(Url url) {
 		this.url = url;
 	}
 

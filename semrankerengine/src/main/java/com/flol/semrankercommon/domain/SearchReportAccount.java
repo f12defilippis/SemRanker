@@ -1,8 +1,17 @@
 package com.flol.semrankercommon.domain;
 
 import java.io.Serializable;
-import javax.persistence.*;
 import java.util.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 
 /**
@@ -11,12 +20,12 @@ import java.util.Date;
  */
 @Entity
 @Table(name="search_report_account")
-@NamedQuery(name="SearchReportAccount.findAll", query="SELECT s FROM SearchReportAccount s")
 public class SearchReportAccount extends BaseDomain implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private int id;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Integer id;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateClosed;
@@ -27,22 +36,17 @@ public class SearchReportAccount extends BaseDomain implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateLastSeen;
 
-	@Column(name="keyword_searchengine_account_domain")
-	private int keywordSearchengineAccountDomain;
+	@ManyToOne
+    @JoinColumn(name = "keyword_searchengine_account_domain", referencedColumnName = "id", nullable = false)
+	private KeywordSearchengineAccountDomain keywordSearchengineAccountDomain;
 
 	private int position;
 
-	private int url;
+	@ManyToOne
+    @JoinColumn(name = "url", referencedColumnName = "id", nullable = false)
+	private Url url;
 
 	public SearchReportAccount() {
-	}
-
-	public int getId() {
-		return this.id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	public Date getDateClosed() {
@@ -69,14 +73,6 @@ public class SearchReportAccount extends BaseDomain implements Serializable {
 		this.dateLastSeen = dateLastSeen;
 	}
 
-	public int getKeywordSearchengineAccountDomain() {
-		return this.keywordSearchengineAccountDomain;
-	}
-
-	public void setKeywordSearchengineAccountDomain(int keywordSearchengineAccountDomain) {
-		this.keywordSearchengineAccountDomain = keywordSearchengineAccountDomain;
-	}
-
 	public int getPosition() {
 		return this.position;
 	}
@@ -85,11 +81,28 @@ public class SearchReportAccount extends BaseDomain implements Serializable {
 		this.position = position;
 	}
 
-	public int getUrl() {
-		return this.url;
+	public Integer getId() {
+		return id;
 	}
 
-	public void setUrl(int url) {
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public KeywordSearchengineAccountDomain getKeywordSearchengineAccountDomain() {
+		return keywordSearchengineAccountDomain;
+	}
+
+	public void setKeywordSearchengineAccountDomain(
+			KeywordSearchengineAccountDomain keywordSearchengineAccountDomain) {
+		this.keywordSearchengineAccountDomain = keywordSearchengineAccountDomain;
+	}
+
+	public Url getUrl() {
+		return url;
+	}
+
+	public void setUrl(Url url) {
 		this.url = url;
 	}
 
