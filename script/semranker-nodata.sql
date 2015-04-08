@@ -335,15 +335,15 @@ CREATE TABLE `search_report_account` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `position` int(11) NOT NULL,
   `url` int(11) NOT NULL,
-  `keyword_searchengine_account_domain` int(11) NOT NULL,
+  `keyword_scan_summary` int(11) NOT NULL,
   `dateFirstSeen` datetime DEFAULT NULL,
   `dateLastSeen` datetime DEFAULT NULL,
   `dateClosed` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_search_report_url1_idx` (`url`),
-  KEY `fk_search_report_account_keyword_searchengine_account_domai_idx` (`keyword_searchengine_account_domain`),
-  CONSTRAINT `fk_search_report_url10` FOREIGN KEY (`url`) REFERENCES `url` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_search_report_account_keyword_searchengine_account_domain1` FOREIGN KEY (`keyword_searchengine_account_domain`) REFERENCES `keyword_searchengine_account_domain` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `fk_search_report_account_keyword_searchengine_account_domai_idx` (`keyword_scan_summary`),
+  CONSTRAINT `fk_search_report_account_keyword_searchengine_account_domain1` FOREIGN KEY (`keyword_scan_summary`) REFERENCES `keyword_scan_summary` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_search_report_url10` FOREIGN KEY (`url`) REFERENCES `url` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=95160 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -418,4 +418,4 @@ CREATE TABLE `url` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-04-08 13:01:19
+-- Dump completed on 2015-04-08 13:06:23

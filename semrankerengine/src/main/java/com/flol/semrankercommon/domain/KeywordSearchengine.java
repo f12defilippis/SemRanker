@@ -16,7 +16,6 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="keyword_searchengine")
-@NamedQuery(name="KeywordSearchengine.findAll", query="SELECT k FROM KeywordSearchengine k")
 public class KeywordSearchengine extends BaseDomain implements Serializable {
 	private static final long serialVersionUID = 1L;
 

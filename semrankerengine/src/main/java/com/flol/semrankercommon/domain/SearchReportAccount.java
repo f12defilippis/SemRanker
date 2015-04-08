@@ -37,8 +37,8 @@ public class SearchReportAccount extends BaseDomain implements Serializable {
 	private Date dateLastSeen;
 
 	@ManyToOne
-    @JoinColumn(name = "keyword_searchengine_account_domain", referencedColumnName = "id", nullable = false)
-	private KeywordSearchengineAccountDomain keywordSearchengineAccountDomain;
+    @JoinColumn(name = "keyword_scan_summary", referencedColumnName = "id", nullable = false)
+	private KeywordScanSummary keywordScanSummary;
 
 	private int position;
 
@@ -89,21 +89,20 @@ public class SearchReportAccount extends BaseDomain implements Serializable {
 		this.id = id;
 	}
 
-	public KeywordSearchengineAccountDomain getKeywordSearchengineAccountDomain() {
-		return keywordSearchengineAccountDomain;
-	}
-
-	public void setKeywordSearchengineAccountDomain(
-			KeywordSearchengineAccountDomain keywordSearchengineAccountDomain) {
-		this.keywordSearchengineAccountDomain = keywordSearchengineAccountDomain;
-	}
-
 	public Url getUrl() {
 		return url;
 	}
 
 	public void setUrl(Url url) {
 		this.url = url;
+	}
+
+	public KeywordScanSummary getKeywordScanSummary() {
+		return keywordScanSummary;
+	}
+
+	public void setKeywordScanSummary(KeywordScanSummary keywordScanSummary) {
+		this.keywordScanSummary = keywordScanSummary;
 	}
 
 }

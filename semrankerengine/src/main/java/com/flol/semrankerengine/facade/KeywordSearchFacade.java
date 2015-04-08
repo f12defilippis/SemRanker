@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.flol.semrankercommon.domain.Domain;
+import com.flol.semrankercommon.domain.KeywordScanSummary;
+import com.flol.semrankercommon.domain.KeywordScanSummaryStatus;
 import com.flol.semrankercommon.domain.KeywordSearchengine;
 import com.flol.semrankercommon.domain.KeywordSearchengineAccountDomain;
 import com.flol.semrankercommon.domain.Proxy;
@@ -14,6 +16,7 @@ import com.flol.semrankercommon.domain.SearchReport;
 import com.flol.semrankercommon.domain.SearchReportAccount;
 import com.flol.semrankercommon.domain.Url;
 import com.flol.semrankercommon.repository.DomainRepository;
+import com.flol.semrankercommon.repository.KeywordScanSummaryRepository;
 import com.flol.semrankercommon.repository.KeywordSearchengineAccountDomainRepository;
 import com.flol.semrankercommon.repository.ProxyRepository;
 import com.flol.semrankercommon.repository.SearchReportAccountRepository;
@@ -24,6 +27,7 @@ import com.flol.semrankerengine.dto.SearchKeywordParameterTO;
 import com.flol.semrankerengine.dto.SearchResultItemTO;
 import com.flol.semrankerengine.dto.SearchResultItemsTO;
 import com.flol.semrankerengine.service.SearchengineService;
+import com.flol.semrankerengine.util.DateUtil;
 
 @Component
 public class KeywordSearchFacade {
@@ -52,11 +56,15 @@ public class KeywordSearchFacade {
     private SearchReportRepository searchReportRepository;
     
     @Autowired
+    private KeywordScanSummaryRepository keywordScanSummaryRepository;
+    
+    @Autowired
     private SearchReportAccountRepository searchReportAccountRepository;
 
 	public void searchKeywordAndStore(KeywordSearchengineAccountDomain keywordSearchengineAccountDomain,
 			Proxy proxy)
 	{
+		KeywordScanSummary keywordScanSummary = storeNewKeywordScanSummary(keywordSearchengineAccountDomain, proxy);
 		SearchResultItemsTO ret = searchKeyword(keywordSearchengineAccountDomain, proxy);
 		Date now = new Date();
 		if(!ret.isError())
@@ -67,15 +75,37 @@ public class KeywordSearchFacade {
 			{
 				storeData(item, keywordSearchengineAccountDomain);
 			}
+			updateKeywordScanSummary(keywordScanSummary, KeywordScanSummaryStatus.COMPLETED);
 		}else
 		{
 			//store error
 			proxy.setDateLastfail(now);
+			updateKeywordScanSummary(keywordScanSummary, KeywordScanSummaryStatus.FAILED);
 		}
 		proxy.setDateLastsscan(now);
 		proxy.setUsage(0);
 		proxyRepository.save(proxy);
 	}
+	
+	private KeywordScanSummary storeNewKeywordScanSummary(KeywordSearchengineAccountDomain keywordSearchengineAccountDomain,
+			Proxy proxy)
+	{
+		KeywordScanSummary kss = new KeywordScanSummary();
+		kss.setKeywordSearchengineAccountDomain(keywordSearchengineAccountDomain);
+		kss.setProxy(proxy);
+		kss.setDate(DateUtil.getTodaysMidnight());
+		kss.setKeywordScanSummaryStatus(new KeywordScanSummaryStatus(KeywordScanSummaryStatus.RUNNING));
+		keywordScanSummaryRepository.save(kss);
+		return kss;
+	}
+
+	private void updateKeywordScanSummary(KeywordScanSummary keywordScanSummary, Integer status)
+	{
+		keywordScanSummary.setKeywordScanSummaryStatus(new KeywordScanSummaryStatus(status));
+		keywordScanSummaryRepository.save(keywordScanSummary);
+	}
+	
+	
 	
 	private void storeData(SearchResultItemTO item, KeywordSearchengineAccountDomain keywordSearchengineAccountDomain)
 	{
@@ -94,7 +124,7 @@ public class KeywordSearchFacade {
 	
 	private void storeSearchReportAccount(Url url, KeywordSearchengineAccountDomain keywordSearchengineAccountDomain, SearchResultItemTO item)
 	{
-		List<SearchReportAccount> searchReportList = searchReportAccountRepository.findByKeywordSearchengineAccountDomainAndUrlAllByDateClosedNotNull(keywordSearchengineAccountDomain, url);
+		List<SearchReportAccount> searchReportList = searchReportAccountRepository.findByKeywordScanSummaryKeywordSearchengineAccountDomainAndUrlAllByDateClosedNotNull(keywordSearchengineAccountDomain, url);
 		Date now = new Date();
 		if(searchReportList!=null && searchReportList.size()>0 && searchReportList.get(0).getPosition() == item.getPosition())
 		{
