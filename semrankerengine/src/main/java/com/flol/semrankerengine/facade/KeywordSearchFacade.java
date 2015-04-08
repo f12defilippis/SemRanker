@@ -124,7 +124,7 @@ public class KeywordSearchFacade {
 	
 	private void storeSearchReportAccount(Url url, KeywordScanSummary keywordScanSummary, SearchResultItemTO item)
 	{
-		List<SearchReportAccount> searchReportList = searchReportAccountRepository.findByKeywordScanSummaryKeywordSearchengineAccountDomainAndUrlAllByDateClosedNotNull(keywordScanSummary.getKeywordSearchengineAccountDomain(), url);
+		List<SearchReportAccount> searchReportList = searchReportAccountRepository.findByKeywordScanSummaryKeywordSearchengineAccountDomainAndUrlAndDateClosedNotNull(keywordScanSummary.getKeywordSearchengineAccountDomain(), url);
 		Date now = new Date();
 		if(searchReportList!=null && searchReportList.size()>0 && searchReportList.get(0).getPosition() == item.getPosition())
 		{
@@ -153,7 +153,7 @@ public class KeywordSearchFacade {
 	
 	private void storeSearchReport(Url url, KeywordSearchengine keywordSearchengine, SearchResultItemTO item)
 	{
-		List<SearchReport> searchReportList = searchReportRepository.findByKeywordSearchengineAndUrlAllByDateClosedNotNull(keywordSearchengine, url);
+		List<SearchReport> searchReportList = searchReportRepository.findByKeywordSearchengineAndUrlAndDateClosedNotNull(keywordSearchengine, url);
 		Date now = new Date();
 		if(searchReportList!=null && searchReportList.size()>0 && searchReportList.get(0).getPosition() == item.getPosition())
 		{

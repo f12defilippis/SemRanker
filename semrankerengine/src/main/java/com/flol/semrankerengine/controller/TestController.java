@@ -18,7 +18,7 @@ public class TestController {
     private final Logger log = LoggerFactory.getLogger(this.getClass());    
     
     
-    @RequestMapping(value = "/keyword", method = RequestMethod.POST)
+    @RequestMapping(value = "/keyword", method = RequestMethod.GET)
     public Keyword keyword(@RequestParam(value="text", defaultValue="World") String text) {
     	log.info("Chiamata funzione keyword");
     	System.out.println(System.getProperty("LOG_FILE"));

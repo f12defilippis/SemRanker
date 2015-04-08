@@ -10,7 +10,7 @@ import com.flol.semrankercommon.domain.Url;
 
 public interface SearchReportAccountRepository extends CrudRepository<SearchReportAccount, Integer>{
 
-	List<SearchReportAccount> findByKeywordScanSummaryKeywordSearchengineAccountDomainAndUrlAllByDateClosedNotNull(KeywordSearchengineAccountDomain keywordSearchengineAccountDomain, Url url);
+	List<SearchReportAccount> findByKeywordScanSummaryKeywordSearchengineAccountDomainAndUrlAndDateClosedNotNull(KeywordSearchengineAccountDomain keywordSearchengineAccountDomain, Url url);
 	
 	
 }
