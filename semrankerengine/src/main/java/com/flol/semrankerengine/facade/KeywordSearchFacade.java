@@ -23,11 +23,11 @@ import com.flol.semrankercommon.repository.SearchReportAccountRepository;
 import com.flol.semrankercommon.repository.SearchReportRepository;
 import com.flol.semrankercommon.repository.SearchengineParameterRepository;
 import com.flol.semrankercommon.repository.UrlRepository;
+import com.flol.semrankercommon.util.DateUtil;
 import com.flol.semrankerengine.dto.SearchKeywordParameterTO;
 import com.flol.semrankerengine.dto.SearchResultItemTO;
 import com.flol.semrankerengine.dto.SearchResultItemsTO;
 import com.flol.semrankerengine.service.SearchengineService;
-import com.flol.semrankerengine.util.DateUtil;
 
 @Component
 public class KeywordSearchFacade {

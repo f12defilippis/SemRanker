@@ -5,10 +5,10 @@ import java.io.IOException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.flol.semrankercommon.util.SearchengineMap;
 import com.flol.semrankerengine.dto.SearchKeywordParameterTO;
 import com.flol.semrankerengine.dto.SearchResultItemsTO;
 import com.flol.semrankerengine.service.SearchengineService;
-import com.flol.semrankerengine.util.SearchengineMap;
 import com.flol.semrankerengine.util.UserAgentMap;
 
 @Service("SearchengineService")

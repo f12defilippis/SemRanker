@@ -14,10 +14,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import com.flol.semrankercommon.util.ProxyUtil;
 import com.flol.semrankerengine.dto.SearchKeywordParameterTO;
 import com.flol.semrankerengine.dto.SearchResultItemTO;
 import com.flol.semrankerengine.dto.SearchResultItemsTO;
-import com.flol.semrankerengine.util.ProxyUtil;
 
 @Service("googleService")
 public class SearchengineGoogleService{

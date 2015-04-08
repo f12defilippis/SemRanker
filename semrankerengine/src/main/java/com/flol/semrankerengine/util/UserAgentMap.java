@@ -4,6 +4,8 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.flol.semrankercommon.util.NumberUtil;
+
 public class UserAgentMap {
 
 	public static final Map<Integer,String> USER_AGENTS;

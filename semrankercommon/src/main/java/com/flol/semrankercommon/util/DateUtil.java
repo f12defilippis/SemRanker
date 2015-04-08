@@ -1,4 +1,4 @@
-package com.flol.semrankerengine.util;
+package com.flol.semrankercommon.util;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -14,4 +14,17 @@ public class DateUtil {
         now.set(Calendar.HOUR_OF_DAY, 0);
         return now.getTime();
 	}
+
+	public static Date getMidnight(Date date)
+	{
+		Calendar now = Calendar.getInstance();
+		now.setTime(date);
+        now.set(Calendar.HOUR, 0);
+        now.set(Calendar.MINUTE, 0);
+        now.set(Calendar.SECOND, 0);
+        now.set(Calendar.HOUR_OF_DAY, 0);
+        return now.getTime();
+	}
+
+
 }

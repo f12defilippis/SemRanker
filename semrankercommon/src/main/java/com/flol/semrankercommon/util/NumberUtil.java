@@ -1,4 +1,4 @@
-package com.flol.semrankerengine.util;
+package com.flol.semrankercommon.util;
 
 import java.util.Random;
 
