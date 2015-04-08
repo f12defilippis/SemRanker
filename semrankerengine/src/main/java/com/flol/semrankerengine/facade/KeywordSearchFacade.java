@@ -65,7 +65,7 @@ public class KeywordSearchFacade {
 			Proxy proxy)
 	{
 		KeywordScanSummary keywordScanSummary = storeNewKeywordScanSummary(keywordSearchengineAccountDomain, proxy);
-		SearchResultItemsTO ret = searchKeyword(keywordSearchengineAccountDomain, proxy);
+		SearchResultItemsTO ret = searchKeyword(keywordScanSummary, proxy);
 		Date now = new Date();
 		if(!ret.isError())
 		{
@@ -73,7 +73,7 @@ public class KeywordSearchFacade {
 			// store data
 			for(SearchResultItemTO item : ret.getItems())
 			{
-				storeData(item, keywordSearchengineAccountDomain);
+				storeData(item, keywordScanSummary);
 			}
 			updateKeywordScanSummary(keywordScanSummary, KeywordScanSummaryStatus.COMPLETED);
 		}else
@@ -107,24 +107,24 @@ public class KeywordSearchFacade {
 	
 	
 	
-	private void storeData(SearchResultItemTO item, KeywordSearchengineAccountDomain keywordSearchengineAccountDomain)
+	private void storeData(SearchResultItemTO item, KeywordScanSummary keywordScanSummary)
 	{
 		// check domain
 		Domain domain = checkDomain(item.getDomain());
 		// check url
 		Url url = checkUrl(domain, item.getUrl());
 		//store search report data
-		storeSearchReport(url, keywordSearchengineAccountDomain.getKeywordSearchengine(), item);
+		storeSearchReport(url, keywordScanSummary.getKeywordSearchengineAccountDomain().getKeywordSearchengine(), item);
 		// if domain of account store data in searchreportaccount table
-		if(domain.getId().equals(keywordSearchengineAccountDomain.getAccountDomain().getDomain().getId()))
+		if(domain.getId().equals(keywordScanSummary.getKeywordSearchengineAccountDomain().getAccountDomain().getDomain().getId()))
 		{
-			storeSearchReportAccount(url, keywordSearchengineAccountDomain, item);
+			storeSearchReportAccount(url, keywordScanSummary, item);
 		}
 	}
 	
-	private void storeSearchReportAccount(Url url, KeywordSearchengineAccountDomain keywordSearchengineAccountDomain, SearchResultItemTO item)
+	private void storeSearchReportAccount(Url url, KeywordScanSummary keywordScanSummary, SearchResultItemTO item)
 	{
-		List<SearchReportAccount> searchReportList = searchReportAccountRepository.findByKeywordScanSummaryKeywordSearchengineAccountDomainAndUrlAllByDateClosedNotNull(keywordSearchengineAccountDomain, url);
+		List<SearchReportAccount> searchReportList = searchReportAccountRepository.findByKeywordScanSummaryKeywordSearchengineAccountDomainAndUrlAllByDateClosedNotNull(keywordScanSummary.getKeywordSearchengineAccountDomain(), url);
 		Date now = new Date();
 		if(searchReportList!=null && searchReportList.size()>0 && searchReportList.get(0).getPosition() == item.getPosition())
 		{
@@ -143,7 +143,7 @@ public class KeywordSearchFacade {
 			SearchReportAccount newSearchReport = new SearchReportAccount();
 			newSearchReport.setDateFirstSeen(now);
 			newSearchReport.setDateLastSeen(now);
-			newSearchReport.setKeywordSearchengineAccountDomain(keywordSearchengineAccountDomain);
+			newSearchReport.setKeywordScanSummary(keywordScanSummary);
 			newSearchReport.setPosition(item.getPosition());
 			newSearchReport.setUrl(url);
 			searchReportAccountRepository.save(newSearchReport);
@@ -213,19 +213,19 @@ public class KeywordSearchFacade {
 		return urlRet;
 	}
 	
-	private SearchResultItemsTO searchKeyword(KeywordSearchengineAccountDomain keywordSearchengineAccountDomain,
+	private SearchResultItemsTO searchKeyword(KeywordScanSummary keywordScanSummary,
 								Proxy proxy)
 	{
 		String numResultsToSearch = searchengineParameterRepository.findOne("NUM_RESULTS_TO_SEARCH").getValue();
 		
 		SearchKeywordParameterTO parameter = new SearchKeywordParameterTO();
-		parameter.setKeyword(keywordSearchengineAccountDomain.getKeywordSearchengine().getKeyword().getText());
+		parameter.setKeyword(keywordScanSummary.getKeywordSearchengineAccountDomain().getKeywordSearchengine().getKeyword().getText());
 		parameter.setNumResultToSearch(numResultsToSearch);
 		parameter.setProxyHost(proxy.getIp());
 		parameter.setProxyPort(proxy.getPort());
-		parameter.setSearchEngine(keywordSearchengineAccountDomain.getKeywordSearchengine().getSearchengine().getId());
-		parameter.setTld(keywordSearchengineAccountDomain.getKeywordSearchengine().getSearchengineCountry().getTld());
-		parameter.setMobile(keywordSearchengineAccountDomain.getKeywordSearchengine().getMobile());
+		parameter.setSearchEngine(keywordScanSummary.getKeywordSearchengineAccountDomain().getKeywordSearchengine().getSearchengine().getId());
+		parameter.setTld(keywordScanSummary.getKeywordSearchengineAccountDomain().getKeywordSearchengine().getSearchengineCountry().getTld());
+		parameter.setMobile(keywordScanSummary.getKeywordSearchengineAccountDomain().getKeywordSearchengine().getMobile());
 		
 		SearchResultItemsTO ret = searchEngineService.searchKeyword(parameter);
 		
