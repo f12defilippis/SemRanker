@@ -1,7 +1,9 @@
 package com.flol.semsankerweb.dto;
 
-import java.util.List;
 import java.util.Map;
+
+import com.flol.semrankercommon.domain.HistoricalCheckThreshold;
+import com.flol.semrankercommon.domain.TopPositionThreshold;
 
 public class DomainDataOverviewTO {
 
@@ -11,13 +13,11 @@ public class DomainDataOverviewTO {
 	
 	private Integer keywordsDown;
 	
-	//TODO create object to evaluate the interval of the top position
-	private Map<Integer,Integer> keywordsInTop;
+	private Map<TopPositionThreshold,Integer> keywordsInTop;
 	
-	//TODO create object to evaluate periods to track
-	private Map<Integer,Map<Integer,Integer>> keywordsInTopVariation;
+	private Map<HistoricalCheckThreshold,Map<TopPositionThreshold,Integer>> keywordsInTopVariation;
 	
-	private List<KeywordDataOverviewTO> keywordsData;
+	private Map<Integer,KeywordDataOverviewTO> keywordsData;
 
 	public Integer getKeywordsNumber() {
 		return keywordsNumber;
@@ -43,28 +43,28 @@ public class DomainDataOverviewTO {
 		this.keywordsDown = keywordsDown;
 	}
 
-	public Map<Integer, Integer> getKeywordsInTop() {
+	public Map<TopPositionThreshold, Integer> getKeywordsInTop() {
 		return keywordsInTop;
 	}
 
-	public void setKeywordsInTop(Map<Integer, Integer> keywordsInTop) {
+	public void setKeywordsInTop(Map<TopPositionThreshold, Integer> keywordsInTop) {
 		this.keywordsInTop = keywordsInTop;
 	}
 
-	public Map<Integer, Map<Integer, Integer>> getKeywordsInTopVariation() {
+	public Map<HistoricalCheckThreshold, Map<TopPositionThreshold, Integer>> getKeywordsInTopVariation() {
 		return keywordsInTopVariation;
 	}
 
 	public void setKeywordsInTopVariation(
-			Map<Integer, Map<Integer, Integer>> keywordsInTopVariation) {
+			Map<HistoricalCheckThreshold, Map<TopPositionThreshold, Integer>> keywordsInTopVariation) {
 		this.keywordsInTopVariation = keywordsInTopVariation;
 	}
 
-	public List<KeywordDataOverviewTO> getKeywordsData() {
+	public Map<Integer, KeywordDataOverviewTO> getKeywordsData() {
 		return keywordsData;
 	}
 
-	public void setKeywordsData(List<KeywordDataOverviewTO> keywordsData) {
+	public void setKeywordsData(Map<Integer, KeywordDataOverviewTO> keywordsData) {
 		this.keywordsData = keywordsData;
 	}
 	

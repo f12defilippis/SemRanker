@@ -2,6 +2,9 @@ package com.flol.semsankerweb.dto;
 
 import java.util.Map;
 
+import com.flol.semrankercommon.domain.HistoricalCheckThreshold;
+import com.flol.semrankercommon.domain.TopPositionThreshold;
+
 public class KeywordDataOverviewTO {
 
 	private String text;
@@ -14,23 +17,17 @@ public class KeywordDataOverviewTO {
 	
 	private Integer positionVariation;
 	
-	//TODO create object to evaluate periods to track
-	// replace Integer with object created
-	private Map<Integer,Integer> historicalPosition;
+	private Integer bestPosition;
 	
-	//TODO create object to evaluate the interval of the top position
-	// replace Integer with object created
-	private Map<Integer,Boolean> topPositionEnter;
+	private Map<HistoricalCheckThreshold,Integer> historicalPosition;
 	
-	//TODO create object to evaluate the interval of the top position
-	// replace Integer with object created
-	private Map<Integer,Boolean> topPositionExit;
+	private Map<TopPositionThreshold,Boolean> topPositionEnter;
+	
+	private Map<TopPositionThreshold,Boolean> topPositionExit;
 
-	// replace Integer with object created
-	private Map<Integer,Map<Integer,Boolean>> historicalTopPositionEnter;
+	private Map<HistoricalCheckThreshold,Map<TopPositionThreshold,Boolean>> historicalTopPositionEnter;
 
-	// replace Integer with object created
-	private Map<Integer,Map<Integer,Boolean>> historicalTopPositionExit;
+	private Map<HistoricalCheckThreshold,Map<TopPositionThreshold,Boolean>> historicalTopPositionExit;
 
 	public String getText() {
 		return text;
@@ -72,45 +69,56 @@ public class KeywordDataOverviewTO {
 		this.positionVariation = positionVariation;
 	}
 
-	public Map<Integer, Integer> getHistoricalPosition() {
+	public Integer getBestPosition() {
+		return bestPosition;
+	}
+
+	public void setBestPosition(Integer bestPosition) {
+		this.bestPosition = bestPosition;
+	}
+
+	public Map<HistoricalCheckThreshold, Integer> getHistoricalPosition() {
 		return historicalPosition;
 	}
 
-	public void setHistoricalPosition(Map<Integer, Integer> historicalPosition) {
+	public void setHistoricalPosition(
+			Map<HistoricalCheckThreshold, Integer> historicalPosition) {
 		this.historicalPosition = historicalPosition;
 	}
 
-	public Map<Integer, Boolean> getTopPositionEnter() {
+	public Map<TopPositionThreshold, Boolean> getTopPositionEnter() {
 		return topPositionEnter;
 	}
 
-	public void setTopPositionEnter(Map<Integer, Boolean> topPositionEnter) {
+	public void setTopPositionEnter(
+			Map<TopPositionThreshold, Boolean> topPositionEnter) {
 		this.topPositionEnter = topPositionEnter;
 	}
 
-	public Map<Integer, Boolean> getTopPositionExit() {
+	public Map<TopPositionThreshold, Boolean> getTopPositionExit() {
 		return topPositionExit;
 	}
 
-	public void setTopPositionExit(Map<Integer, Boolean> topPositionExit) {
+	public void setTopPositionExit(
+			Map<TopPositionThreshold, Boolean> topPositionExit) {
 		this.topPositionExit = topPositionExit;
 	}
 
-	public Map<Integer, Map<Integer, Boolean>> getHistoricalTopPositionEnter() {
+	public Map<HistoricalCheckThreshold, Map<TopPositionThreshold, Boolean>> getHistoricalTopPositionEnter() {
 		return historicalTopPositionEnter;
 	}
 
 	public void setHistoricalTopPositionEnter(
-			Map<Integer, Map<Integer, Boolean>> historicalTopPositionEnter) {
+			Map<HistoricalCheckThreshold, Map<TopPositionThreshold, Boolean>> historicalTopPositionEnter) {
 		this.historicalTopPositionEnter = historicalTopPositionEnter;
 	}
 
-	public Map<Integer, Map<Integer, Boolean>> getHistoricalTopPositionExit() {
+	public Map<HistoricalCheckThreshold, Map<TopPositionThreshold, Boolean>> getHistoricalTopPositionExit() {
 		return historicalTopPositionExit;
 	}
 
 	public void setHistoricalTopPositionExit(
-			Map<Integer, Map<Integer, Boolean>> historicalTopPositionExit) {
+			Map<HistoricalCheckThreshold, Map<TopPositionThreshold, Boolean>> historicalTopPositionExit) {
 		this.historicalTopPositionExit = historicalTopPositionExit;
 	}
 	

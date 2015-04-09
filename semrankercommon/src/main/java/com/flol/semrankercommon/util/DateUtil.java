@@ -25,6 +25,18 @@ public class DateUtil {
         now.set(Calendar.HOUR_OF_DAY, 0);
         return now.getTime();
 	}
+	
+	public static Date getMidnightDaysAgo(Integer daysAgo)
+	{
+		Calendar now = Calendar.getInstance();
+		now.add(Calendar.DATE, -(daysAgo));
+        now.set(Calendar.HOUR, 0);
+        now.set(Calendar.MINUTE, 0);
+        now.set(Calendar.SECOND, 0);
+        now.set(Calendar.HOUR_OF_DAY, 0);
+        return now.getTime();
+	}
+	
 
 
 }
