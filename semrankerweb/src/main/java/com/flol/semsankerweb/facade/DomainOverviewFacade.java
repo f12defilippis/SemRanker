@@ -32,11 +32,11 @@ public class DomainOverviewFacade {
 	@Autowired
 	private TopPositionThresholdRepository topPositionThresholdRepository;
 	
-	public DomainDataOverviewTO retrieveDomainOverview(Integer accountDomainId){
+	public DomainDataOverviewTO retrieveDomainOverview(Integer accountDomainId, Integer aggregatedSearchEngineId){
 		DomainDataOverviewTO ret = new DomainDataOverviewTO();
 	
 		// get actual data of domain
-		List<SearchReportAccount> actualReportList = searchReportAccountRepository.findByKeywordScanSummaryKeywordSearchengineAccountDomainIdAndDateClosedNotNull(accountDomainId);
+		List<SearchReportAccount> actualReportList = searchReportAccountRepository.findByKeywordScanSummaryKeywordSearchengineAccountDomainIdAndKeywordScanSummaryKeywordSearchengineAggregatedSearchengineIdAndDateClosedNotNull(accountDomainId, aggregatedSearchEngineId);
 
 		// get list of historical threshold
 		List<HistoricalCheckThreshold> historicalCheckThresholdList = (List<HistoricalCheckThreshold>) historicalCheckThresholdRepository.findAll();
@@ -47,7 +47,7 @@ public class DomainOverviewFacade {
 		for(HistoricalCheckThreshold hct : historicalCheckThresholdList)
 		{
 			Date dateToCheck = DateUtil.getMidnightDaysAgo(hct.getValue());
-			List<SearchReportAccount> searchReportListInDate = searchReportAccountRepository.findByAccountDomainIdInDate(accountDomainId, dateToCheck);
+			List<SearchReportAccount> searchReportListInDate = searchReportAccountRepository.findByAccountDomainIdAndAggregatedSearchEngineIdInDate(accountDomainId, aggregatedSearchEngineId, dateToCheck);
 			historicalReportList.put(hct, searchReportListInDate);
 		}
 

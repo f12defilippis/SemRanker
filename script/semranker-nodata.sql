@@ -30,7 +30,7 @@ CREATE TABLE `account` (
   `password` varchar(120) DEFAULT NULL,
   `role` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=299 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -69,9 +69,9 @@ CREATE TABLE `account_domain_competitor` (
   KEY `fk_account_domain_has_domain_domain1_idx` (`domain_competitor`),
   KEY `fk_account_domain_has_domain_account_domain1_idx` (`account_domain`),
   KEY `fk_account_domain_competitor_account_domain_competitor_stat_idx` (`account_domain_competitor_status`),
+  CONSTRAINT `fk_account_domain_competitor_account_domain_competitor_status1` FOREIGN KEY (`account_domain_competitor_status`) REFERENCES `account_domain_competitor_status` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_account_domain_has_domain_account_domain1` FOREIGN KEY (`account_domain`) REFERENCES `account_domain` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_account_domain_has_domain_domain1` FOREIGN KEY (`domain_competitor`) REFERENCES `domain` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_account_domain_competitor_account_domain_competitor_status1` FOREIGN KEY (`account_domain_competitor_status`) REFERENCES `account_domain_competitor_status` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_account_domain_has_domain_domain1` FOREIGN KEY (`domain_competitor`) REFERENCES `domain` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -90,6 +90,29 @@ CREATE TABLE `account_domain_competitor_status` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `aggregated_searchengine`
+--
+
+DROP TABLE IF EXISTS `aggregated_searchengine`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `aggregated_searchengine` (
+  `id` int(11) NOT NULL,
+  `searchengine` int(11) NOT NULL,
+  `searchengine_country` int(11) NOT NULL,
+  `geographical_targeting` int(11) DEFAULT NULL,
+  `mobile` int(1) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `agg_se_se_fk_idx` (`searchengine`),
+  KEY `agg_se_se_country_fk_idx` (`searchengine_country`),
+  KEY `agg_se_geo_fk_idx` (`geographical_targeting`),
+  CONSTRAINT `agg_se_se_fk` FOREIGN KEY (`searchengine`) REFERENCES `searchengine` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `agg_se_se_country_fk` FOREIGN KEY (`searchengine_country`) REFERENCES `searchengine_country` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `agg_se_geo_fk` FOREIGN KEY (`geographical_targeting`) REFERENCES `geographical_targeting` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `domain`
 --
 
@@ -102,7 +125,7 @@ CREATE TABLE `domain` (
   `datecreate` datetime NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name_UNIQUE` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=12927 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -125,6 +148,21 @@ CREATE TABLE `geographical_targeting` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `historical_check_threshold`
+--
+
+DROP TABLE IF EXISTS `historical_check_threshold`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `historical_check_threshold` (
+  `id` int(11) NOT NULL,
+  `value` int(11) NOT NULL,
+  `description` varchar(45) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `keyword`
 --
 
@@ -138,7 +176,7 @@ CREATE TABLE `keyword` (
   `wordcount` int(11) DEFAULT NULL,
   `lastscan` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23736 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -161,10 +199,10 @@ CREATE TABLE `keyword_history_data` (
   KEY `KW_Keyworddata_FK_idx` (`keyword`),
   KEY `period_keyworddata_fk_idx` (`period`),
   KEY `fk_keyword_history_data_searchengine_country1_idx` (`searchengine_country`),
+  CONSTRAINT `fk_keyword_history_data_searchengine_country1` FOREIGN KEY (`searchengine_country`) REFERENCES `searchengine_country` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `KW_Keyworddata_FK` FOREIGN KEY (`keyword`) REFERENCES `keyword` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `period_keyworddata_fk` FOREIGN KEY (`period`) REFERENCES `period` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_keyword_history_data_searchengine_country1` FOREIGN KEY (`searchengine_country`) REFERENCES `searchengine_country` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=21631 DEFAULT CHARSET=latin1;
+  CONSTRAINT `period_keyworddata_fk` FOREIGN KEY (`period`) REFERENCES `period` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -225,20 +263,12 @@ DROP TABLE IF EXISTS `keyword_searchengine`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `keyword_searchengine` (
   `id` int(11) NOT NULL,
-  `searchengine` int(11) NOT NULL,
+  `aggregated_searchengine` int(11) NOT NULL,
   `keyword` int(11) NOT NULL,
-  `searchengine_country` int(11) NOT NULL,
-  `geographical_targeting` int(11) DEFAULT NULL,
-  `mobile` int(1) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `fk_searchengine_has_keyword_keyword1_idx` (`keyword`),
-  KEY `fk_searchengine_has_keyword_searchengine1_idx` (`searchengine`),
-  KEY `fk_keyword_searchengine_searchengine_country1_idx` (`searchengine_country`),
-  KEY `fk_keyword_searchengine_geographical_targeting1_idx` (`geographical_targeting`),
-  CONSTRAINT `fk_keyword_searchengine_geographical_targeting1` FOREIGN KEY (`geographical_targeting`) REFERENCES `geographical_targeting` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_keyword_searchengine_searchengine_country1` FOREIGN KEY (`searchengine_country`) REFERENCES `searchengine_country` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_searchengine_has_keyword_keyword1` FOREIGN KEY (`keyword`) REFERENCES `keyword` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_searchengine_has_keyword_searchengine1` FOREIGN KEY (`searchengine`) REFERENCES `searchengine` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `agg_se_key_se_idx` (`aggregated_searchengine`),
+  KEY `agg_se_key_se_idx1` (`keyword`),
+  CONSTRAINT `agg_se_key_se` FOREIGN KEY (`keyword`) REFERENCES `keyword` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -258,7 +288,6 @@ CREATE TABLE `keyword_searchengine_account_domain` (
   PRIMARY KEY (`id`),
   KEY `fk_keyword_searchengine_has_account_domain_account_domain1_idx` (`account_domain`),
   KEY `fk_keyword_searchengine_has_account_domain_keyword_searchen_idx` (`keyword_searchengine`),
-  CONSTRAINT `fk_keyword_searchengine_has_account_domain_keyword_searchengi1` FOREIGN KEY (`keyword_searchengine`) REFERENCES `keyword_searchengine` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_keyword_searchengine_has_account_domain_account_domain1` FOREIGN KEY (`account_domain`) REFERENCES `account_domain` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -298,7 +327,7 @@ CREATE TABLE `proxy` (
   `errors` int(11) DEFAULT '0',
   `date_lastscan` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1564 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -319,9 +348,9 @@ CREATE TABLE `search_report` (
   PRIMARY KEY (`id`),
   KEY `fk_search_report_keyword_searchengine1_idx` (`keyword_searchengine`),
   KEY `fk_search_report_url1_idx` (`url`),
-  CONSTRAINT `fk_search_report_keyword_searchengine1` FOREIGN KEY (`keyword_searchengine`) REFERENCES `keyword_searchengine` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_key_se_se_re` FOREIGN KEY (`keyword_searchengine`) REFERENCES `keyword_searchengine` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_search_report_url1` FOREIGN KEY (`url`) REFERENCES `url` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=95160 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -344,7 +373,7 @@ CREATE TABLE `search_report_account` (
   KEY `fk_search_report_account_keyword_searchengine_account_domai_idx` (`keyword_scan_summary`),
   CONSTRAINT `fk_search_report_account_keyword_searchengine_account_domain1` FOREIGN KEY (`keyword_scan_summary`) REFERENCES `keyword_scan_summary` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_search_report_url10` FOREIGN KEY (`url`) REFERENCES `url` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=95160 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -391,6 +420,22 @@ CREATE TABLE `searchengine_parameter` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `top_position_check_threshold`
+--
+
+DROP TABLE IF EXISTS `top_position_check_threshold`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `top_position_check_threshold` (
+  `id` int(11) NOT NULL,
+  `description` varchar(45) NOT NULL,
+  `low_threshold` int(11) NOT NULL,
+  `high_threshold` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `url`
 --
 
@@ -406,7 +451,7 @@ CREATE TABLE `url` (
   UNIQUE KEY `url_UNIQUE` (`url`),
   KEY `DOMAIN_FK_URL_idx` (`domain`),
   CONSTRAINT `DOMAIN_FK_URL` FOREIGN KEY (`domain`) REFERENCES `domain` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=44949 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -418,4 +463,4 @@ CREATE TABLE `url` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-04-08 13:06:23
+-- Dump completed on 2015-04-10 16:53:18

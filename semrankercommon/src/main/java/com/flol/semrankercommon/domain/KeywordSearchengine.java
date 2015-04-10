@@ -22,23 +22,13 @@ public class KeywordSearchengine extends BaseDomain implements Serializable {
 	private Integer id;
 
 	@ManyToOne
-    @JoinColumn(name = "geographical_targeting", referencedColumnName = "id", nullable = true)
-	private GeographicalTargeting geographicalTargeting;
-
-	@ManyToOne
     @JoinColumn(name = "keyword", referencedColumnName = "id", nullable = false)
 	private Keyword keyword;
 
 	@ManyToOne
-    @JoinColumn(name = "searchengine", referencedColumnName = "id", nullable = false)
-	private Searchengine searchengine;
-
-	@ManyToOne
-    @JoinColumn(name = "searchengine_country", referencedColumnName = "id", nullable = false)
-	private SearchengineCountry searchengineCountry;
+    @JoinColumn(name = "aggregated_searchengine", referencedColumnName = "id", nullable = true)
+	private AggregatedSearchengine aggregatedSearchengine;
 	
-	private Integer mobile;
-
 	public KeywordSearchengine() {
 	}
 
@@ -50,14 +40,6 @@ public class KeywordSearchengine extends BaseDomain implements Serializable {
 		this.id = id;
 	}
 
-	public GeographicalTargeting getGeographicalTargeting() {
-		return geographicalTargeting;
-	}
-
-	public void setGeographicalTargeting(GeographicalTargeting geographicalTargeting) {
-		this.geographicalTargeting = geographicalTargeting;
-	}
-
 	public Keyword getKeyword() {
 		return keyword;
 	}
@@ -66,29 +48,16 @@ public class KeywordSearchengine extends BaseDomain implements Serializable {
 		this.keyword = keyword;
 	}
 
-	public Searchengine getSearchengine() {
-		return searchengine;
+	public AggregatedSearchengine getAggregatedSearchengine() {
+		return aggregatedSearchengine;
 	}
 
-	public void setSearchengine(Searchengine searchengine) {
-		this.searchengine = searchengine;
+	public void setAggregatedSearchengine(
+			AggregatedSearchengine aggregatedSearchengine) {
+		this.aggregatedSearchengine = aggregatedSearchengine;
 	}
 
-	public SearchengineCountry getSearchengineCountry() {
-		return searchengineCountry;
-	}
 
-	public void setSearchengineCountry(SearchengineCountry searchengineCountry) {
-		this.searchengineCountry = searchengineCountry;
-	}
-
-	public Integer getMobile() {
-		return mobile;
-	}
-
-	public void setMobile(Integer mobile) {
-		this.mobile = mobile;
-	}
 
 
 
