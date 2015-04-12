@@ -32,6 +32,8 @@ public class DomainOverviewFacade {
 	@Autowired
 	private TopPositionThresholdRepository topPositionThresholdRepository;
 	
+	private static Integer minHistoricalCheckThreshold = 1;
+	
 	public DomainDataOverviewTO retrieveDomainOverview(Integer accountDomainId, Integer aggregatedSearchEngineId){
 		DomainDataOverviewTO ret = new DomainDataOverviewTO();
 	
@@ -90,10 +92,68 @@ public class DomainOverviewFacade {
 				}
 			
 			}
+		}
+
+		for(Map.Entry<HistoricalCheckThreshold,List<SearchReportAccount>> entry : historicalReportList.entrySet())
+		{
+			HistoricalCheckThreshold hisThreshold = entry.getKey();
+			List<SearchReportAccount> sraList = entry.getValue();
+			
+			for(SearchReportAccount sra : sraList)
+			{
+				Integer keywordId = sra.getKeywordScanSummary().getKeywordSearchengineAccountDomain().getKeywordSearchengine().getKeyword().getId();
+				
+				if(ret.getKeywordsData().get(keywordId)==null)
+				{
+					KeywordDataOverviewTO keywordOverview = new KeywordDataOverviewTO();
+					keywordOverview.setText(sra.getKeywordScanSummary().getKeywordSearchengineAccountDomain().getKeywordSearchengine().getKeyword().getText());
+					keywordOverview.setPosition(0);
+					
+					Map<HistoricalCheckThreshold, Integer> historicalMap = new HashMap<HistoricalCheckThreshold, Integer>();
+					historicalMap.put(hisThreshold, sra.getPosition());
+					
+					keywordOverview.setHistoricalPosition(historicalMap);
+					
+					keywordOverview.setBestPosition(sra.getPosition());
+
+					ret.getKeywordsData().put(keywordId, keywordOverview);
+					
+				}else
+				{
+					KeywordDataOverviewTO keywordOverview = ret.getKeywordsData().get(keywordId);
+					
+					Map<HistoricalCheckThreshold, Integer> historicalMap = new HashMap<HistoricalCheckThreshold, Integer>();
+					historicalMap.put(hisThreshold, sra.getPosition());
+					
+					keywordOverview.setHistoricalPosition(historicalMap);
+					
+					if(hisThreshold.getValue().equals(minHistoricalCheckThreshold))
+					{
+						Integer keyUp = ret.getKeywordsUp() != null ? ret.getKeywordsUp() : 0;
+						Integer keyDown = ret.getKeywordsDown() != null ? ret.getKeywordsDown() : 0;
+						
+						if(sra.getPosition() > keywordOverview.getPosition())
+						{
+							keyUp = keyUp + 1;
+						}else if(sra.getPosition() < keywordOverview.getPosition())
+						{
+							keyDown = keyDown + 1;
+						}
+						
+						ret.setKeywordsUp(keyUp);
+						ret.setKeywordsDown(keyDown);
+					}
+					
+					if(sra.getPosition() < keywordOverview.getBestPosition())
+					{
+						keywordOverview.setBestPosition(sra.getPosition());
+					}
+
+					ret.getKeywordsData().put(keywordId, keywordOverview);
+				}
+			}
 			
 		}
-		
-		
 		
 		return ret;
 	}
