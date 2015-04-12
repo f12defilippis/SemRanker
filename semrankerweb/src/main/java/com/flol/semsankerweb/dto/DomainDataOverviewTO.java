@@ -1,5 +1,6 @@
 package com.flol.semsankerweb.dto;
 
+import java.math.BigDecimal;
 import java.util.Map;
 
 import com.flol.semrankercommon.domain.HistoricalCheckThreshold;
@@ -12,6 +13,8 @@ public class DomainDataOverviewTO {
 	private Integer keywordsUp;
 	
 	private Integer keywordsDown;
+	
+	private BigDecimal domainScore;
 	
 	private Map<TopPositionThreshold,Integer> keywordsInTop;
 	
@@ -66,6 +69,14 @@ public class DomainDataOverviewTO {
 
 	public void setKeywordsData(Map<Integer, KeywordDataOverviewTO> keywordsData) {
 		this.keywordsData = keywordsData;
+	}
+
+	public BigDecimal getDomainScore() {
+		return domainScore;
+	}
+
+	public void setDomainScore(BigDecimal domainScore) {
+		this.domainScore = domainScore;
 	}
 	
 	

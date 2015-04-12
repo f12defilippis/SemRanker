@@ -1,7 +1,13 @@
 package com.flol.semrankercommon.domain;
 
 import java.io.Serializable;
-import javax.persistence.*;
+import java.math.BigDecimal;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 
 
 /**
@@ -18,7 +24,7 @@ public class KeywordPositionVisit extends BaseDomain implements Serializable {
 	private int id;
 
 	@Column(name="visit_factor")
-	private double visitFactor;
+	private BigDecimal visitFactor;
 
 	public KeywordPositionVisit() {
 	}
@@ -30,13 +36,4 @@ public class KeywordPositionVisit extends BaseDomain implements Serializable {
 	public void setId(int id) {
 		this.id = id;
 	}
-
-	public double getVisitFactor() {
-		return this.visitFactor;
-	}
-
-	public void setVisitFactor(double visitFactor) {
-		this.visitFactor = visitFactor;
-	}
-
 }

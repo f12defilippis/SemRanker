@@ -56,6 +56,8 @@ public class DomainOverviewFacade {
 		// aggregate data to present
 		ret = aggregateData(actualReportList, historicalReportList);
 		
+		ret.setDomainScore(searchReportAccountRepository.getDomainScore(accountDomainId));
+		
 		return ret;
 	}
 	

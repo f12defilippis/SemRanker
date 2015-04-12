@@ -1,5 +1,6 @@
 package com.flol.semrankercommon.repository;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -20,6 +21,16 @@ public interface SearchReportAccountRepository extends CrudRepository<SearchRepo
 			+ "keywordScanSummary.keywordSearchengineAccountDomain.aggregatedSearchEngine.id = :ageId "
 			+ "( (dateFirstSeen <= :date and dateClosed > :date) or (dateFirstSeen <= :date and dateClosed is null))")
 	List<SearchReportAccount> findByAccountDomainIdAndAggregatedSearchEngineIdInDate(@Param("accountDomainId") Integer accountDomainId, @Param("ageId") Integer ageId, @Param("date") Date date);
+	
+	@Query(value = "select sum(score) from ("
+			+ "select khd.avgmonthlysearches*kpv.visitFactor score from"
+			+ "SearchReportAccount sra, KeywordPositionVisit kpv, KeywordHistoryData khd where "
+			+ "sra.keywordScanSummary.keywordSearchEngineAccountDomain.keywordSearchEngine.keyword.id = khd.keyword "
+			+ "and sra.position = kpv.id "
+			+ "and sra.keywordScanSummary.keywordSearchEngineAccountDomain.accountDomain.id = :accountDomainId"
+			+ "and sra.dateClosed is null"
+			+ ")" , nativeQuery = true)
+	BigDecimal getDomainScore(@Param("accountDomainId") Integer accountDomainId);
 	
 	
 }
