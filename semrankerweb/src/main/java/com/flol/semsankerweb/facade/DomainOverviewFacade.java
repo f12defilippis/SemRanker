@@ -38,7 +38,7 @@ public class DomainOverviewFacade {
 		DomainDataOverviewTO ret = new DomainDataOverviewTO();
 	
 		// get actual data of domain
-		List<SearchReportAccount> actualReportList = searchReportAccountRepository.findByKeywordScanSummaryKeywordSearchengineAccountDomainIdAndKeywordScanSummaryKeywordSearchengineAggregatedSearchengineIdAndDateClosedNotNull(accountDomainId, aggregatedSearchEngineId);
+		List<SearchReportAccount> actualReportList = searchReportAccountRepository.findByKeywordScanSummaryKeywordSearchengineAccountDomainIdAndKeywordScanSummaryKeywordSearchengineAccountDomainKeywordSearchengineAggregatedSearchengineIdAndDateClosedNotNull(accountDomainId, aggregatedSearchEngineId);
 
 		// get list of historical threshold
 		List<HistoricalCheckThreshold> historicalCheckThresholdList = (List<HistoricalCheckThreshold>) historicalCheckThresholdRepository.findAll();

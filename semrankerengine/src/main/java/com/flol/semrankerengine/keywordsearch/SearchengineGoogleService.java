@@ -1,4 +1,4 @@
-package com.flol.semrankerengine.service.impl;
+package com.flol.semrankerengine.keywordsearch;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -63,7 +63,7 @@ public class SearchengineGoogleService{
 		Document doc = Jsoup
 				.connect(request)
 				.userAgent(userAgent)
-				.timeout(30000).get();
+				.timeout(60000).get();
 		ProxyUtil.removeProxy(proxyHost);
 		return doc;
 	}

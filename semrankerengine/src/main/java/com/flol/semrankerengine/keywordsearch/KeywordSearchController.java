@@ -1,4 +1,4 @@
-package com.flol.semrankerengine.controller;
+package com.flol.semrankerengine.keywordsearch;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,8 +15,6 @@ import com.flol.semrankercommon.repository.ProxyRepository;
 import com.flol.semrankercommon.repository.SearchengineParameterRepository;
 import com.flol.semrankerengine.dto.SearchKeywordParameterTO;
 import com.flol.semrankerengine.dto.SearchResultItemsTO;
-import com.flol.semrankerengine.service.SearchengineService;
-import com.flol.semrankerengine.util.UserAgentMap;
 
 @RestController
 public class KeywordSearchController {
@@ -34,6 +32,9 @@ public class KeywordSearchController {
     
     @Autowired
     private ProxyRepository proxyRepository;
+    
+    @Autowired
+    private KeywordSearchFacade keywordSearchFacade;
     
 	@RequestMapping(value = "/searchkeyword", method = RequestMethod.POST, headers = "Accept=application/json")
     public SearchResultItemsTO searchkeyword(@RequestParam(value="text", defaultValue="World") String text) {
@@ -53,26 +54,15 @@ public class KeywordSearchController {
 	
 	
 	@RequestMapping(value = "/searchkeywordAndStore", method = RequestMethod.GET, headers = "Accept=application/json")
-	public SearchResultItemsTO searchKeywordAndStore(@RequestParam(value="keywordSearchEngineAccountDomainId") String keywordSearchengineAccountDomainId,
+	public boolean searchKeywordAndStore(@RequestParam(value="keywordSearchEngineAccountDomainId") String keywordSearchengineAccountDomainId,
 			@RequestParam(value="proxyId") String proxyId)
 	{
 		KeywordSearchengineAccountDomain keywordSearchengineAccountDomain = keywordSearchengineAccountDomainRepository.findOne(Integer.valueOf(keywordSearchengineAccountDomainId));
 		Proxy proxy = proxyRepository.findOne(Integer.valueOf(proxyId));
+				
+		keywordSearchFacade.searchKeywordAndStore(keywordSearchengineAccountDomain, proxy);
 		
-		String numResultsToSearch = searchengineParameterRepository.findOne("NUM_RESULTS_TO_SEARCH").getValue();
-		
-		SearchKeywordParameterTO parameter = new SearchKeywordParameterTO();
-		parameter.setKeyword(keywordSearchengineAccountDomain.getKeywordSearchengine().getKeyword().getText());
-		parameter.setNumResultToSearch(numResultsToSearch);
-		parameter.setProxyHost(proxy.getIp());
-		parameter.setProxyPort(proxy.getPort());
-		parameter.setSearchEngine(keywordSearchengineAccountDomain.getKeywordSearchengine().getSearchengine().getId());
-		parameter.setTld(keywordSearchengineAccountDomain.getKeywordSearchengine().getSearchengineCountry().getTld());
-		parameter.setUserAgent(UserAgentMap.getRandomAgent());
-		
-		SearchResultItemsTO ret = searchEngineService.searchKeyword(parameter);
-		
-		return ret;
+		return true;
 	}
 	
 	

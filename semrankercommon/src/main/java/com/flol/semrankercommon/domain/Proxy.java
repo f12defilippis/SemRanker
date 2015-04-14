@@ -40,6 +40,7 @@ public class Proxy extends BaseDomain implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date datecreate;
 
+	@Column(name="proxy_usage")
 	private Integer usage;
 
 	private String ip;
@@ -55,6 +56,9 @@ public class Proxy extends BaseDomain implements Serializable {
 	public Proxy() {
 	}
 
+	public Proxy(Integer pid) {
+		id = pid;
+	}
 
 
 	public Date getDateLastfail() {

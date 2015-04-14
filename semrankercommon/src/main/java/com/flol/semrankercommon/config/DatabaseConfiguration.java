@@ -16,6 +16,7 @@ import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.persistenceunit.PersistenceUnitManager;
 
+@SuppressWarnings("deprecation")
 @Configuration
 public class DatabaseConfiguration implements EnvironmentAware {
 

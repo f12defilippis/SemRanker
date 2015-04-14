@@ -1,7 +1,5 @@
 package com.flol.semrankerengine.controller;
 
-import java.util.concurrent.atomic.AtomicLong;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,7 +12,7 @@ import com.flol.semrankercommon.domain.Keyword;
 @RestController
 public class TestController {
 
-    private final AtomicLong counter = new AtomicLong();
+//    private final AtomicLong counter = new AtomicLong();
     private final Logger log = LoggerFactory.getLogger(this.getClass());    
     
     
@@ -24,8 +22,8 @@ public class TestController {
     	System.out.println(System.getProperty("LOG_FILE"));
     	
     	Keyword keyword = new Keyword();
-    	keyword.setId(counter.incrementAndGet());
-    	keyword.setText(text);
+//    	keyword.setId(counter.incrementAndGet());
+//    	keyword.setText(text);
     	return keyword;
     }
 	
