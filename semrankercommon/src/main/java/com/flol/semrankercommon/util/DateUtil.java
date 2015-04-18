@@ -37,6 +37,12 @@ public class DateUtil {
         return now.getTime();
 	}
 	
-
+	public static Date getNowMinusMillis(Integer millis)
+	{
+		Calendar now = Calendar.getInstance();
+		now.add(Calendar.MILLISECOND,-millis);
+		return now.getTime();
+	}
+	
 
 }

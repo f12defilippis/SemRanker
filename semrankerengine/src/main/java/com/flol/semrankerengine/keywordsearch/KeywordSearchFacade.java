@@ -5,15 +5,17 @@ import java.util.Date;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
 import com.flol.semrankercommon.domain.KeywordScanSummary;
 import com.flol.semrankercommon.domain.KeywordScanSummaryStatus;
 import com.flol.semrankercommon.domain.KeywordSearchengineAccountDomain;
 import com.flol.semrankercommon.domain.Proxy;
+import com.flol.semrankercommon.domain.ProxySearchengine;
 import com.flol.semrankercommon.repository.KeywordScanSummaryRepository;
 import com.flol.semrankercommon.repository.KeywordSearchengineAccountDomainRepository;
-import com.flol.semrankercommon.repository.ProxyRepository;
+import com.flol.semrankercommon.repository.ProxySearchengineRepository;
 import com.flol.semrankercommon.repository.SearchengineParameterRepository;
 import com.flol.semrankercommon.util.DateUtil;
 import com.flol.semrankerengine.dto.SearchKeywordParameterTO;
@@ -37,18 +39,19 @@ public class KeywordSearchFacade {
 	private SearchengineParameterRepository searchengineParameterRepository;
 	
     @Autowired
-    private ProxyRepository proxyRepository;
+    private ProxySearchengineRepository proxySearchengineRepository;
     
     @Autowired
     private KeywordScanSummaryRepository keywordScanSummaryRepository;
     
-
-    
-	public void searchKeywordAndStore(KeywordSearchengineAccountDomain keywordSearchengineAccountDomain, Proxy proxy)
+    @Async("threadPoolTaskExecutor")
+	public void searchKeywordAndStore(KeywordSearchengineAccountDomain keywordSearchengineAccountDomain, ProxySearchengine proxy)
 	{
-		KeywordScanSummary keywordScanSummary = storeNewKeywordScanSummary(keywordSearchengineAccountDomain, proxy);
-		SearchResultItemsTO ret = searchKeyword(keywordScanSummary);
 		Date now = new Date();
+		KeywordScanSummary keywordScanSummary = storeNewKeywordScanSummary(keywordSearchengineAccountDomain, proxy.getProxy());
+		proxy.setDateLastscan(now);
+		proxySearchengineRepository.save(proxy);
+		SearchResultItemsTO ret = searchKeyword(keywordScanSummary);
 		if(!ret.isError())
 		{
 			proxy.setDateLastsuccess(now);
@@ -58,23 +61,22 @@ public class KeywordSearchFacade {
 			} catch (KeywordStoreDataException e) {
 				updateKeywordScanSummary(keywordScanSummary, KeywordScanSummaryStatus.STORE_FAILED);
 				log.warn("KEYWORD FAILED ON STORE: kw=" + keywordScanSummary.getKeywordSearchengineAccountDomain().getKeywordSearchengine().getKeyword().getText() + " "
-						+ "proxy=" + proxy.getIp());
+						+ "proxy=" + proxy.getProxy().getIp());
 				e.printStackTrace();
 			}
 			updateKeywordScanSummary(keywordScanSummary, KeywordScanSummaryStatus.COMPLETED);
 			log.info("KEYWORD STORED: kw=" + keywordScanSummary.getKeywordSearchengineAccountDomain().getKeywordSearchengine().getKeyword().getText() + " "
-					+ "proxy=" + proxy.getIp());
+					+ "proxy=" + proxy.getProxy().getIp());
 		}else
 		{
 			//store error
 			proxy.setDateLastfail(now);
 			updateKeywordScanSummary(keywordScanSummary, KeywordScanSummaryStatus.PROXY_FAILED);
 			log.warn("KEYWORD FAILED ON PROXY: kw=" + keywordScanSummary.getKeywordSearchengineAccountDomain().getKeywordSearchengine().getKeyword().getText() + " "
-					+ "proxy=" + proxy.getIp());
+					+ "proxy=" + proxy.getProxy().getIp());
 		}
-		proxy.setDateLastsscan(now);
 		proxy.setUsage(0);
-		proxyRepository.save(proxy);
+		proxySearchengineRepository.save(proxy);
 	}
 	
 	private KeywordScanSummary storeNewKeywordScanSummary(KeywordSearchengineAccountDomain keywordSearchengineAccountDomain,

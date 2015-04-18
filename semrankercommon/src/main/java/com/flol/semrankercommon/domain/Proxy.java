@@ -3,7 +3,6 @@ package com.flol.semrankercommon.domain;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,24 +23,9 @@ public class Proxy extends BaseDomain implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="date_lastfail")
-	private Date dateLastfail;
-
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="date_lastsuccess")
-	private Date dateLastsuccess;
-	
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="date_lastscan")
-	private Date dateLastsscan;
-
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date datecreate;
-
-	@Column(name="proxy_usage")
-	private Integer usage;
 
 	private String ip;
 
@@ -60,22 +44,6 @@ public class Proxy extends BaseDomain implements Serializable {
 		id = pid;
 	}
 
-
-	public Date getDateLastfail() {
-		return this.dateLastfail;
-	}
-
-	public void setDateLastfail(Date dateLastfail) {
-		this.dateLastfail = dateLastfail;
-	}
-
-	public Date getDateLastsuccess() {
-		return this.dateLastsuccess;
-	}
-
-	public void setDateLastsuccess(Date dateLastsuccess) {
-		this.dateLastsuccess = dateLastsuccess;
-	}
 
 	public Date getDatecreate() {
 		return this.datecreate;
@@ -110,13 +78,7 @@ public class Proxy extends BaseDomain implements Serializable {
 		this.type = type;
 	}
 
-	public Date getDateLastsscan() {
-		return dateLastsscan;
-	}
 
-	public void setDateLastsscan(Date dateLastsscan) {
-		this.dateLastsscan = dateLastsscan;
-	}
 
 	public String getUsername() {
 		return username;
@@ -144,16 +106,6 @@ public class Proxy extends BaseDomain implements Serializable {
 
 	public void setId(Integer id) {
 		this.id = id;
-	}
-
-	public Integer getUsage() {
-		return usage;
-	}
-
-
-
-	public void setUsage(Integer usage) {
-		this.usage = usage;
 	}
 
 
