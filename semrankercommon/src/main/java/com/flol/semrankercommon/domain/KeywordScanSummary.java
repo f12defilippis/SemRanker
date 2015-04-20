@@ -3,11 +3,15 @@ package com.flol.semrankercommon.domain;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Basic;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -34,6 +38,11 @@ public class KeywordScanSummary extends BaseDomain implements Serializable{
 	@ManyToOne
     @JoinColumn(name = "proxy", referencedColumnName = "id", nullable = false)
 	private Proxy proxy;
+	
+	@Lob
+	@Column(name = "cache_page")
+	@Basic(fetch=FetchType.LAZY)
+	private byte[] cachePage;
 
 	public Integer getId() {
 		return id;
@@ -100,6 +109,14 @@ public class KeywordScanSummary extends BaseDomain implements Serializable{
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
+	}
+
+	public byte[] getCachePage() {
+		return cachePage;
+	}
+
+	public void setCachePage(byte[] cachePage) {
+		this.cachePage = cachePage;
 	}
 	
 	

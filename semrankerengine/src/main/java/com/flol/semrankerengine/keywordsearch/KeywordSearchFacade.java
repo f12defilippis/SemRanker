@@ -61,6 +61,7 @@ public class KeywordSearchFacade {
 			
 			try {
 				keywordStoreDataService.storeKeywordsData(ret.getItems(), keywordScanSummary);
+				keywordScanSummary.setCachePage(ret.getCachePage());
 				updateKeywordScanSummary(keywordScanSummary, KeywordScanSummaryStatus.RETRIEVED_FROM_DATA);
 				log.info("KEYWORD STORED: kw=" + keywordScanSummary.getKeywordSearchengineAccountDomain().getKeywordSearchengine().getKeyword().getText());
 			} catch (KeywordStoreDataException e) {

@@ -15,6 +15,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.flol.semrankercommon.util.ProxyUtil;
+import com.flol.semrankercommon.util.SemRankerUtil;
 import com.flol.semrankerengine.dto.SearchKeywordParameterTO;
 import com.flol.semrankerengine.dto.SearchResultItemTO;
 import com.flol.semrankerengine.dto.SearchResultItemsTO;
@@ -44,8 +45,12 @@ public class SearchengineGoogleService{
 	{
 		SearchResultItemsTO returnValue = new SearchResultItemsTO();
 		try {
-				Document doc = executeGoogleCall(parameter.getKeyword(), parameter.getUserAgent(), parameter.getProxyHost(), parameter.getProxyPort(), parameter.getProxyUser(), parameter.getProxyPassword(), parameter.getTld(), parameter.getNumResultToSearch(), parameter.getUule());
-				List<SearchResultItemTO> items = parseSearchResult(doc);
+				byte[] doc = executeGoogleCall(parameter.getKeyword(), parameter.getUserAgent(), parameter.getProxyHost(), parameter.getProxyPort(), parameter.getProxyUser(), parameter.getProxyPassword(), parameter.getTld(), parameter.getNumResultToSearch(), parameter.getUule());
+
+				returnValue.setCachePage(SemRankerUtil.compress(doc));
+				
+				Document document = Jsoup.parse(new String(doc));
+				List<SearchResultItemTO> items = parseSearchResult(document);
 				returnValue.getItems().addAll(items);
 				logger.debug("KEYWORD: " + parameter.getKeyword() + " UserAgent: " + parameter.getUserAgent() + " Proxy: " + parameter.getProxyHost() + ":" + parameter.getProxyPort() + " Successful processed");
 		} catch (IOException e) {
@@ -56,14 +61,14 @@ public class SearchengineGoogleService{
 	}
 	
 	
-	private Document executeGoogleCall(String keyword, String userAgent, String proxyHost, String proxyPort, String proxyUser, String proxyPassword, String tld, String numResultToSearch, String uule) throws IOException
+	private byte[] executeGoogleCall(String keyword, String userAgent, String proxyHost, String proxyPort, String proxyUser, String proxyPassword, String tld, String numResultToSearch, String uule) throws IOException
 	{
 		String request = GOOGLE_REQUEST.replace("{TLD}", tld).replace("{KEYWORD}", keyword).replace("{NUM_RESULTS}", numResultToSearch).replace("{UULE}", uule!=null ? uule : "");
 		ProxyUtil.setProxy(proxyHost, proxyPort, proxyUser, proxyPassword);
-		Document doc = Jsoup
+		byte[] doc = Jsoup
 				.connect(request)
 				.userAgent(userAgent)
-				.timeout(60000).get();
+				.timeout(60000).execute().bodyAsBytes();
 		ProxyUtil.removeProxy(proxyHost);
 		return doc;
 	}

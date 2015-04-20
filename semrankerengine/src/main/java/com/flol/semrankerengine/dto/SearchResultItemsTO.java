@@ -11,6 +11,8 @@ public class SearchResultItemsTO implements Serializable{
 	private String keyword;
 	private boolean error;
 	
+	private byte[] cachePage;
+	
 	
 	private List<SearchResultItemTO> items;
 	
@@ -41,6 +43,14 @@ public class SearchResultItemsTO implements Serializable{
 
 	public void setError(boolean error) {
 		this.error = error;
+	}
+
+	public byte[] getCachePage() {
+		return cachePage;
+	}
+
+	public void setCachePage(byte[] cachePage) {
+		this.cachePage = cachePage;
 	}
 	
 	

@@ -11,7 +11,6 @@ public class KeywordStoreDataException extends Exception{
 	
 	@Override
 	public String getMessage() {
-		// TODO Auto-generated method stub
 		return "ERROR IN STORING KEYWORD DATA IN DATABASE: " + super.getMessage();
 	}
 	

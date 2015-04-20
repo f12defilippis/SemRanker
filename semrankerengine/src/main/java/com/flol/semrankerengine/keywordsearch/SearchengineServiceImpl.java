@@ -33,7 +33,6 @@ public class SearchengineServiceImpl implements SearchengineService{
 				ret = googleService.searchKeyword(parameter);
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			ret.setError(true);
 			e.printStackTrace();
 		}
