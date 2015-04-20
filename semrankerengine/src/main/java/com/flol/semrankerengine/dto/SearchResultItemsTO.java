@@ -14,6 +14,7 @@ public class SearchResultItemsTO implements Serializable{
 	
 	private List<SearchResultItemTO> items;
 	
+	
 	public SearchResultItemsTO(){
 		items = new ArrayList<SearchResultItemTO>();
 	}

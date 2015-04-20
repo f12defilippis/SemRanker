@@ -20,6 +20,7 @@ import com.flol.semrankercommon.repository.SearchReportRepository;
 import com.flol.semrankercommon.repository.UrlRepository;
 import com.flol.semrankercommon.util.DateUtil;
 import com.flol.semrankerengine.dto.SearchResultItemTO;
+import com.flol.semrankerengine.dto.SearchResultItemsTO;
 
 @Service
 public class KeywordStoreDataService {
@@ -48,6 +49,24 @@ public class KeywordStoreDataService {
 			throw new KeywordStoreDataException(e);
 		}
 	}
+    
+    public SearchResultItemsTO getKeywordsData(Integer keywordSearchengineId, String keyword)
+    {
+    	SearchResultItemsTO ret = new SearchResultItemsTO();
+    	ret.setKeyword(keyword);
+    	List<SearchReport> searchReportList = searchReportRepository.findByKeywordSearchengineIdAndDateClosedNotNull(keywordSearchengineId);
+    	for(SearchReport sr : searchReportList)
+    	{
+    		SearchResultItemTO item = new SearchResultItemTO();
+    		item.setDomain(sr.getUrl().getDomain().getName());
+    		item.setUrl(sr.getUrl().getUrl());
+    		item.setPosition(sr.getPosition());
+    		
+    		ret.getItems().add(item);
+    	}
+    	
+    	return ret;
+    }
 	
 	private void storeData(SearchResultItemTO item, KeywordScanSummary keywordScanSummary)
 	{

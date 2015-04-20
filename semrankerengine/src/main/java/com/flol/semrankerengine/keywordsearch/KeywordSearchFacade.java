@@ -1,6 +1,7 @@
 package com.flol.semrankerengine.keywordsearch;
 
 import java.util.Date;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -48,35 +49,58 @@ public class KeywordSearchFacade {
 	public void searchKeywordAndStore(KeywordSearchengineAccountDomain keywordSearchengineAccountDomain, ProxySearchengine proxy)
 	{
 		Date now = new Date();
-		KeywordScanSummary keywordScanSummary = storeNewKeywordScanSummary(keywordSearchengineAccountDomain, proxy.getProxy());
-		proxy.setDateLastscan(now);
-		proxySearchengineRepository.save(proxy);
-		SearchResultItemsTO ret = searchKeyword(keywordScanSummary);
-		if(!ret.isError())
+		SearchResultItemsTO ret = new SearchResultItemsTO();
+		KeywordScanSummary keywordScanSummary  = null;
+		
+		List<KeywordScanSummary> oldScanSummaryList = keywordScanSummaryRepository.findByKeywordSearchengineAccountDomainKeywordSearchengineIdAndDate(keywordSearchengineAccountDomain.getKeywordSearchengine().getId(), DateUtil.getTodaysMidnight());
+		
+		if(oldScanSummaryList!=null && oldScanSummaryList.size()>0)
 		{
-			proxy.setDateLastsuccess(now);
-			// store data
+			keywordScanSummary = storeNewKeywordScanSummary(keywordSearchengineAccountDomain, null);
+			ret = searchKeywordFromData(keywordScanSummary);
+			
 			try {
 				keywordStoreDataService.storeKeywordsData(ret.getItems(), keywordScanSummary);
+				updateKeywordScanSummary(keywordScanSummary, KeywordScanSummaryStatus.RETRIEVED_FROM_DATA);
+				log.info("KEYWORD STORED: kw=" + keywordScanSummary.getKeywordSearchengineAccountDomain().getKeywordSearchengine().getKeyword().getText());
 			} catch (KeywordStoreDataException e) {
 				updateKeywordScanSummary(keywordScanSummary, KeywordScanSummaryStatus.STORE_FAILED);
-				log.warn("KEYWORD FAILED ON STORE: kw=" + keywordScanSummary.getKeywordSearchengineAccountDomain().getKeywordSearchengine().getKeyword().getText() + " "
-						+ "proxy=" + proxy.getProxy().getIp());
+				log.warn("KEYWORD FAILED ON STORE BY DATA: kw=" + keywordScanSummary.getKeywordSearchengineAccountDomain().getKeywordSearchengine().getKeyword().getText());
 				e.printStackTrace();
 			}
-			updateKeywordScanSummary(keywordScanSummary, KeywordScanSummaryStatus.COMPLETED);
-			log.info("KEYWORD STORED: kw=" + keywordScanSummary.getKeywordSearchengineAccountDomain().getKeywordSearchengine().getKeyword().getText() + " "
-					+ "proxy=" + proxy.getProxy().getIp());
+			
 		}else
 		{
-			//store error
-			proxy.setDateLastfail(now);
-			updateKeywordScanSummary(keywordScanSummary, KeywordScanSummaryStatus.PROXY_FAILED);
-			log.warn("KEYWORD FAILED ON PROXY: kw=" + keywordScanSummary.getKeywordSearchengineAccountDomain().getKeywordSearchengine().getKeyword().getText() + " "
-					+ "proxy=" + proxy.getProxy().getIp());
+			keywordScanSummary = storeNewKeywordScanSummary(keywordSearchengineAccountDomain, proxy.getProxy());
+			proxy.setDateLastscan(now);
+			proxySearchengineRepository.save(proxy);
+			ret = searchKeyword(keywordScanSummary);
+			if(!ret.isError())
+			{
+				proxy.setDateLastsuccess(now);
+				// store data
+				try {
+					keywordStoreDataService.storeKeywordsData(ret.getItems(), keywordScanSummary);
+					updateKeywordScanSummary(keywordScanSummary, KeywordScanSummaryStatus.COMPLETED);
+					log.info("KEYWORD STORED: kw=" + keywordScanSummary.getKeywordSearchengineAccountDomain().getKeywordSearchengine().getKeyword().getText() + " "
+							+ "proxy=" + proxy.getProxy().getIp());
+				} catch (KeywordStoreDataException e) {
+					updateKeywordScanSummary(keywordScanSummary, KeywordScanSummaryStatus.STORE_FAILED);
+					log.warn("KEYWORD FAILED ON STORE: kw=" + keywordScanSummary.getKeywordSearchengineAccountDomain().getKeywordSearchengine().getKeyword().getText() + " "
+							+ "proxy=" + proxy.getProxy().getIp());
+					e.printStackTrace();
+				}
+			}else
+			{
+				//store error
+				proxy.setDateLastfail(now);
+				updateKeywordScanSummary(keywordScanSummary, KeywordScanSummaryStatus.PROXY_FAILED);
+				log.warn("KEYWORD FAILED ON PROXY: kw=" + keywordScanSummary.getKeywordSearchengineAccountDomain().getKeywordSearchengine().getKeyword().getText() + " "
+						+ "proxy=" + proxy.getProxy().getIp());
+			}
+			proxy.setUsage(0);
+			proxySearchengineRepository.save(proxy);
 		}
-		proxy.setUsage(0);
-		proxySearchengineRepository.save(proxy);
 	}
 	
 	private KeywordScanSummary storeNewKeywordScanSummary(KeywordSearchengineAccountDomain keywordSearchengineAccountDomain,
@@ -98,7 +122,11 @@ public class KeywordSearchFacade {
 	}
 	
 	
-
+	private SearchResultItemsTO searchKeywordFromData(KeywordScanSummary keywordScanSummary)
+	{
+		SearchResultItemsTO ret = keywordStoreDataService.getKeywordsData(keywordScanSummary.getKeywordSearchengineAccountDomain().getKeywordSearchengine().getId(), keywordScanSummary.getKeywordSearchengineAccountDomain().getKeywordSearchengine().getKeyword().getText());
+		return ret;
+	}
 	
 
 

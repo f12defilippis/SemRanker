@@ -16,6 +16,7 @@ public class KeywordScanSummaryStatus extends BaseDomain implements Serializable
 	public static final Integer COMPLETED = 1;
 	public static final Integer PROXY_FAILED = 2;
 	public static final Integer STORE_FAILED = 3;
+	public static final Integer RETRIEVED_FROM_DATA = 4;
 
 	public KeywordScanSummaryStatus(){}
 
