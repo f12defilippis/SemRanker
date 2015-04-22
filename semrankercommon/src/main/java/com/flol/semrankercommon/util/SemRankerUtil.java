@@ -12,7 +12,7 @@ public class SemRankerUtil {
 	private static Integer MAX_THREAD_WAIT = 8000;
 	
 	
-	public static void wait(Integer sleep) {
+	public static void waitMillis(Integer sleep) {
 		try {
 			Thread.sleep(sleep);
 		} catch (InterruptedException e) {
