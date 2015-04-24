@@ -1,19 +1,24 @@
 package com.flol.semrankerengine.keywordsearch;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.flol.semrankercommon.domain.AccountDomainCompetitor;
+import com.flol.semrankercommon.domain.AccountDomainCompetitorStatus;
 import com.flol.semrankercommon.domain.Domain;
 import com.flol.semrankercommon.domain.KeywordScanSummary;
 import com.flol.semrankercommon.domain.KeywordSearchengine;
 import com.flol.semrankercommon.domain.SearchReport;
 import com.flol.semrankercommon.domain.SearchReportAccount;
 import com.flol.semrankercommon.domain.Url;
+import com.flol.semrankercommon.repository.AccountDomainCompetitorRepository;
 import com.flol.semrankercommon.repository.DomainRepository;
 import com.flol.semrankercommon.repository.SearchReportAccountRepository;
 import com.flol.semrankercommon.repository.SearchReportRepository;
@@ -36,14 +41,23 @@ public class KeywordStoreDataService {
     
     @Autowired
     private SearchReportAccountRepository searchReportAccountRepository;
+    
+    @Autowired
+    private AccountDomainCompetitorRepository accountDomainCompetitorRepository;
 
     @Transactional
 	public void storeKeywordsData(List<SearchResultItemTO> items, KeywordScanSummary kss) throws KeywordStoreDataException
 	{
     	try {
-        	for(SearchResultItemTO item : items)
+    		List<AccountDomainCompetitor> accountDomainCompetitorList = accountDomainCompetitorRepository.findByAccountDomainIdAndAccountDomainCompetitorStatusId(kss.getKeywordSearchengineAccountDomain().getAccountDomain().getId(), AccountDomainCompetitorStatus.ACTIVE);
+    		Map<Integer,Integer> domainCompetitorMap = new HashMap<Integer,Integer>();
+    		for(AccountDomainCompetitor adc : accountDomainCompetitorList)
     		{
-    			storeData(item, kss);
+    			domainCompetitorMap.put(adc.getDomain().getId(), adc.getDomain().getId());
+    		}
+    		for(SearchResultItemTO item : items)
+    		{
+    			storeData(item, kss, domainCompetitorMap);
     		}
 		} catch (Exception e) {
 			throw new KeywordStoreDataException(e);
@@ -68,7 +82,7 @@ public class KeywordStoreDataService {
     	return ret;
     }
 	
-	private void storeData(SearchResultItemTO item, KeywordScanSummary keywordScanSummary)
+	private void storeData(SearchResultItemTO item, KeywordScanSummary keywordScanSummary, Map<Integer,Integer> domainCompetitorMap)
 	{
 		// check domain
 		Domain domain = checkDomain(item.getDomain().replaceAll("www.", ""));
@@ -76,8 +90,8 @@ public class KeywordStoreDataService {
 		Url url = checkUrl(domain, item.getUrl());
 		//store search report data
 		storeSearchReport(url, keywordScanSummary.getKeywordSearchengineAccountDomain().getKeywordSearchengine(), item);
-		// if domain of account store data in searchreportaccount table
-		if(domain.getId().equals(keywordScanSummary.getKeywordSearchengineAccountDomain().getAccountDomain().getDomain().getId()))
+		// if domain of account or competitor store data in searchreportaccount table
+		if(domain.getId().equals(keywordScanSummary.getKeywordSearchengineAccountDomain().getAccountDomain().getDomain().getId()) || domainCompetitorMap.get(domain.getId())!=null)
 		{
 			storeSearchReportAccount(url, keywordScanSummary, item);
 		}

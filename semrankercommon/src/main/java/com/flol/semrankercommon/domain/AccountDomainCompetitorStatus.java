@@ -14,6 +14,10 @@ import javax.persistence.*;
 public class AccountDomainCompetitorStatus extends BaseDomain implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	public static Integer SUGGESTED = 1;
+	public static Integer ACTIVE = 2;
+	
+	
 	@Id
 	private int id;
 

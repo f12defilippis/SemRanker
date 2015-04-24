@@ -1,7 +1,12 @@
 package com.flol.semrankercommon.domain;
 
 import java.io.Serializable;
-import javax.persistence.*;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 
 
 /**
@@ -14,40 +19,55 @@ import javax.persistence.*;
 public class AccountDomainCompetitor extends BaseDomain implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@EmbeddedId
-	private AccountDomainCompetitorPK id;
+	@Id
+	private Integer id;
+
+	@Column(name="account_domain_competitor_status")
+	private Integer accountDomainCompetitorStatus;
 
 	@Column(name="account_domain")
-	private int accountDomain;
+	private AccountDomain accountDomain;
 
 	@Column(name="domain_competitor")
-	private int domainCompetitor;
+	private Domain domain;
 
 	public AccountDomainCompetitor() {
 	}
 
-	public AccountDomainCompetitorPK getId() {
-		return this.id;
+	public Integer getId() {
+		return id;
 	}
 
-	public void setId(AccountDomainCompetitorPK id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
-	public int getAccountDomain() {
-		return this.accountDomain;
+
+
+	public AccountDomain getAccountDomain() {
+		return accountDomain;
 	}
 
-	public void setAccountDomain(int accountDomain) {
+	public void setAccountDomain(AccountDomain accountDomain) {
 		this.accountDomain = accountDomain;
 	}
 
-	public int getDomainCompetitor() {
-		return this.domainCompetitor;
+	public Domain getDomain() {
+		return domain;
 	}
 
-	public void setDomainCompetitor(int domainCompetitor) {
-		this.domainCompetitor = domainCompetitor;
+	public void setDomain(Domain domain) {
+		this.domain = domain;
 	}
+
+	public Integer getAccountDomainCompetitorStatus() {
+		return accountDomainCompetitorStatus;
+	}
+
+	public void setAccountDomainCompetitorStatus(
+			Integer accountDomainCompetitorStatus) {
+		this.accountDomainCompetitorStatus = accountDomainCompetitorStatus;
+	}
+
 
 }
