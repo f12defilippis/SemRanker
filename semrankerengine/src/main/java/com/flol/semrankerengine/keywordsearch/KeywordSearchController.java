@@ -1,15 +1,17 @@
 package com.flol.semrankerengine.keywordsearch;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.flol.semrankercommon.domain.KeywordSearchengineAccountDomain;
@@ -23,8 +25,6 @@ import com.flol.semrankercommon.repository.ProxySearchengineRepository;
 import com.flol.semrankercommon.repository.SearchengineParameterRepository;
 import com.flol.semrankercommon.util.DateUtil;
 import com.flol.semrankercommon.util.SemRankerUtil;
-import com.flol.semrankerengine.dto.SearchKeywordParameterTO;
-import com.flol.semrankerengine.dto.SearchResultItemsTO;
 
 @RestController
 public class KeywordSearchController {
@@ -56,11 +56,12 @@ public class KeywordSearchController {
 	private KeywordsWebRequestRepository keywordsWebRequestRepository;
 	
 	private static int MAX_WAIT = 20;
-	private static int LOOP_FACTOR = 4;
-
+	private static int LOOP_FACTOR = 4;	
+	
 	@RequestMapping(value = "/searchKeywords", method = RequestMethod.GET, headers = "Accept=application/json")
 	public boolean searchKeywords(Integer searchengine, Integer webrequest)
 	{
+		log.info("START searching keywords of SearchEngine: " + searchengine);
 		boolean allSaved = false;
 		SearchengineParameter hourlyCall = searchengineParameterRepository.findOne("HOURLY_PROXY_MAX_CALLS");
 		Integer intHourlyCall = Integer.valueOf(hourlyCall.getValue());
@@ -71,11 +72,20 @@ public class KeywordSearchController {
 		
 		
 		
-		Date proxyCheckDate = DateUtil.getNowMinusMillis(proxyTimeoutMillis);
-		List<ProxySearchengine> proxyList = proxySearchengineRepository.findProxy(proxyCheckDate, searchengine);
-
-		proxySearchengineRepository.setProxyUsage(proxyCheckDate, searchengine);
 		List<KeywordSearchengineAccountDomain> keywordSearchengineAccountDomainList = (List<KeywordSearchengineAccountDomain>) keywordSearchengineAccountDomainRepository.findDataToSearch(DateUtil.getTodaysMidnight(), searchengine);
+		// get the same number of proxy and ksad 
+		Pageable pageable = new PageRequest(0, keywordSearchengineAccountDomainList!=null ? keywordSearchengineAccountDomainList.size() : 0);
+		Date proxyCheckDate = DateUtil.getNowMinusMillis(proxyTimeoutMillis);
+		List<ProxySearchengine> proxyList = proxySearchengineRepository.findProxy(proxyCheckDate, searchengine,pageable);
+		if(proxyList!=null && proxyList.size()>0)
+		{
+			List<Integer> ids = new ArrayList<Integer>();
+			for(ProxySearchengine psg : proxyList)
+			{
+				ids.add(psg.getProxy().getId());
+			}
+			proxySearchengineRepository.setProxyUsageByProxyList(proxyCheckDate, searchengine,ids);
+		}
 		
 		int maxIteration = keywordSearchengineAccountDomainList != null && proxyList != null && keywordSearchengineAccountDomainList.size() > proxyList.size() ? keywordSearchengineAccountDomainList.size() / proxyList.size() * LOOP_FACTOR : LOOP_FACTOR;
 
@@ -92,12 +102,20 @@ public class KeywordSearchController {
 			{
 				if(iteration > 0)
 				{
+					keywordSearchengineAccountDomainList = (List<KeywordSearchengineAccountDomain>) keywordSearchengineAccountDomainRepository.findDataToSearch(DateUtil.getTodaysMidnight(), searchengine);
+					Pageable pageableInt = new PageRequest(0, keywordSearchengineAccountDomainList!=null ? keywordSearchengineAccountDomainList.size() : 0);
 					proxyCheckDate = DateUtil.getNowMinusMillis(proxyTimeoutMillis);
 					
-					proxyList = proxySearchengineRepository.findProxy(proxyCheckDate, searchengine);
-					proxySearchengineRepository.setProxyUsage(proxyCheckDate, searchengine);
-					
-					keywordSearchengineAccountDomainList = (List<KeywordSearchengineAccountDomain>) keywordSearchengineAccountDomainRepository.findDataToSearch(DateUtil.getTodaysMidnight(), searchengine);
+					proxyList = proxySearchengineRepository.findProxy(proxyCheckDate, searchengine, pageableInt);
+					if(proxyList!=null && proxyList.size()>0)
+					{
+						List<Integer> ids = new ArrayList<Integer>();
+						for(ProxySearchengine psg : proxyList)
+						{
+							ids.add(psg.getProxy().getId());
+						}
+						proxySearchengineRepository.setProxyUsageByProxyList(proxyCheckDate, searchengine,ids);
+					}
 				}
 				allSaved = searchKeywords(keywordSearchengineAccountDomainList, proxyList);
 				iteration++;

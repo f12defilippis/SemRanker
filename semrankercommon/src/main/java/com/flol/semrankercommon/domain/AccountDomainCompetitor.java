@@ -5,6 +5,8 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
@@ -25,10 +27,12 @@ public class AccountDomainCompetitor extends BaseDomain implements Serializable 
 	@Column(name="account_domain_competitor_status")
 	private Integer accountDomainCompetitorStatus;
 
-	@Column(name="account_domain")
+	@ManyToOne
+    @JoinColumn(name = "account_domain", referencedColumnName = "id", nullable = false)
 	private AccountDomain accountDomain;
 
-	@Column(name="domain_competitor")
+	@ManyToOne
+    @JoinColumn(name = "domain_competitor", referencedColumnName = "id", nullable = false)
 	private Domain domain;
 
 	public AccountDomainCompetitor() {

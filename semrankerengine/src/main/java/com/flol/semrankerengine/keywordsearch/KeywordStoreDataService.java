@@ -49,7 +49,7 @@ public class KeywordStoreDataService {
 	public void storeKeywordsData(List<SearchResultItemTO> items, KeywordScanSummary kss) throws KeywordStoreDataException
 	{
     	try {
-    		List<AccountDomainCompetitor> accountDomainCompetitorList = accountDomainCompetitorRepository.findByAccountDomainIdAndAccountDomainCompetitorStatusId(kss.getKeywordSearchengineAccountDomain().getAccountDomain().getId(), AccountDomainCompetitorStatus.ACTIVE);
+    		List<AccountDomainCompetitor> accountDomainCompetitorList = accountDomainCompetitorRepository.findByAccountDomainIdAndAccountDomainCompetitorStatus(kss.getKeywordSearchengineAccountDomain().getAccountDomain().getId(), AccountDomainCompetitorStatus.ACTIVE);
     		Map<Integer,Integer> domainCompetitorMap = new HashMap<Integer,Integer>();
     		for(AccountDomainCompetitor adc : accountDomainCompetitorList)
     		{

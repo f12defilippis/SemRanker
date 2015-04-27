@@ -9,6 +9,6 @@ import com.flol.semrankercommon.domain.AccountDomainCompetitor;
 
 public interface AccountDomainCompetitorRepository extends CrudRepository<AccountDomainCompetitor, Integer>{
 
-	List<AccountDomainCompetitor> findByAccountDomainIdAndAccountDomainCompetitorStatusId(Integer accountDomainId, Integer accountDomainCompetitorStatusId);
+	List<AccountDomainCompetitor> findByAccountDomainIdAndAccountDomainCompetitorStatus(Integer accountDomainId, Integer accountDomainCompetitorStatus);
 	
 }
