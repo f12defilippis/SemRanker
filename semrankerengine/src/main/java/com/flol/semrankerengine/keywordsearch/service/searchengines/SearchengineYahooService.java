@@ -1,10 +1,8 @@
-package com.flol.semrankerengine.keywordsearch;
+package com.flol.semrankerengine.keywordsearch.service.searchengines;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -20,27 +18,13 @@ import com.flol.semrankerengine.dto.SearchKeywordParameterTO;
 import com.flol.semrankerengine.dto.SearchResultItemTO;
 import com.flol.semrankerengine.dto.SearchResultItemsTO;
 
-@Service("googleService")
-public class SearchengineGoogleService{
-
-	private static Pattern patternDomainName;
-	private static Pattern patternUrlName;
-
-	private Matcher matcher;
-	private static final String DOMAIN_NAME_PATTERN = "([a-zA-Z0-9]([a-zA-Z0-9\\-]{0,61}[a-zA-Z0-9])?\\.)+[a-zA-Z]{2,6}";
-	private static final String URL_NAME_PATTERN = "https?://[^/&]+(/[^/&]+){0,4}";	
-
+@Service("yahooService")
+public class SearchengineYahooService extends SearchengineBaseService{
 	
-	private static final String GOOGLE_REQUEST = "https://www.google.{TLD}/search?q={KEYWORD}&num={NUM_RESULTS}&uule={UULE}";
-	
+	private static final String YAHOO_REQUEST = "https://{TLD}search.yahoo.com/search?p={KEYWORD}&n=NUM_RESULTS";
+
     private final Logger logger = LoggerFactory.getLogger(this.getClass());  
-	
-	public SearchengineGoogleService()
-	{
-		patternDomainName = Pattern.compile(DOMAIN_NAME_PATTERN);
-		patternUrlName = Pattern.compile(URL_NAME_PATTERN, Pattern.CASE_INSENSITIVE);
-	}
-
+    
 	public SearchResultItemsTO searchKeyword(SearchKeywordParameterTO parameter) throws IOException
 	{
 		SearchResultItemsTO returnValue = new SearchResultItemsTO();
@@ -63,7 +47,7 @@ public class SearchengineGoogleService{
 	
 	private byte[] executeGoogleCall(String keyword, String userAgent, String proxyHost, String proxyPort, String proxyUser, String proxyPassword, String tld, String numResultToSearch, String uule) throws IOException
 	{
-		String request = GOOGLE_REQUEST.replace("{TLD}", tld).replace("{KEYWORD}", keyword).replace("{NUM_RESULTS}", numResultToSearch).replace("{UULE}", uule!=null ? uule : "");
+		String request = YAHOO_REQUEST.replace("{TLD}", tld).replace("{KEYWORD}", keyword).replace("{NUM_RESULTS}", numResultToSearch);
 		ProxyUtil.setProxy(proxyHost, proxyPort, proxyUser, proxyPassword);
 		byte[] doc = Jsoup
 				.connect(request)
@@ -71,52 +55,30 @@ public class SearchengineGoogleService{
 				.timeout(60000).execute().bodyAsBytes();
 		ProxyUtil.removeProxy(proxyHost);
 		return doc;
-	}
-
-	private List<SearchResultItemTO> parseSearchResult(Document doc)
+	}	
+	
+	protected List<SearchResultItemTO> parseSearchResult(Document doc)
 	{
 		List<SearchResultItemTO> items = new ArrayList<SearchResultItemTO>();
 		int position = 1;
 
-		Elements hrclassr = doc.getElementsByClass("r");
+		Elements hrclassr = doc.getElementsByClass("res");
 		for (int i = 0 ; i < hrclassr.size() ; i++) {
 			Element link = hrclassr.get(i).select("a[href]").get(0);
 			String temp = link.attr("href");
-			if (temp.startsWith("/url?q=")) {
-				String domainName = getDomainName(temp);
-				if (!domainName.equals("webcache.googleusercontent.com")
-						&& !(domainName.equals("www.youtube.com") && i>0 && getDomainName(hrclassr.get(i - 1).select("a[href]").get(0).attr("href")).equals("www.youtube.com"))
-						&& !(domainName == null || domainName.equals(""))) {
-					SearchResultItemTO item = new SearchResultItemTO();
-					item.setDomain(domainName);
-					item.setUrl(getUrl(temp));
-					item.setPosition(position);
-					items.add(item);
-					position++;
-				}
+			String domainName = getDomainName(temp);
+			if (!domainName.equals("webcache.googleusercontent.com")
+					&& !(domainName.equals("www.youtube.com") && i>0 && getDomainName(hrclassr.get(i - 1).select("a[href]").get(0).attr("href")).equals("www.youtube.com"))
+					&& !(domainName == null || domainName.equals(""))) {
+				SearchResultItemTO item = new SearchResultItemTO();
+				item.setDomain(domainName);
+				item.setUrl(getUrl(temp));
+				item.setPosition(position);
+				items.add(item);
+				position++;
 			}
 		}
 		return items;
 	}
-		
-	private String getUrl(String urlToParse) {
-		String url = "";
-		matcher = patternUrlName.matcher(urlToParse);
-		if (matcher.find()) {
-			url = matcher.group(0).toLowerCase().trim();
-		}
-		return url;
-	}
-
-	private String getDomainName(String url) {
-
-		String domainName = "";
-		matcher = patternDomainName.matcher(url);
-		if (matcher.find()) {
-			domainName = matcher.group(0).toLowerCase().trim();
-		}
-		return domainName;
-
-	}	
 	
 }

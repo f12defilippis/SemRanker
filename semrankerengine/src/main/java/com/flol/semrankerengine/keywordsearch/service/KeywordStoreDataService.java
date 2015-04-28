@@ -1,4 +1,4 @@
-package com.flol.semrankerengine.keywordsearch;
+package com.flol.semrankerengine.keywordsearch.service;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -26,6 +26,7 @@ import com.flol.semrankercommon.repository.UrlRepository;
 import com.flol.semrankercommon.util.DateUtil;
 import com.flol.semrankerengine.dto.SearchResultItemTO;
 import com.flol.semrankerengine.dto.SearchResultItemsTO;
+import com.flol.semrankerengine.keywordsearch.exception.KeywordStoreDataException;
 
 @Service
 public class KeywordStoreDataService {

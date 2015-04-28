@@ -1,4 +1,4 @@
-package com.flol.semrankerengine.keywordsearch;
+package com.flol.semrankerengine.keywordsearch.service;
 
 import java.io.IOException;
 
@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import com.flol.semrankercommon.util.SearchengineMap;
 import com.flol.semrankerengine.dto.SearchKeywordParameterTO;
 import com.flol.semrankerengine.dto.SearchResultItemsTO;
+import com.flol.semrankerengine.keywordsearch.service.searchengines.SearchengineGoogleService;
+import com.flol.semrankerengine.keywordsearch.service.searchengines.SearchengineYahooService;
 import com.flol.semrankerengine.util.UserAgentMap;
 
 @Service("SearchengineService")
@@ -15,7 +17,10 @@ public class SearchengineServiceImpl implements SearchengineService{
 
 	@Autowired
 	private SearchengineGoogleService googleService;
-	
+
+	@Autowired
+	private SearchengineYahooService yahooService;
+
 	@Override
 	public SearchResultItemsTO searchKeyword(SearchKeywordParameterTO parameter)
 	{
@@ -31,6 +36,9 @@ public class SearchengineServiceImpl implements SearchengineService{
 			if(parameter.getSearchEngine().equals(SearchengineMap.GOOGLE))
 			{
 				ret = googleService.searchKeyword(parameter);
+			}else if(parameter.getSearchEngine().equals(SearchengineMap.YAHOO))
+			{
+				ret = yahooService.searchKeyword(parameter);
 			}
 		} catch (IOException e) {
 			ret.setError(true);

@@ -1,4 +1,4 @@
-package com.flol.semrankerengine.keywordsearch;
+package com.flol.semrankerengine.keywordsearch.job;
 
 import java.util.List;
 
@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import com.flol.semrankercommon.domain.Searchengine;
 import com.flol.semrankercommon.repository.SearchengineRepository;
+import com.flol.semrankerengine.keywordsearch.controller.KeywordSearchController;
 
 @Component
 public class KeywordsSearchJob {

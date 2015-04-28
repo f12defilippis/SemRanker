@@ -1,4 +1,4 @@
-package com.flol.semrankerengine.keywordsearch;
+package com.flol.semrankerengine.keywordsearch.exception;
 
 public class KeywordStoreDataException extends Exception{
 
