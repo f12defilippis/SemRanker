@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.flol.semrankercommon.util.SearchengineMap;
 import com.flol.semrankerengine.dto.SearchKeywordParameterTO;
 import com.flol.semrankerengine.dto.SearchResultItemsTO;
+import com.flol.semrankerengine.keywordsearch.service.searchengines.SearchengineBingService;
 import com.flol.semrankerengine.keywordsearch.service.searchengines.SearchengineGoogleService;
 import com.flol.semrankerengine.keywordsearch.service.searchengines.SearchengineYahooService;
 import com.flol.semrankerengine.util.UserAgentMap;
@@ -20,6 +21,9 @@ public class SearchengineServiceImpl implements SearchengineService{
 
 	@Autowired
 	private SearchengineYahooService yahooService;
+
+	@Autowired
+	private SearchengineBingService bingService;
 
 	@Override
 	public SearchResultItemsTO searchKeyword(SearchKeywordParameterTO parameter)
@@ -39,6 +43,9 @@ public class SearchengineServiceImpl implements SearchengineService{
 			}else if(parameter.getSearchEngine().equals(SearchengineMap.YAHOO))
 			{
 				ret = yahooService.searchKeyword(parameter);
+			}else if(parameter.getSearchEngine().equals(SearchengineMap.BING))
+			{
+				ret = bingService.searchKeyword(parameter);
 			}
 		} catch (IOException e) {
 			ret.setError(true);

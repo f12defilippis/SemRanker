@@ -18,18 +18,18 @@ import com.flol.semrankerengine.dto.SearchKeywordParameterTO;
 import com.flol.semrankerengine.dto.SearchResultItemTO;
 import com.flol.semrankerengine.dto.SearchResultItemsTO;
 
-@Service("yahooService")
-public class SearchengineYahooService extends SearchengineBaseService{
-	
-	private static final String YAHOO_REQUEST = "https://{TLD}search.yahoo.com/search?p={KEYWORD}&n={NUM_RESULTS}";
+@Service("bingService")
+public class SearchengineBingService extends SearchengineBaseService{
 
+	private static final String BING_REQUEST = "http://www.bing.com/search?q={KEYWORD}&count={NUM_RESULTS}&cc={TLD}";
+	
     private final Logger logger = LoggerFactory.getLogger(this.getClass());  
-    
+
 	public SearchResultItemsTO searchKeyword(SearchKeywordParameterTO parameter) throws IOException
 	{
 		SearchResultItemsTO returnValue = new SearchResultItemsTO();
 		try {
-				byte[] doc = executeGoogleCall(parameter.getKeyword(), parameter.getUserAgent(), parameter.getProxyHost(), parameter.getProxyPort(), parameter.getProxyUser(), parameter.getProxyPassword(), parameter.getTld(), parameter.getNumResultToSearch(), parameter.getUule());
+				byte[] doc = executeBingCall(parameter.getKeyword(), parameter.getUserAgent(), parameter.getProxyHost(), parameter.getProxyPort(), parameter.getProxyUser(), parameter.getProxyPassword(), parameter.getTld(), parameter.getNumResultToSearch(), parameter.getUule());
 
 				returnValue.setCachePage(SemRankerUtil.compress(doc));
 				
@@ -45,9 +45,9 @@ public class SearchengineYahooService extends SearchengineBaseService{
 	}
 	
 	
-	private byte[] executeGoogleCall(String keyword, String userAgent, String proxyHost, String proxyPort, String proxyUser, String proxyPassword, String tld, String numResultToSearch, String uule) throws IOException
+	private byte[] executeBingCall(String keyword, String userAgent, String proxyHost, String proxyPort, String proxyUser, String proxyPassword, String tld, String numResultToSearch, String uule) throws IOException
 	{
-		String request = YAHOO_REQUEST.replace("{TLD}", tld).replace("{KEYWORD}", keyword).replace("{NUM_RESULTS}", numResultToSearch);
+		String request = BING_REQUEST.replace("{TLD}", tld).replace("{KEYWORD}", keyword).replace("{NUM_RESULTS}", numResultToSearch);
 		ProxyUtil.setProxy(proxyHost, proxyPort, proxyUser, proxyPassword);
 		byte[] doc = Jsoup
 				.connect(request)
@@ -55,14 +55,14 @@ public class SearchengineYahooService extends SearchengineBaseService{
 				.timeout(60000).execute().bodyAsBytes();
 		ProxyUtil.removeProxy(proxyHost);
 		return doc;
-	}	
-	
+	}
+
 	protected List<SearchResultItemTO> parseSearchResult(Document doc)
 	{
 		List<SearchResultItemTO> items = new ArrayList<SearchResultItemTO>();
 		int position = 1;
 
-		Elements hrclassr = doc.getElementsByClass("res");
+		Elements hrclassr = doc.getElementsByClass("b_algo");
 		for (int i = 0 ; i < hrclassr.size() ; i++) {
 			Element link = hrclassr.get(i).select("a[href]").get(0);
 			String temp = link.attr("href");
@@ -79,6 +79,7 @@ public class SearchengineYahooService extends SearchengineBaseService{
 			}
 		}
 		return items;
-	}
+	}	
+	
 	
 }
