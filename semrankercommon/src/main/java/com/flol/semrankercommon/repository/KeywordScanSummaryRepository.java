@@ -12,7 +12,7 @@ import com.flol.semrankercommon.domain.KeywordScanSummary;
 @Transactional
 public interface KeywordScanSummaryRepository extends CrudRepository<KeywordScanSummary, Integer>{
 
-	List<KeywordScanSummary> findByKeywordSearchengineAccountDomainKeywordSearchengineIdAndDate(Integer keywordSearchengineAccountDomainKeywordSearchengineId, Date date);
+	List<KeywordScanSummary> findByKeywordSearchengineAccountDomainKeywordSearchengineIdAndDateAndKeywordScanSummaryStatusId(Integer keywordSearchengineAccountDomainKeywordSearchengineId, Date date, Integer keywordScanSummaryStatusId);
 	
 	
 }

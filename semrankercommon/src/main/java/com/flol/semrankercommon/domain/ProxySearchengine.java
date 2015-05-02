@@ -44,6 +44,15 @@ public class ProxySearchengine {
 	@Column(name="proxy_usage")
 	private Integer usage;	
 
+	@Column(name="num_success")
+	private Integer numSuccess;	
+
+	@Column(name="num_fails")
+	private Integer numFails;	
+
+	@Column(name="streak")
+	private Integer streak;	
+
 	public Integer getId() {
 		return id;
 	}
@@ -100,6 +109,30 @@ public class ProxySearchengine {
 
 	public void setDateLastscan(Date dateLastscan) {
 		this.dateLastscan = dateLastscan;
+	}
+
+	public Integer getNumSuccess() {
+		return numSuccess;
+	}
+
+	public void setNumSuccess(Integer numSuccess) {
+		this.numSuccess = numSuccess;
+	}
+
+	public Integer getNumFails() {
+		return numFails;
+	}
+
+	public void setNumFails(Integer numFails) {
+		this.numFails = numFails;
+	}
+
+	public Integer getStreak() {
+		return streak;
+	}
+
+	public void setStreak(Integer streak) {
+		this.streak = streak;
 	}
 	
 	

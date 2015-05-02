@@ -55,7 +55,7 @@ public class KeywordSearchFacade {
 		SearchResultItemsTO ret = new SearchResultItemsTO();
 		KeywordScanSummary keywordScanSummary  = null;
 		
-		List<KeywordScanSummary> oldScanSummaryList = keywordScanSummaryRepository.findByKeywordSearchengineAccountDomainKeywordSearchengineIdAndDate(keywordSearchengineAccountDomain.getKeywordSearchengine().getId(), DateUtil.getTodaysMidnight());
+		List<KeywordScanSummary> oldScanSummaryList = keywordScanSummaryRepository.findByKeywordSearchengineAccountDomainKeywordSearchengineIdAndDateAndKeywordScanSummaryStatusId(keywordSearchengineAccountDomain.getKeywordSearchengine().getId(), DateUtil.getTodaysMidnight(), KeywordScanSummaryStatus.COMPLETED);
 		
 		if(oldScanSummaryList!=null && oldScanSummaryList.size()>0)
 		{
@@ -72,7 +72,8 @@ public class KeywordSearchFacade {
 				log.warn("KEYWORD FAILED ON STORE BY DATA: kw=" + keywordScanSummary.getKeywordSearchengineAccountDomain().getKeywordSearchengine().getKeyword().getText());
 				e.printStackTrace();
 			}
-			
+			proxy.setUsage(0);
+			proxySearchengineRepository.save(proxy);
 		}else
 		{
 			keywordScanSummary = storeNewKeywordScanSummary(keywordSearchengineAccountDomain, proxy.getProxy());
@@ -82,6 +83,14 @@ public class KeywordSearchFacade {
 			if(!ret.isError())
 			{
 				proxy.setDateLastsuccess(now);
+				proxy.setNumSuccess(proxy.getNumSuccess()+1);
+				if(proxy.getStreak()>=0)
+				{
+					proxy.setStreak(proxy.getStreak()+1);
+				}else
+				{
+					proxy.setStreak(1);
+				}
 				// store data
 				try {
 					keywordStoreDataService.storeKeywordsData(ret.getItems(), keywordScanSummary);
@@ -98,6 +107,14 @@ public class KeywordSearchFacade {
 			{
 				//store error
 				proxy.setDateLastfail(now);
+				proxy.setNumFails(proxy.getNumFails()+1);
+				if(proxy.getStreak()<=0)
+				{
+					proxy.setStreak(proxy.getStreak()-1);
+				}else
+				{
+					proxy.setStreak(-1);
+				}
 				updateKeywordScanSummary(keywordScanSummary, KeywordScanSummaryStatus.PROXY_FAILED);
 				log.warn("KEYWORD FAILED ON PROXY: kw=" + keywordScanSummary.getKeywordSearchengineAccountDomain().getKeywordSearchengine().getKeyword().getText() + " "
 						+ "proxy=" + proxy.getProxy().getIp());
@@ -110,7 +127,16 @@ public class KeywordSearchFacade {
 	private KeywordScanSummary storeNewKeywordScanSummary(KeywordSearchengineAccountDomain keywordSearchengineAccountDomain,
 			Proxy proxy)
 	{
-		KeywordScanSummary kss = new KeywordScanSummary();
+		KeywordScanSummary kss = null;
+		List<KeywordScanSummary> listKss = keywordScanSummaryRepository.findByKeywordSearchengineAccountDomainKeywordSearchengineIdAndDateAndKeywordScanSummaryStatusId(keywordSearchengineAccountDomain.getKeywordSearchengine().getId(), DateUtil.getTodaysMidnight(), KeywordScanSummaryStatus.PROXY_FAILED);
+		if(listKss!=null && listKss.size()>0)
+		{
+			kss = listKss.get(0);
+		}else
+		{
+			kss = new KeywordScanSummary();
+		}
+		
 		kss.setKeywordSearchengineAccountDomain(keywordSearchengineAccountDomain);
 		kss.setProxy(proxy);
 		kss.setDate(DateUtil.getTodaysMidnight());
@@ -144,7 +170,7 @@ public class KeywordSearchFacade {
 		parameter.setNumResultToSearch(numResultsToSearch);
 		parameter.setProxyHost(keywordScanSummary.getProxy().getIp());
 		parameter.setProxyPort(keywordScanSummary.getProxy().getPort());
-		parameter.setSearchEngine(keywordScanSummary.getKeywordSearchengineAccountDomain().getKeywordSearchengine().getAggregatedSearchengine().getSearchengine().getId());
+		parameter.setSearchEngine(keywordScanSummary.getKeywordSearchengineAccountDomain().getKeywordSearchengine().getAggregatedSearchengine().getSearchengine());
 		parameter.setTld(keywordScanSummary.getKeywordSearchengineAccountDomain().getKeywordSearchengine().getAggregatedSearchengine().getSearchengineCountry().getTld());
 		parameter.setMobile(keywordScanSummary.getKeywordSearchengineAccountDomain().getKeywordSearchengine().getAggregatedSearchengine().getMobile());
 		

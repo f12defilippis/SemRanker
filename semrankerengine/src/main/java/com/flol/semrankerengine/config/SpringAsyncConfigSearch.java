@@ -6,6 +6,7 @@ import org.springframework.aop.interceptor.AsyncUncaughtExceptionHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.ImportResource;
 import org.springframework.scheduling.annotation.AsyncConfigurer;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
@@ -15,7 +16,8 @@ import com.flol.semrankercommon.repository.SearchengineParameterRepository;
 
 @Configuration
 @EnableAsync
-public class SpringAsyncConfig implements AsyncConfigurer {
+@ImportResource("classpath:executor-context.xml")
+public class SpringAsyncConfigSearch implements AsyncConfigurer {
      
 	@Autowired
 	private SearchengineParameterRepository searchengineParameterRepository;
@@ -30,13 +32,15 @@ public class SpringAsyncConfig implements AsyncConfigurer {
 		
 		ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
         executor.setCorePoolSize(maxThread);
-        executor.setMaxPoolSize(maxThread);
-        executor.setQueueCapacity(0);
+        executor.setMaxPoolSize(maxThread*2);
+        executor.setQueueCapacity(maxThread);
         executor.setThreadNamePrefix("SemRankerExecutor-");
         executor.initialize();
         return executor;
     }
 
+	
+	
 	@Override
 	public AsyncUncaughtExceptionHandler getAsyncUncaughtExceptionHandler() {
 		return null;

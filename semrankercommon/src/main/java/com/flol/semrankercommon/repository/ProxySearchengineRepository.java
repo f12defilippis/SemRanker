@@ -16,7 +16,7 @@ import com.flol.semrankercommon.domain.ProxySearchengine;
 @Transactional
 public interface ProxySearchengineRepository extends CrudRepository<ProxySearchengine, Integer>{
 
-	@Query("from ProxySearchengine where searchengine = :searchengine and dateLastscan < :date and usage = 0")
+	@Query("from ProxySearchengine where searchengine.id = :searchengine and dateLastscan < :date and usage = 0 order by streak desc")
 	List<ProxySearchengine> findProxy(@Param("date") Date date, @Param("searchengine") Integer searchengine, Pageable pageable);	
 
 	@Modifying
@@ -26,7 +26,7 @@ public interface ProxySearchengineRepository extends CrudRepository<ProxySearche
 	
 	@Modifying
 	@Transactional
-	@Query("update ProxySearchengine set usage = 1 where searchengine = :searchengine and dateLastscan < :date and proxy.id in :proxies")
+	@Query("update ProxySearchengine set usage = 1 where searchengine.id = :searchengine and dateLastscan < :date and proxy.id in :proxies")
 	Integer setProxyUsageByProxyList(@Param("date") Date date, @Param("searchengine") Integer searchengine, @Param("proxies") List<Integer> proxies);	
 	
 }

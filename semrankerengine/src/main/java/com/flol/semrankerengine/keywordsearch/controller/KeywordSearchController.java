@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -57,8 +58,15 @@ public class KeywordSearchController {
 	@Autowired
 	private KeywordsWebRequestRepository keywordsWebRequestRepository;
 	
-	private static int MAX_WAIT = 20;
-	private static int LOOP_FACTOR = 4;	
+	private static int MAX_WAIT = 40;
+	private static int LOOP_FACTOR = 40;	
+
+	@Async("jobExecutor")
+	public void searchKeywordsJob(Integer searchengine)
+	{
+		searchKeywords(searchengine, null);
+	}
+	
 	
 	@RequestMapping(value = "/searchKeywords", method = RequestMethod.GET, headers = "Accept=application/json")
 	public boolean searchKeywords(Integer searchengine, Integer webrequest)
@@ -75,10 +83,12 @@ public class KeywordSearchController {
 		
 		
 		List<KeywordSearchengineAccountDomain> keywordSearchengineAccountDomainList = (List<KeywordSearchengineAccountDomain>) keywordSearchengineAccountDomainRepository.findDataToSearch(DateUtil.getTodaysMidnight(), searchengine);
+		log.info("Found: " + keywordSearchengineAccountDomainList.size() + " record to search");
 		// get the same number of proxy and ksad 
-		Pageable pageable = new PageRequest(0, keywordSearchengineAccountDomainList!=null ? keywordSearchengineAccountDomainList.size() : 0);
+		Pageable pageable = new PageRequest(0, keywordSearchengineAccountDomainList!=null && keywordSearchengineAccountDomainList.size()>0 ? keywordSearchengineAccountDomainList.size() : 1);
 		Date proxyCheckDate = DateUtil.getNowMinusMillis(proxyTimeoutMillis);
 		List<ProxySearchengine> proxyList = proxySearchengineRepository.findProxy(proxyCheckDate, searchengine,pageable);
+		log.info("Found: " + proxyList.size() + " proxy available");
 		if(proxyList!=null && proxyList.size()>0)
 		{
 			List<Integer> ids = new ArrayList<Integer>();
@@ -104,23 +114,31 @@ public class KeywordSearchController {
 			{
 				if(iteration > 0)
 				{
+					log.info("Iteration num. " + iteration + " max: " + maxIteration);
 					keywordSearchengineAccountDomainList = (List<KeywordSearchengineAccountDomain>) keywordSearchengineAccountDomainRepository.findDataToSearch(DateUtil.getTodaysMidnight(), searchengine);
-					Pageable pageableInt = new PageRequest(0, keywordSearchengineAccountDomainList!=null ? keywordSearchengineAccountDomainList.size() : 0);
-					proxyCheckDate = DateUtil.getNowMinusMillis(proxyTimeoutMillis);
-					
-					proxyList = proxySearchengineRepository.findProxy(proxyCheckDate, searchengine, pageableInt);
-					if(proxyList!=null && proxyList.size()>0)
+					log.info("Found: " + keywordSearchengineAccountDomainList.size() + " record to search");
+					if(keywordSearchengineAccountDomainList!=null && keywordSearchengineAccountDomainList.size()>0)
 					{
-						List<Integer> ids = new ArrayList<Integer>();
-						for(ProxySearchengine psg : proxyList)
+						Pageable pageableInt = new PageRequest(0, keywordSearchengineAccountDomainList!=null && keywordSearchengineAccountDomainList.size()>0 ? keywordSearchengineAccountDomainList.size() : 1);
+						proxyCheckDate = DateUtil.getNowMinusMillis(proxyTimeoutMillis);
+						
+						proxyList = proxySearchengineRepository.findProxy(proxyCheckDate, searchengine, pageableInt);
+						log.info("Found: " + proxyList.size() + " proxy available");
+						if(proxyList!=null && proxyList.size()>0)
 						{
-							ids.add(psg.getProxy().getId());
+							List<Integer> ids = new ArrayList<Integer>();
+							for(ProxySearchengine psg : proxyList)
+							{
+								ids.add(psg.getProxy().getId());
+							}
+							proxySearchengineRepository.setProxyUsageByProxyList(proxyCheckDate, searchengine,ids);
 						}
-						proxySearchengineRepository.setProxyUsageByProxyList(proxyCheckDate, searchengine,ids);
 					}
 				}
 				allSaved = searchKeywords(keywordSearchengineAccountDomainList, proxyList);
 				iteration++;
+				log.info("Waiting " + webRequestWait/3 + " seconds between iteration...");
+				SemRankerUtil.waitMillis(webRequestWait*1000/3);
 			}else
 			{
 				SemRankerUtil.waitMillis(webRequestWait*1000);
@@ -135,6 +153,7 @@ public class KeywordSearchController {
 			
 			keywordsWebRequestRepository.save(kwr);
 		}
+		log.info("FINISH searching keywords of SearchEngine: " + searchengine);
 		return allSaved;
 	}
 
@@ -144,18 +163,19 @@ public class KeywordSearchController {
 		Integer maxThread = Integer.valueOf(maxThreadParameter.getValue());
 		boolean availableResource = true;
 		int waited = 0;
-		for(int ksadIndex = 0 ; ksadIndex < keywordSearchengineAccountDomainList.size() && availableResource; ksadIndex++)
+		for(int ksadIndex = 0 ; ksadIndex < keywordSearchengineAccountDomainList.size() && availableResource; )
 		{
 			KeywordSearchengineAccountDomain keywordSearchengineAccountDomain = keywordSearchengineAccountDomainList.get(ksadIndex);
 			if(proxyList==null || ksadIndex >= proxyList.size())
 			{
 				availableResource = false;
-			}else if(threadPoolTaskExecutor.getActiveCount() >= maxThread)
+			}else if(threadPoolTaskExecutor.getActiveCount() >= maxThread-1)
 			{
 				if(waited>MAX_WAIT)
 				{
 					availableResource = false;
 				}
+				log.info(threadPoolTaskExecutor.getActiveCount() + " active threads. Waiting...");
 				SemRankerUtil.waitForFreeThreads();
 				waited++;
 			}else
@@ -167,6 +187,7 @@ public class KeywordSearchController {
 		}
 		while(threadPoolTaskExecutor.getActiveCount()>0)
 		{
+			log.info(threadPoolTaskExecutor.getActiveCount() + " active threads. Waiting...");
 			SemRankerUtil.waitForFreeThreads();
 		}
 		return availableResource;

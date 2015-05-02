@@ -22,14 +22,14 @@ public class KeywordsSearchJob {
 	
 
 	
-	@Scheduled(cron="${kjst}")
+	@Scheduled(cron="${scheduled.daily}")
 	public void go()
 	{
 		List<Searchengine> searchengines = (List<Searchengine>) searchengineRepository.findAll();
 
 		for(Searchengine se : searchengines)
 		{
-			keywordSearchController.searchKeywords(se.getId(), null);
+			keywordSearchController.searchKeywordsJob(se.getId());
 		}
 	}	
 	

@@ -12,7 +12,7 @@ public interface SearchReportRepository extends CrudRepository<SearchReport, Int
 
 	List<SearchReport> findByKeywordSearchengineAndUrlAndPositionAndDateClosedNotNull(KeywordSearchengine keywordSearchengine, Url url, int position);
 
-	List<SearchReport> findByKeywordSearchengineAndUrlAndDateClosedNotNull(KeywordSearchengine keywordSearchengine, Url url);
+	List<SearchReport> findByKeywordSearchengineAndUrlAndDateClosedNull(KeywordSearchengine keywordSearchengine, Url url);
 
 	List<SearchReport> findByKeywordSearchengineIdAndDateClosedNotNull(Integer keywordSearchengineId);
 

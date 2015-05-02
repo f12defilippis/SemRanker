@@ -1,7 +1,9 @@
 package com.flol.semrankercommon.domain;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.util.Date;
 
 
@@ -15,6 +17,7 @@ public class Keyword extends BaseDomain implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 
 	@Temporal(TemporalType.TIMESTAMP)

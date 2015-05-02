@@ -36,7 +36,7 @@ public class KeywordScanSummary extends BaseDomain implements Serializable{
 	private KeywordScanSummaryStatus keywordScanSummaryStatus;
 	
 	@ManyToOne
-    @JoinColumn(name = "proxy", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "proxy", referencedColumnName = "id", nullable = true)
 	private Proxy proxy;
 	
 	@Lob

@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="keyword_searchengine")
+@Table(name="keywords_web_request")
 public class KeywordsWebRequest extends BaseDomain{
 
 	private static final long serialVersionUID = 6047566588366406109L;

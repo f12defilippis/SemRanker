@@ -86,9 +86,9 @@ public class KeywordStoreDataService {
 	private void storeData(SearchResultItemTO item, KeywordScanSummary keywordScanSummary, Map<Integer,Integer> domainCompetitorMap)
 	{
 		// check domain
-		Domain domain = checkDomain(item.getDomain().replaceAll("www.", ""));
+		Domain domain = checkDomain(item.getDomain().replaceAll("www.", "").replaceAll(" ", "").trim());
 		// check url
-		Url url = checkUrl(domain, item.getUrl());
+		Url url = checkUrl(domain, item.getUrl().replaceAll(" ", "").trim());
 		//store search report data
 		storeSearchReport(url, keywordScanSummary.getKeywordSearchengineAccountDomain().getKeywordSearchengine(), item);
 		// if domain of account or competitor store data in searchreportaccount table
@@ -135,7 +135,7 @@ public class KeywordStoreDataService {
 	
 	private void storeSearchReportAccount(Url url, KeywordScanSummary keywordScanSummary, SearchResultItemTO item)
 	{
-		List<SearchReportAccount> searchReportList = searchReportAccountRepository.findByKeywordScanSummaryKeywordSearchengineAccountDomainIdAndKeywordScanSummaryKeywordSearchengineAccountDomainKeywordSearchengineAggregatedSearchengineIdAndUrlAndDateClosedNotNull(keywordScanSummary.getKeywordSearchengineAccountDomain().getId(), keywordScanSummary.getKeywordSearchengineAccountDomain().getKeywordSearchengine().getAggregatedSearchengine().getId(),  url);
+		List<SearchReportAccount> searchReportList = searchReportAccountRepository.findByKeywordScanSummaryKeywordSearchengineAccountDomainIdAndKeywordScanSummaryKeywordSearchengineAccountDomainKeywordSearchengineAggregatedSearchengineIdAndUrlAndDateClosedNull(keywordScanSummary.getKeywordSearchengineAccountDomain().getId(), keywordScanSummary.getKeywordSearchengineAccountDomain().getKeywordSearchengine().getAggregatedSearchengine().getId(),  url);
 		Date now = DateUtil.getTodaysMidnight();
 		if(searchReportList!=null && searchReportList.size()>0 && searchReportList.get(0).getPosition() == item.getPosition())
 		{
@@ -164,7 +164,7 @@ public class KeywordStoreDataService {
 	
 	private void storeSearchReport(Url url, KeywordSearchengine keywordSearchengine, SearchResultItemTO item)
 	{
-		List<SearchReport> searchReportList = searchReportRepository.findByKeywordSearchengineAndUrlAndDateClosedNotNull(keywordSearchengine, url);
+		List<SearchReport> searchReportList = searchReportRepository.findByKeywordSearchengineAndUrlAndDateClosedNull(keywordSearchengine, url);
 		Date now = DateUtil.getTodaysMidnight();
 		if(searchReportList!=null && searchReportList.size()>0 && searchReportList.get(0).getPosition() == item.getPosition())
 		{

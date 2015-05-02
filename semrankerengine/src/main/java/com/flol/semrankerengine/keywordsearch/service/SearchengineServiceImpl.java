@@ -1,7 +1,5 @@
 package com.flol.semrankerengine.keywordsearch.service;
 
-import java.io.IOException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,17 +35,17 @@ public class SearchengineServiceImpl implements SearchengineService{
 			parameter.setUserAgent(UserAgentMap.getRandomAgent());
 		}
 		try {
-			if(parameter.getSearchEngine().equals(SearchengineMap.GOOGLE))
+			if(parameter.getSearchEngine().getId().equals(SearchengineMap.GOOGLE))
 			{
 				ret = googleService.searchKeyword(parameter);
-			}else if(parameter.getSearchEngine().equals(SearchengineMap.YAHOO))
+			}else if(parameter.getSearchEngine().getId().equals(SearchengineMap.YAHOO))
 			{
 				ret = yahooService.searchKeyword(parameter);
-			}else if(parameter.getSearchEngine().equals(SearchengineMap.BING))
+			}else if(parameter.getSearchEngine().getId().equals(SearchengineMap.BING))
 			{
 				ret = bingService.searchKeyword(parameter);
 			}
-		} catch (IOException e) {
+		} catch (Exception e) {
 			ret.setError(true);
 			e.printStackTrace();
 		}

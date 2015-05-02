@@ -1,63 +1,20 @@
 package com.flol.semrankerengine.keywordsearch.service.searchengines;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import com.flol.semrankercommon.util.ProxyUtil;
-import com.flol.semrankercommon.util.SemRankerUtil;
-import com.flol.semrankerengine.dto.SearchKeywordParameterTO;
 import com.flol.semrankerengine.dto.SearchResultItemTO;
-import com.flol.semrankerengine.dto.SearchResultItemsTO;
 
 @Service("googleService")
 public class SearchengineGoogleService extends SearchengineBaseService{
 	
-	private static final String GOOGLE_REQUEST = "https://www.google.{TLD}/search?q={KEYWORD}&num={NUM_RESULTS}&uule={UULE}";
-	
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());  
-
-	public SearchResultItemsTO searchKeyword(SearchKeywordParameterTO parameter) throws IOException
-	{
-		SearchResultItemsTO returnValue = new SearchResultItemsTO();
-		try {
-				byte[] doc = executeGoogleCall(parameter.getKeyword(), parameter.getUserAgent(), parameter.getProxyHost(), parameter.getProxyPort(), parameter.getProxyUser(), parameter.getProxyPassword(), parameter.getTld(), parameter.getNumResultToSearch(), parameter.getUule());
-
-				returnValue.setCachePage(SemRankerUtil.compress(doc));
-				
-				Document document = Jsoup.parse(new String(doc));
-				List<SearchResultItemTO> items = parseSearchResult(document);
-				returnValue.getItems().addAll(items);
-				logger.debug("KEYWORD: " + parameter.getKeyword() + " UserAgent: " + parameter.getUserAgent() + " Proxy: " + parameter.getProxyHost() + ":" + parameter.getProxyPort() + " Successful processed");
-		} catch (IOException e) {
-			logger.error("KEYWORD=" + parameter.getKeyword() + " UserAgent: " + parameter.getUserAgent() + " Proxy: " + parameter.getProxyHost() + ":" + parameter.getProxyPort());
-			throw e;
-		}
-		return returnValue;
-	}
-	
-	
-	private byte[] executeGoogleCall(String keyword, String userAgent, String proxyHost, String proxyPort, String proxyUser, String proxyPassword, String tld, String numResultToSearch, String uule) throws IOException
-	{
-		String request = GOOGLE_REQUEST.replace("{TLD}", tld).replace("{KEYWORD}", keyword).replace("{NUM_RESULTS}", numResultToSearch).replace("{UULE}", uule!=null ? uule : "");
-		ProxyUtil.setProxy(proxyHost, proxyPort, proxyUser, proxyPassword);
-		byte[] doc = Jsoup
-				.connect(request)
-				.userAgent(userAgent)
-				.timeout(60000).execute().bodyAsBytes();
-		ProxyUtil.removeProxy(proxyHost);
-		return doc;
-	}
-
-	protected List<SearchResultItemTO> parseSearchResult(Document doc)
+    @Override
+	public List<SearchResultItemTO> parseSearchResult(Document doc)
 	{
 		List<SearchResultItemTO> items = new ArrayList<SearchResultItemTO>();
 		int position = 1;

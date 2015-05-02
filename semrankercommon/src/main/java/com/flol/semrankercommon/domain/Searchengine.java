@@ -18,6 +18,17 @@ public class Searchengine extends BaseDomain implements Serializable {
 
 	private String name;
 
+	private String request;
+
+	@Column(name="cache_page")
+	private boolean cachePage;
+
+	@Column(name="cache_snippet")
+	private boolean cacheSnippet;
+	
+	@Column(name="max_results_per_page")
+	private Integer maxResultsPerPage;
+
 	public Searchengine() {
 	}
 
@@ -41,6 +52,54 @@ public class Searchengine extends BaseDomain implements Serializable {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+
+
+	public String getRequest() {
+		return request;
+	}
+
+
+
+	public void setRequest(String request) {
+		this.request = request;
+	}
+
+
+
+	public boolean isCachePage() {
+		return cachePage;
+	}
+
+
+
+	public void setCachePage(boolean cachePage) {
+		this.cachePage = cachePage;
+	}
+
+
+
+	public boolean isCacheSnippet() {
+		return cacheSnippet;
+	}
+
+
+
+	public void setCacheSnippet(boolean cacheSnippet) {
+		this.cacheSnippet = cacheSnippet;
+	}
+
+
+
+	public Integer getMaxResultsPerPage() {
+		return maxResultsPerPage;
+	}
+
+
+
+	public void setMaxResultsPerPage(Integer maxResultsPerPage) {
+		this.maxResultsPerPage = maxResultsPerPage;
 	}
 
 }
