@@ -47,6 +47,14 @@ public class SearchReport extends BaseDomain implements Serializable {
 	private KeywordSearchengine keywordSearchengine;
 
 	private int position;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "date_create", nullable = true)
+	private Date dateCreate;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "date_update", nullable = true)
+	private Date dateUpdate;
 
 	@ManyToOne
     @JoinColumn(name = "url", referencedColumnName = "id", nullable = false)
@@ -125,6 +133,30 @@ public class SearchReport extends BaseDomain implements Serializable {
 
 	public void setUrl(Url url) {
 		this.url = url;
+	}
+
+
+
+	public Date getDateCreate() {
+		return dateCreate;
+	}
+
+
+
+	public void setDateCreate(Date dateCreate) {
+		this.dateCreate = dateCreate;
+	}
+
+
+
+	public Date getDateUpdate() {
+		return dateUpdate;
+	}
+
+
+
+	public void setDateUpdate(Date dateUpdate) {
+		this.dateUpdate = dateUpdate;
 	}
 
 }

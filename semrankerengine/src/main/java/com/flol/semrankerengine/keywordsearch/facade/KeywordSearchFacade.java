@@ -132,9 +132,11 @@ public class KeywordSearchFacade {
 		if(listKss!=null && listKss.size()>0)
 		{
 			kss = listKss.get(0);
+			kss.setDateUpdate(new Date());
 		}else
 		{
 			kss = new KeywordScanSummary();
+			kss.setDateCreate(new Date());
 		}
 		
 		kss.setKeywordSearchengineAccountDomain(keywordSearchengineAccountDomain);

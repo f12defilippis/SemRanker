@@ -146,6 +146,9 @@ public class ExampleDataLoadController {
 					proxyse.setSearchengine(se);
 					proxyse.setDateLastscan(new Date());
 					proxyse.setUsage(0);
+					proxyse.setNumFails(0);
+					proxyse.setNumSuccess(0);
+					proxyse.setStreak(0);
 					
 					proxySearchengineRepository.save(proxyse);
 				}

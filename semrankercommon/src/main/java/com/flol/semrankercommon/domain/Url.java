@@ -3,6 +3,7 @@ package com.flol.semrankercommon.domain;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,26 +26,23 @@ public class Url extends BaseDomain implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date datecreate;
-
 	@ManyToOne
     @JoinColumn(name = "domain", referencedColumnName = "id", nullable = false)
 	private Domain domain;
 
+	
+	
 	private String url;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "date_create", nullable = true)
+	private Date dateCreate;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "date_update", nullable = true)
+	private Date dateUpdate;
 
 	public Url() {
-	}
-
-
-
-	public Date getDatecreate() {
-		return this.datecreate;
-	}
-
-	public void setDatecreate(Date datecreate) {
-		this.datecreate = datecreate;
 	}
 
 
@@ -108,6 +106,30 @@ public class Url extends BaseDomain implements Serializable {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
+	}
+
+
+
+	public Date getDateCreate() {
+		return dateCreate;
+	}
+
+
+
+	public void setDateCreate(Date dateCreate) {
+		this.dateCreate = dateCreate;
+	}
+
+
+
+	public Date getDateUpdate() {
+		return dateUpdate;
+	}
+
+
+
+	public void setDateUpdate(Date dateUpdate) {
+		this.dateUpdate = dateUpdate;
 	}
 
 }

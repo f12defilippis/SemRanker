@@ -86,9 +86,9 @@ public class KeywordStoreDataService {
 	private void storeData(SearchResultItemTO item, KeywordScanSummary keywordScanSummary, Map<Integer,Integer> domainCompetitorMap)
 	{
 		// check domain
-		Domain domain = checkDomain(item.getDomain().replaceAll("www.", "").replaceAll(" ", "").trim());
+		Domain domain = checkDomain(item.getDomain());
 		// check url
-		Url url = checkUrl(domain, item.getUrl().replaceAll(" ", "").trim());
+		Url url = checkUrl(domain, item.getUrl());
 		//store search report data
 		storeSearchReport(url, keywordScanSummary.getKeywordSearchengineAccountDomain().getKeywordSearchengine(), item);
 		// if domain of account or competitor store data in searchreportaccount table
@@ -106,7 +106,7 @@ public class KeywordStoreDataService {
 		{
 			domainRet = new Domain();
 			domainRet.setName(domainName);
-			domainRet.setDatecreate(new Date());
+			domainRet.setDateCreate(new Date());
 			domainRepository.save(domainRet);
 		}else
 		{
@@ -124,7 +124,7 @@ public class KeywordStoreDataService {
 			urlRet = new Url();
 			urlRet.setDomain(domain);
 			urlRet.setUrl(url);
-			urlRet.setDatecreate(new Date());
+			urlRet.setDateCreate(new Date());
 			urlRepository.save(urlRet);
 		}else
 		{
@@ -141,6 +141,7 @@ public class KeywordStoreDataService {
 		{
 			SearchReportAccount searchReport = searchReportList.get(0);
 			searchReport.setDateLastSeen(now);
+			searchReport.setDateUpdate(new Date());
 			searchReportAccountRepository.save(searchReport);
 		}else 
 		{
@@ -148,6 +149,7 @@ public class KeywordStoreDataService {
 			{
 				SearchReportAccount searchReport = searchReportList.get(0);
 				searchReport.setDateClosed(now);
+				searchReport.setDateUpdate(new Date());
 				searchReportAccountRepository.save(searchReport);
 			}
 
@@ -157,6 +159,7 @@ public class KeywordStoreDataService {
 			newSearchReport.setKeywordScanSummary(keywordScanSummary);
 			newSearchReport.setPosition(item.getPosition());
 			newSearchReport.setUrl(url);
+			newSearchReport.setDateCreate(new Date());
 			searchReportAccountRepository.save(newSearchReport);
 		}
 	}
@@ -170,12 +173,14 @@ public class KeywordStoreDataService {
 		{
 			SearchReport searchReport = searchReportList.get(0);
 			searchReport.setDateLastSeen(now);
+			searchReport.setDateUpdate(new Date());
 			searchReportRepository.save(searchReport);
 		}else 
 		{
 			if(searchReportList!=null && searchReportList.size()>0 && searchReportList.get(0).getPosition() != item.getPosition())
 			{
 				SearchReport searchReport = searchReportList.get(0);
+				searchReport.setDateUpdate(new Date());
 				searchReport.setDateClosed(now);
 				searchReportRepository.save(searchReport);
 			}
@@ -186,6 +191,7 @@ public class KeywordStoreDataService {
 			newSearchReport.setKeywordSearchengine(keywordSearchengine);
 			newSearchReport.setPosition(item.getPosition());
 			newSearchReport.setUrl(url);
+			newSearchReport.setDateCreate(new Date());
 			searchReportRepository.save(newSearchReport);
 		}
 	}

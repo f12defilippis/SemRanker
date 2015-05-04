@@ -91,6 +91,7 @@ public abstract class SearchengineBaseService {
 		matcher = patternUrlName.matcher(urlToParse);
 		if (matcher.find()) {
 			url = matcher.group(0).toLowerCase().trim();
+			url = url.replaceAll(" ", "").replaceAll("/url?q=", "").trim();
 		}
 		return url;
 	}
@@ -101,6 +102,7 @@ public abstract class SearchengineBaseService {
 		matcher = patternDomainName.matcher(url);
 		if (matcher.find()) {
 			domainName = matcher.group(0).toLowerCase().trim();
+			domainName = domainName.replaceAll("www.", "").replaceAll(" ", "").replaceAll("http://", "").replaceAll("/url?q=", "").trim();
 		}
 		return domainName;
 

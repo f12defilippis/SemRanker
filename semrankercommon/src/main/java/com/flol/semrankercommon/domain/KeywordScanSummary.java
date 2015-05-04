@@ -14,6 +14,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name="keyword_scan_summary")
@@ -44,6 +46,14 @@ public class KeywordScanSummary extends BaseDomain implements Serializable{
 	@Basic(fetch=FetchType.LAZY)
 	private byte[] cachePage;
 
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "date_create", nullable = true)
+	private Date dateCreate;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "date_update", nullable = true)
+	private Date dateUpdate;	
+	
 	public Integer getId() {
 		return id;
 	}
@@ -117,6 +127,22 @@ public class KeywordScanSummary extends BaseDomain implements Serializable{
 
 	public void setCachePage(byte[] cachePage) {
 		this.cachePage = cachePage;
+	}
+
+	public Date getDateCreate() {
+		return dateCreate;
+	}
+
+	public void setDateCreate(Date dateCreate) {
+		this.dateCreate = dateCreate;
+	}
+
+	public Date getDateUpdate() {
+		return dateUpdate;
+	}
+
+	public void setDateUpdate(Date dateUpdate) {
+		this.dateUpdate = dateUpdate;
 	}
 	
 	

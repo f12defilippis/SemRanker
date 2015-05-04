@@ -45,6 +45,14 @@ public class SearchReportAccount extends BaseDomain implements Serializable {
 	private KeywordScanSummary keywordScanSummary;
 
 	private int position;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "date_create", nullable = true)
+	private Date dateCreate;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "date_update", nullable = true)
+	private Date dateUpdate;
 
 	@ManyToOne
     @JoinColumn(name = "url", referencedColumnName = "id", nullable = false)
@@ -107,6 +115,22 @@ public class SearchReportAccount extends BaseDomain implements Serializable {
 
 	public void setKeywordScanSummary(KeywordScanSummary keywordScanSummary) {
 		this.keywordScanSummary = keywordScanSummary;
+	}
+
+	public Date getDateCreate() {
+		return dateCreate;
+	}
+
+	public void setDateCreate(Date dateCreate) {
+		this.dateCreate = dateCreate;
+	}
+
+	public Date getDateUpdate() {
+		return dateUpdate;
+	}
+
+	public void setDateUpdate(Date dateUpdate) {
+		this.dateUpdate = dateUpdate;
 	}
 
 }
