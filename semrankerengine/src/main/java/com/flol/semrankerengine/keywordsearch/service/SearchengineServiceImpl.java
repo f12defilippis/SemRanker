@@ -35,13 +35,13 @@ public class SearchengineServiceImpl implements SearchengineService{
 			parameter.setUserAgent(UserAgentMap.getRandomAgent());
 		}
 		try {
-			if(parameter.getSearchEngine().getId().equals(SearchengineMap.GOOGLE))
+			if(parameter.getSearchEngineCountry().getSearchengine().getId().equals(SearchengineMap.GOOGLE))
 			{
 				ret = googleService.searchKeyword(parameter);
-			}else if(parameter.getSearchEngine().getId().equals(SearchengineMap.YAHOO))
+			}else if(parameter.getSearchEngineCountry().getSearchengine().getId().equals(SearchengineMap.YAHOO))
 			{
 				ret = yahooService.searchKeyword(parameter);
-			}else if(parameter.getSearchEngine().getId().equals(SearchengineMap.BING))
+			}else if(parameter.getSearchEngineCountry().getSearchengine().getId().equals(SearchengineMap.BING))
 			{
 				ret = bingService.searchKeyword(parameter);
 			}

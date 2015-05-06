@@ -2,6 +2,7 @@ package com.flol.semrankerengine.dto;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class SearchResultItemsTO implements Serializable{
@@ -10,6 +11,8 @@ public class SearchResultItemsTO implements Serializable{
 
 	private String keyword;
 	private boolean error;
+	
+	private Date lastScan;
 	
 	private byte[] cachePage;
 	
@@ -51,6 +54,14 @@ public class SearchResultItemsTO implements Serializable{
 
 	public void setCachePage(byte[] cachePage) {
 		this.cachePage = cachePage;
+	}
+
+	public Date getLastScan() {
+		return lastScan;
+	}
+
+	public void setLastScan(Date lastScan) {
+		this.lastScan = lastScan;
 	}
 	
 	

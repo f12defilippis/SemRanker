@@ -11,6 +11,13 @@ public class SemRankerUtil {
 	private static Integer MIN_THREAD_WAIT = 4000;
 	private static Integer MAX_THREAD_WAIT = 8000;
 	
+	private static Integer MIN_BETWEEN_THREAD_WAIT = 400;
+	private static Integer MAX_BETWEEN_THREAD_WAIT = 800;
+
+	private static Integer MIN_BETWEEN_CALL_WAIT = 2000;
+	private static Integer MAX_BETWEEN_CALL_WAIT = 4000;
+
+	
 	
 	public static void waitMillis(Integer sleep) {
 		try {
@@ -29,6 +36,24 @@ public class SemRankerUtil {
 		}
 	}
 	
+
+	public static void waitBetweenThreads()
+	{
+		try {
+			Thread.sleep(NumberUtil.getRandomInteger(MIN_BETWEEN_THREAD_WAIT, MAX_BETWEEN_THREAD_WAIT));
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void waitBetweenCalls()
+	{
+		try {
+			Thread.sleep(NumberUtil.getRandomInteger(MIN_BETWEEN_CALL_WAIT, MAX_BETWEEN_CALL_WAIT));
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
 
 	public static byte[] compress(byte[] data) throws IOException {
 		Deflater deflater = new Deflater();

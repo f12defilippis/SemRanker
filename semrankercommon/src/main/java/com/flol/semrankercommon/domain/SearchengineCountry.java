@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
@@ -24,6 +26,10 @@ public class SearchengineCountry extends BaseDomain implements Serializable {
 	private String name;
 
 	private String tld;
+	
+	@ManyToOne
+    @JoinColumn(name = "searchengine", referencedColumnName = "id", nullable = false)
+	private Searchengine searchengine;
 
 	public SearchengineCountry() {
 	}
@@ -56,6 +62,18 @@ public class SearchengineCountry extends BaseDomain implements Serializable {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+
+
+	public Searchengine getSearchengine() {
+		return searchengine;
+	}
+
+
+
+	public void setSearchengine(Searchengine searchengine) {
+		this.searchengine = searchengine;
 	}
 
 }

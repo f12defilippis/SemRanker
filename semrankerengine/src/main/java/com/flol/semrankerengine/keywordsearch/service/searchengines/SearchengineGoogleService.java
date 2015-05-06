@@ -14,10 +14,10 @@ import com.flol.semrankerengine.dto.SearchResultItemTO;
 public class SearchengineGoogleService extends SearchengineBaseService{
 	
     @Override
-	public List<SearchResultItemTO> parseSearchResult(Document doc)
+	public List<SearchResultItemTO> parseSearchResult(Document doc, Integer pos) throws Exception
 	{
 		List<SearchResultItemTO> items = new ArrayList<SearchResultItemTO>();
-		int position = 1;
+		int position = pos;
 
 		Elements hrclassr = doc.getElementsByClass("r");
 		for (int i = 0 ; i < hrclassr.size() ; i++) {
@@ -34,11 +34,23 @@ public class SearchengineGoogleService extends SearchengineBaseService{
 					item.setPosition(position);
 					items.add(item);
 					position++;
+					if(item.getDomain()==null || item.getDomain().equals("") || item.getDomain().trim().equals("") || item.getUrl()==null || item.getUrl().equals("") || item.getUrl().trim().equals(""))
+					{
+						throw new Exception("Url/Domain null");
+					}
 				}
 			}
 		}
 		return items;
 	}
+    
+    
+    @Override
+    public Integer getFirstResult(int numResult)
+	{
+		return numResult;
+	}
+
 
 	
 }

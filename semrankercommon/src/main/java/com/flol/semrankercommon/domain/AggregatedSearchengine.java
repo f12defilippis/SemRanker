@@ -22,10 +22,6 @@ public class AggregatedSearchengine extends BaseDomain implements Serializable {
 	private GeographicalTargeting geographicalTargeting;
 
 	@ManyToOne
-    @JoinColumn(name = "searchengine", referencedColumnName = "id", nullable = false)
-	private Searchengine searchengine;
-
-	@ManyToOne
     @JoinColumn(name = "searchengine_country", referencedColumnName = "id", nullable = false)
 	private SearchengineCountry searchengineCountry;
 	
@@ -45,14 +41,6 @@ public class AggregatedSearchengine extends BaseDomain implements Serializable {
 
 	public void setGeographicalTargeting(GeographicalTargeting geographicalTargeting) {
 		this.geographicalTargeting = geographicalTargeting;
-	}
-
-	public Searchengine getSearchengine() {
-		return searchengine;
-	}
-
-	public void setSearchengine(Searchengine searchengine) {
-		this.searchengine = searchengine;
 	}
 
 	public SearchengineCountry getSearchengineCountry() {

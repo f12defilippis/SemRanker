@@ -14,10 +14,10 @@ import com.flol.semrankercommon.domain.KeywordSearchengineAccountDomain;
 @Transactional
 public interface KeywordSearchengineAccountDomainRepository extends CrudRepository<KeywordSearchengineAccountDomain, Integer>{
 
-	@Query("from KeywordSearchengineAccountDomain where keywordSearchengine.aggregatedSearchengine.searchengine.id = :searchengine and "
+	@Query("from KeywordSearchengineAccountDomain where keywordSearchengine.aggregatedSearchengine.searchengineCountry.searchengine.id = :searchengine and "
 			+ "id not in "
 			+ "(select distinct kss.keywordSearchengineAccountDomain.id from KeywordScanSummary kss where "
-			+ "kss.date = :date and kss.keywordScanSummaryStatus.id = 1"
+			+ "kss.date = :date and (kss.keywordScanSummaryStatus.id = 1 or kss.keywordScanSummaryStatus.id = 4)"
 			+ ")")
 	List<KeywordSearchengineAccountDomain> findDataToSearch(@Param("date") Date date, @Param("searchengine") Integer searchengine);
 	

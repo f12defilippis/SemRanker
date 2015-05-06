@@ -59,6 +59,11 @@ public class SearchReport extends BaseDomain implements Serializable {
 	@ManyToOne
     @JoinColumn(name = "url", referencedColumnName = "id", nullable = false)
 	private Url url;
+	
+	@ManyToOne
+    @JoinColumn(name = "keyword_scan_summary", referencedColumnName = "id", nullable = false)
+	private KeywordScanSummary keywordScanSummary;
+
 
 	public SearchReport() {
 	}
@@ -157,6 +162,18 @@ public class SearchReport extends BaseDomain implements Serializable {
 
 	public void setDateUpdate(Date dateUpdate) {
 		this.dateUpdate = dateUpdate;
+	}
+
+
+
+	public KeywordScanSummary getKeywordScanSummary() {
+		return keywordScanSummary;
+	}
+
+
+
+	public void setKeywordScanSummary(KeywordScanSummary keywordScanSummary) {
+		this.keywordScanSummary = keywordScanSummary;
 	}
 
 }

@@ -1,10 +1,10 @@
 package com.flol.semrankerengine.dto;
 
-import com.flol.semrankercommon.domain.Searchengine;
+import com.flol.semrankercommon.domain.SearchengineCountry;
 
 public class SearchKeywordParameterTO {
 
-	private Searchengine searchEngine;
+	private SearchengineCountry searchEngineCountry;
 	
 	private String keyword;
 	private String proxyHost;
@@ -79,11 +79,11 @@ public class SearchKeywordParameterTO {
 	public void setMobile(Integer mobile) {
 		this.mobile = mobile;
 	}
-	public Searchengine getSearchEngine() {
-		return searchEngine;
+	public SearchengineCountry getSearchEngineCountry() {
+		return searchEngineCountry;
 	}
-	public void setSearchEngine(Searchengine searchEngine) {
-		this.searchEngine = searchEngine;
+	public void setSearchEngineCountry(SearchengineCountry searchEngineCountry) {
+		this.searchEngineCountry = searchEngineCountry;
 	}
 
 	

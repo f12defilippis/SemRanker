@@ -14,7 +14,6 @@ import com.flol.semrankercommon.domain.AccountDomainCompetitor;
 import com.flol.semrankercommon.domain.AccountDomainCompetitorStatus;
 import com.flol.semrankercommon.domain.Domain;
 import com.flol.semrankercommon.domain.KeywordScanSummary;
-import com.flol.semrankercommon.domain.KeywordSearchengine;
 import com.flol.semrankercommon.domain.SearchReport;
 import com.flol.semrankercommon.domain.SearchReportAccount;
 import com.flol.semrankercommon.domain.Url;
@@ -90,7 +89,7 @@ public class KeywordStoreDataService {
 		// check url
 		Url url = checkUrl(domain, item.getUrl());
 		//store search report data
-		storeSearchReport(url, keywordScanSummary.getKeywordSearchengineAccountDomain().getKeywordSearchengine(), item);
+		storeSearchReport(url, item, keywordScanSummary);
 		// if domain of account or competitor store data in searchreportaccount table
 		if(domain.getId().equals(keywordScanSummary.getKeywordSearchengineAccountDomain().getAccountDomain().getDomain().getId()) || domainCompetitorMap.get(domain.getId())!=null)
 		{
@@ -135,63 +134,76 @@ public class KeywordStoreDataService {
 	
 	private void storeSearchReportAccount(Url url, KeywordScanSummary keywordScanSummary, SearchResultItemTO item)
 	{
-		List<SearchReportAccount> searchReportList = searchReportAccountRepository.findByKeywordScanSummaryKeywordSearchengineAccountDomainIdAndKeywordScanSummaryKeywordSearchengineAccountDomainKeywordSearchengineAggregatedSearchengineIdAndUrlAndDateClosedNull(keywordScanSummary.getKeywordSearchengineAccountDomain().getId(), keywordScanSummary.getKeywordSearchengineAccountDomain().getKeywordSearchengine().getAggregatedSearchengine().getId(),  url);
+		List<SearchReportAccount> searchReportList = searchReportAccountRepository.findOpenByKeywordSearchengineAccountDomainIdAndUrl(keywordScanSummary.getKeywordSearchengineAccountDomain().getId(), url, DateUtil.getTodaysMidnight());
 		Date now = DateUtil.getTodaysMidnight();
-		if(searchReportList!=null && searchReportList.size()>0 && searchReportList.get(0).getPosition() == item.getPosition())
+		boolean changed = true;
+		if(searchReportList!=null && searchReportList.size()>0)
 		{
-			SearchReportAccount searchReport = searchReportList.get(0);
-			searchReport.setDateLastSeen(now);
-			searchReport.setDateUpdate(new Date());
-			searchReportAccountRepository.save(searchReport);
-		}else 
-		{
-			if(searchReportList!=null && searchReportList.size()>0 && searchReportList.get(0).getPosition() != item.getPosition())
+			changed = false;
+			for(SearchReportAccount searchReport : searchReportList)
 			{
-				SearchReportAccount searchReport = searchReportList.get(0);
-				searchReport.setDateClosed(now);
+				if(searchReport.getPosition()!=item.getPosition())
+				{
+					searchReport.setDateClosed(now);
+					changed = true;
+				}else
+				{
+					searchReport.setDateLastSeen(now);
+				}
 				searchReport.setDateUpdate(new Date());
+				searchReport.setKeywordScanSummary(keywordScanSummary);
 				searchReportAccountRepository.save(searchReport);
 			}
+		}
 
+		if(changed)
+		{
 			SearchReportAccount newSearchReport = new SearchReportAccount();
 			newSearchReport.setDateFirstSeen(now);
 			newSearchReport.setDateLastSeen(now);
-			newSearchReport.setKeywordScanSummary(keywordScanSummary);
 			newSearchReport.setPosition(item.getPosition());
 			newSearchReport.setUrl(url);
 			newSearchReport.setDateCreate(new Date());
+			newSearchReport.setKeywordScanSummary(keywordScanSummary);
 			searchReportAccountRepository.save(newSearchReport);
 		}
 	}
 
 	
-	private void storeSearchReport(Url url, KeywordSearchengine keywordSearchengine, SearchResultItemTO item)
+	private void storeSearchReport(Url url, SearchResultItemTO item, KeywordScanSummary keywordScanSummary)
 	{
-		List<SearchReport> searchReportList = searchReportRepository.findByKeywordSearchengineAndUrlAndDateClosedNull(keywordSearchengine, url);
+		List<SearchReport> searchReportList = searchReportRepository.findByKeywordSearchengineAndUrlAndDateClosedNull(keywordScanSummary.getKeywordSearchengineAccountDomain().getKeywordSearchengine(), url, DateUtil.getTodaysMidnight());
 		Date now = DateUtil.getTodaysMidnight();
-		if(searchReportList!=null && searchReportList.size()>0 && searchReportList.get(0).getPosition() == item.getPosition())
+		boolean changed = true;
+		if(searchReportList!=null && searchReportList.size()>0)
 		{
-			SearchReport searchReport = searchReportList.get(0);
-			searchReport.setDateLastSeen(now);
-			searchReport.setDateUpdate(new Date());
-			searchReportRepository.save(searchReport);
-		}else 
-		{
-			if(searchReportList!=null && searchReportList.size()>0 && searchReportList.get(0).getPosition() != item.getPosition())
+			changed = false;
+			for(SearchReport searchReport : searchReportList)
 			{
-				SearchReport searchReport = searchReportList.get(0);
+				if(searchReport.getPosition()!=item.getPosition())
+				{
+					searchReport.setDateClosed(now);
+					changed = true;
+				}else
+				{
+					searchReport.setDateLastSeen(now);
+				}
 				searchReport.setDateUpdate(new Date());
-				searchReport.setDateClosed(now);
+				searchReport.setKeywordScanSummary(keywordScanSummary);
 				searchReportRepository.save(searchReport);
 			}
+		}
 
+		if(changed)
+		{
 			SearchReport newSearchReport = new SearchReport();
 			newSearchReport.setDateFirstSeen(now);
 			newSearchReport.setDateLastSeen(now);
-			newSearchReport.setKeywordSearchengine(keywordSearchengine);
+			newSearchReport.setKeywordSearchengine(keywordScanSummary.getKeywordSearchengineAccountDomain().getKeywordSearchengine());
 			newSearchReport.setPosition(item.getPosition());
 			newSearchReport.setUrl(url);
 			newSearchReport.setDateCreate(new Date());
+			newSearchReport.setKeywordScanSummary(keywordScanSummary);
 			searchReportRepository.save(newSearchReport);
 		}
 	}

@@ -32,8 +32,8 @@ public class SpringAsyncConfigSearch implements AsyncConfigurer {
 		
 		ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
         executor.setCorePoolSize(maxThread);
-        executor.setMaxPoolSize(maxThread*2);
-        executor.setQueueCapacity(maxThread);
+        executor.setMaxPoolSize(maxThread*4);
+        executor.setQueueCapacity(maxThread*4);
         executor.setThreadNamePrefix("SemRankerExecutor-");
         executor.initialize();
         return executor;

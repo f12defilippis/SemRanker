@@ -58,8 +58,8 @@ public class KeywordSearchController {
 	@Autowired
 	private KeywordsWebRequestRepository keywordsWebRequestRepository;
 	
-	private static int MAX_WAIT = 40;
-	private static int LOOP_FACTOR = 40;	
+	private static int MAX_WAIT = 50;
+	private static int LOOP_FACTOR = 60;	
 
 	@Async("jobExecutor")
 	public void searchKeywordsJob(Integer searchengine)
@@ -183,6 +183,7 @@ public class KeywordSearchController {
 				waited = 0;
 				keywordSearchFacade.searchKeywordAndStore(keywordSearchengineAccountDomain, proxyList.get(ksadIndex));
 				ksadIndex++;
+				SemRankerUtil.waitBetweenThreads();
 			}
 		}
 		while(threadPoolTaskExecutor.getActiveCount()>0)

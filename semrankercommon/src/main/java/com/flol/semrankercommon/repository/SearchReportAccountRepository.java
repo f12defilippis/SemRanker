@@ -13,7 +13,10 @@ import com.flol.semrankercommon.domain.Url;
 
 public interface SearchReportAccountRepository extends CrudRepository<SearchReportAccount, Integer>{
 
-	List<SearchReportAccount> findByKeywordScanSummaryKeywordSearchengineAccountDomainIdAndKeywordScanSummaryKeywordSearchengineAccountDomainKeywordSearchengineAggregatedSearchengineIdAndUrlAndDateClosedNull(Integer keywordScanSummaryKeywordSearchengineAccountDomainId, Integer KeywordScanSummaryKeywordSearchengineAggregatedSearchengineId, Url url);
+	
+	@Query("from SearchReportAccount where keywordScanSummary.keywordSearchengineAccountDomain.id = :keywordSearchengineAccountDomainId and "
+			+ "url = :url and dateFirstSeen <> :date and dateLastSeen <> :date and dateClosed is not null")
+	List<SearchReportAccount> findOpenByKeywordSearchengineAccountDomainIdAndUrl(@Param("keywordSearchengineAccountDomainId") Integer keywordScanSummaryKeywordSearchengineAccountDomainId, @Param("url") Url url, @Param("date") Date date);
 
 	List<SearchReportAccount> findByKeywordScanSummaryKeywordSearchengineAccountDomainIdAndKeywordScanSummaryKeywordSearchengineAccountDomainKeywordSearchengineAggregatedSearchengineIdAndDateClosedNotNull(Integer KeywordScanSummaryKeywordSearchengineAccountDomainId, Integer keywordScanSummaryKeywordSearchengineAggregatedSearchengineId);
 
