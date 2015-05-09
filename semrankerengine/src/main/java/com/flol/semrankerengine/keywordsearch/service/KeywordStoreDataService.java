@@ -16,11 +16,13 @@ import com.flol.semrankercommon.domain.Domain;
 import com.flol.semrankercommon.domain.KeywordScanSummary;
 import com.flol.semrankercommon.domain.SearchReport;
 import com.flol.semrankercommon.domain.SearchReportAccount;
+import com.flol.semrankercommon.domain.SearchengineParameter;
 import com.flol.semrankercommon.domain.Url;
 import com.flol.semrankercommon.repository.AccountDomainCompetitorRepository;
 import com.flol.semrankercommon.repository.DomainRepository;
 import com.flol.semrankercommon.repository.SearchReportAccountRepository;
 import com.flol.semrankercommon.repository.SearchReportRepository;
+import com.flol.semrankercommon.repository.SearchengineParameterRepository;
 import com.flol.semrankercommon.repository.UrlRepository;
 import com.flol.semrankercommon.util.DateUtil;
 import com.flol.semrankerengine.dto.SearchResultItemTO;
@@ -45,10 +47,18 @@ public class KeywordStoreDataService {
     @Autowired
     private AccountDomainCompetitorRepository accountDomainCompetitorRepository;
 
+    @Autowired
+    private SearchengineParameterRepository searchengineParameterRepository;
+    
+    
     @Transactional
 	public void storeKeywordsData(List<SearchResultItemTO> items, KeywordScanSummary kss) throws KeywordStoreDataException
 	{
     	try {
+    		
+    		SearchengineParameter maxPositionParameter = searchengineParameterRepository.findOne("NUM_RESULTS_TO_SEARCH");
+    		Integer maxPosition = Integer.valueOf(maxPositionParameter.getValue());
+    		
     		List<AccountDomainCompetitor> accountDomainCompetitorList = accountDomainCompetitorRepository.findByAccountDomainIdAndAccountDomainCompetitorStatus(kss.getKeywordSearchengineAccountDomain().getAccountDomain().getId(), AccountDomainCompetitorStatus.ACTIVE);
     		Map<Integer,Integer> domainCompetitorMap = new HashMap<Integer,Integer>();
     		for(AccountDomainCompetitor adc : accountDomainCompetitorList)
@@ -57,7 +67,10 @@ public class KeywordStoreDataService {
     		}
     		for(SearchResultItemTO item : items)
     		{
-    			storeData(item, kss, domainCompetitorMap);
+    			if(item.getPosition()!=null && item.getPosition() <= maxPosition)
+    			{
+        			storeData(item, kss, domainCompetitorMap);
+    			}
     		}
 		} catch (Exception e) {
 			throw new KeywordStoreDataException(e);

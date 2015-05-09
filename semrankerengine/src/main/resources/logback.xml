@@ -13,5 +13,9 @@
 	<logger name="com.flol.semrankerengine.keywordsearch" level="INFO">
 		<appender-ref ref="FILE_THREAD" />
 	</logger>
+
+	<logger name="com.flol.semrankerengine.updatecompetitors" level="INFO">
+		<appender-ref ref="FILE_THREAD" />
+	</logger>
 	    
 </configuration> 

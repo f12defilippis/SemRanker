@@ -57,9 +57,12 @@ public class KeywordSearchController {
 	
 	@Autowired
 	private KeywordsWebRequestRepository keywordsWebRequestRepository;
-	
+
+
+
 	private static int MAX_WAIT = 50;
 	private static int LOOP_FACTOR = 60;	
+
 
 	@Async("jobExecutor")
 	public void searchKeywordsJob(Integer searchengine)
@@ -89,7 +92,7 @@ public class KeywordSearchController {
 		Date proxyCheckDate = DateUtil.getNowMinusMillis(proxyTimeoutMillis);
 		List<ProxySearchengine> proxyList = proxySearchengineRepository.findProxy(proxyCheckDate, searchengine,pageable);
 		log.info("Found: " + proxyList.size() + " proxy available");
-		if(proxyList!=null && proxyList.size()>0)
+		if(proxyList!=null && proxyList.size()>0 && keywordSearchengineAccountDomainList.size() > 0)
 		{
 			List<Integer> ids = new ArrayList<Integer>();
 			for(ProxySearchengine psg : proxyList)
@@ -193,5 +196,6 @@ public class KeywordSearchController {
 		}
 		return availableResource;
 	}
+	
 	
 }

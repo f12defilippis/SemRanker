@@ -17,11 +17,14 @@ public class SearchengineYahooService extends SearchengineBaseService{
 	public List<SearchResultItemTO> parseSearchResult(Document doc, Integer pos) throws Exception
 	{
 		List<SearchResultItemTO> items = new ArrayList<SearchResultItemTO>();
+		
 		int position = pos;
 		Elements hrclassr = doc.getElementsByClass("algo");
 		for (int i = 0 ; i < hrclassr.size() ; i++) {
 			Element link = hrclassr.get(i).select("a[href]").get(0);
 			String temp = link.attr("href");
+			temp = temp.substring(temp.indexOf("RU=")+3, temp.indexOf("RK")-1);
+			temp = java.net.URLDecoder.decode(temp, "UTF-8");
 			String domainName = getDomainName(temp);
 			if (!domainName.equals("webcache.googleusercontent.com")
 					&& !(domainName.equals("www.youtube.com") && i>0 && getDomainName(hrclassr.get(i - 1).select("a[href]").get(0).attr("href")).equals("www.youtube.com"))
@@ -40,5 +43,28 @@ public class SearchengineYahooService extends SearchengineBaseService{
 		}
 		return items;
 	}
+	
+//	public static void main(String[] args) {
+//		
+//		SearchengineYahooService service = new SearchengineYahooService();
+//		
+//		try {
+//			byte[] doc = Jsoup
+//					.connect("https://it.search.yahoo.com/search?p=pescare+in+mare&pz=10&b=1")
+//					.userAgent(UserAgentMap.getRandomAgent())
+//					.timeout(60000).execute().bodyAsBytes();
+//			
+//			Document document = Jsoup.parse(new String(doc));
+//			
+//			System.out.println(document.toString());
+//			
+//			service.parseSearchResult(document, 1);
+//			
+//			
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//	}
 	
 }

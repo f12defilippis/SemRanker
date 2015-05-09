@@ -11,4 +11,10 @@ public interface AccountDomainCompetitorRepository extends CrudRepository<Accoun
 
 	List<AccountDomainCompetitor> findByAccountDomainIdAndAccountDomainCompetitorStatus(Integer accountDomainId, Integer accountDomainCompetitorStatus);
 	
+	List<AccountDomainCompetitor> findByAccountDomainId(Integer accountDomainId);
+
+//	@Query("select distinct(adc.domain.id) from AccountDomainCompetitor where accountDomain.id = :accountDomainId")
+//	List<Integer> findDomainIdByAccountDomainId(@Param("accountDomainId") Integer accountDomainId);
+	
+	
 }

@@ -176,11 +176,14 @@ public class KeywordSearchFacade {
 		parameter.setSearchEngineCountry(keywordScanSummary.getKeywordSearchengineAccountDomain().getKeywordSearchengine().getAggregatedSearchengine().getSearchengineCountry());
 		parameter.setTld(keywordScanSummary.getKeywordSearchengineAccountDomain().getKeywordSearchengine().getAggregatedSearchengine().getSearchengineCountry().getTld());
 		parameter.setMobile(keywordScanSummary.getKeywordSearchengineAccountDomain().getKeywordSearchengine().getAggregatedSearchengine().getMobile());
+		if(keywordScanSummary.getKeywordSearchengineAccountDomain().getKeywordSearchengine().getAggregatedSearchengine().getGeographicalTargeting()!=null)
+		{
+			String uule = keywordScanSummary.getKeywordSearchengineAccountDomain().getKeywordSearchengine().getAggregatedSearchengine().getGeographicalTargeting().getUule();
+			parameter.setUule(uule);
+		}
 		
 		SearchResultItemsTO ret = searchEngineService.searchKeyword(parameter);
-		
 		return ret;
-		
 	}
 	
 }

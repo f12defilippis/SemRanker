@@ -36,4 +36,12 @@ public class KeywordPositionVisit extends BaseDomain implements Serializable {
 	public void setId(int id) {
 		this.id = id;
 	}
+
+	public BigDecimal getVisitFactor() {
+		return visitFactor;
+	}
+
+	public void setVisitFactor(BigDecimal visitFactor) {
+		this.visitFactor = visitFactor;
+	}
 }

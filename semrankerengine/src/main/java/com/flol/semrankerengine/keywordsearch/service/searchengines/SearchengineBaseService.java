@@ -22,7 +22,9 @@ public abstract class SearchengineBaseService {
 	protected static Pattern patternDomainName;
 	protected static Pattern patternUrlName;
 
-	protected static final String DOMAIN_NAME_PATTERN = "([a-zA-Z0-9]([a-zA-Z0-9\\-]{0,61}[a-zA-Z0-9])?\\.)+[a-zA-Z]{2,6}";
+//	protected static final String DOMAIN_NAME_PATTERN = "([a-zA-Z0-9]([a-zA-Z0-9\\-]{0,61}[a-zA-Z0-9])?\\.)+[a-zA-Z]{2,6}";
+	protected static final String DOMAIN_NAME_PATTERN = "([A-Za-z0-9]([a-zA-Z0-9\\-]{0,61}[a-zA-Z0-9])?\\.)+[A-Za-z]{2,6}";
+	
 	protected static final String URL_NAME_PATTERN = "https?://[^/&]+(/[^/&]+){0,15}";	
 
 	protected static final Integer MAX_LOOP = 20;	
@@ -147,7 +149,7 @@ public abstract class SearchengineBaseService {
 		Matcher matcher = patternDomainName.matcher(url);
 		if (matcher.find()) {
 			domainName = matcher.group(0).toLowerCase().trim();
-			domainName = domainName.replaceAll("www.", "").replaceAll(" ", "").replaceAll("http://", "").replaceAll("/url?q=", "").trim();
+			domainName = domainName.replaceAll("www2?.", "").replaceAll(" ", "").replaceAll("http://", "").replaceAll("/url?q=", "").trim();
 		}
 		return domainName;
 

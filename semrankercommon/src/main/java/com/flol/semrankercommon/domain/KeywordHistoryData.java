@@ -1,7 +1,9 @@
 package com.flol.semrankercommon.domain;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.util.Date;
 
 
@@ -16,15 +18,16 @@ public class KeywordHistoryData extends BaseDomain implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private int id;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Integer id;
 
-	private int avgmonthlysearches;
+	private Integer avgmonthlysearches;
 
-	private double competition;
+	private Double competition;
 
-	private int keyword;
+	private Integer keyword;
 
-	private int period;
+	private Integer period;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date scandate;
@@ -32,53 +35,53 @@ public class KeywordHistoryData extends BaseDomain implements Serializable {
 	@Column(name="searchengine_country")
 	private int searchengineCountry;
 
-	private double suggestedbid;
+	private Double suggestedbid;
 
 	public KeywordHistoryData() {
 	}
 
-	public int getId() {
-		return this.id;
+	public Integer getId() {
+		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
-	public int getAvgmonthlysearches() {
-		return this.avgmonthlysearches;
+	public Integer getAvgmonthlysearches() {
+		return avgmonthlysearches;
 	}
 
-	public void setAvgmonthlysearches(int avgmonthlysearches) {
+	public void setAvgmonthlysearches(Integer avgmonthlysearches) {
 		this.avgmonthlysearches = avgmonthlysearches;
 	}
 
-	public double getCompetition() {
-		return this.competition;
+	public Double getCompetition() {
+		return competition;
 	}
 
-	public void setCompetition(double competition) {
+	public void setCompetition(Double competition) {
 		this.competition = competition;
 	}
 
-	public int getKeyword() {
-		return this.keyword;
+	public Integer getKeyword() {
+		return keyword;
 	}
 
-	public void setKeyword(int keyword) {
+	public void setKeyword(Integer keyword) {
 		this.keyword = keyword;
 	}
 
-	public int getPeriod() {
-		return this.period;
+	public Integer getPeriod() {
+		return period;
 	}
 
-	public void setPeriod(int period) {
+	public void setPeriod(Integer period) {
 		this.period = period;
 	}
 
 	public Date getScandate() {
-		return this.scandate;
+		return scandate;
 	}
 
 	public void setScandate(Date scandate) {
@@ -86,19 +89,20 @@ public class KeywordHistoryData extends BaseDomain implements Serializable {
 	}
 
 	public int getSearchengineCountry() {
-		return this.searchengineCountry;
+		return searchengineCountry;
 	}
 
 	public void setSearchengineCountry(int searchengineCountry) {
 		this.searchengineCountry = searchengineCountry;
 	}
 
-	public double getSuggestedbid() {
-		return this.suggestedbid;
+	public Double getSuggestedbid() {
+		return suggestedbid;
 	}
 
-	public void setSuggestedbid(double suggestedbid) {
+	public void setSuggestedbid(Double suggestedbid) {
 		this.suggestedbid = suggestedbid;
 	}
+
 
 }
