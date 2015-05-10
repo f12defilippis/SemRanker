@@ -32,14 +32,19 @@ public class SearchengineGoogleService extends SearchengineBaseService {
 				item.setDomain(domainName);
 				item.setUrl(getUrl(temp));
 				item.setPosition(position);
-				items.add(item);
 				position++;
 				if (item.getDomain() == null || item.getDomain().equals("")
 						|| item.getDomain().trim().equals("")
 						|| item.getUrl() == null || item.getUrl().equals("")
 						|| item.getUrl().trim().equals("")) {
-					throw new Exception("Url/Domain null");
+					logger.error("Url/Domain null. Link: " + link.toString());
+					logger.error("Url/Domain null. DomainName: " + item.getDomain());
+					logger.error("Url/Domain null. Url: " + item.getUrl());
+				}else
+				{
+					items.add(item);
 				}
+				position++;
 			}
 		}
 		return items;

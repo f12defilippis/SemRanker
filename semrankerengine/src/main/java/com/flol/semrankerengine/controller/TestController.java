@@ -1,6 +1,5 @@
 package com.flol.semrankerengine.controller;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -46,11 +45,12 @@ public class TestController {
     	return keyword;
     }
     
-    @RequestMapping(value = "/score", method = RequestMethod.GET)
-    public BigDecimal getScore() {
-    	log.info("Chiamata funzione score");
-    	return searchReportAccountRepository.getDomainScore(1);
-    }
+//    @RequestMapping(value = "/score", method = RequestMethod.GET)
+//    public Object[] getScore() {
+//    	log.info("Chiamata funzione score");
+//    	Object[] returnBig = searchReportAccountRepository.getDomainScore(2);
+//    	return returnBig;
+//    }
     
     @RequestMapping(value = "/scores", method = RequestMethod.GET)
     public List<DomainCompetitorTO> getScores() {

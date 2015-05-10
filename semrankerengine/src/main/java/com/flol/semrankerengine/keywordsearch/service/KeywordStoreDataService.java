@@ -152,16 +152,15 @@ public class KeywordStoreDataService {
 		boolean changed = true;
 		if(searchReportList!=null && searchReportList.size()>0)
 		{
-			changed = false;
 			for(SearchReportAccount searchReport : searchReportList)
 			{
 				if(searchReport.getPosition()!=item.getPosition())
 				{
 					searchReport.setDateClosed(now);
-					changed = true;
 				}else
 				{
 					searchReport.setDateLastSeen(now);
+					changed = false;
 				}
 				searchReport.setDateUpdate(new Date());
 				searchReport.setKeywordScanSummary(keywordScanSummary);

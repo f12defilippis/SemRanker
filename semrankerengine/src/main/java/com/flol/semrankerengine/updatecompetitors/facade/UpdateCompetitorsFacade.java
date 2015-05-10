@@ -1,5 +1,6 @@
 package com.flol.semrankerengine.updatecompetitors.facade;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -21,6 +22,7 @@ import com.flol.semrankercommon.dto.DomainCompetitorTO;
 import com.flol.semrankercommon.repository.AccountDomainCompetitorHistoryDataRepository;
 import com.flol.semrankercommon.repository.AccountDomainCompetitorRepository;
 import com.flol.semrankercommon.repository.AccountDomainHistoryDataRepository;
+import com.flol.semrankercommon.repository.SearchReportAccountRepository;
 import com.flol.semrankercommon.util.DateUtil;
 import com.flol.semrankerengine.updatecompetitors.service.SearchReportRepositoryService;
 
@@ -29,6 +31,9 @@ public class UpdateCompetitorsFacade {
 
 	@Autowired
 	private SearchReportRepositoryService searchReportRepositoryService;
+
+	@Autowired
+	private SearchReportAccountRepository searchReportAccountRepository;
 
 	@Autowired
 	private AccountDomainCompetitorRepository accountDomainCompetitorRepository;
@@ -61,19 +66,28 @@ public class UpdateCompetitorsFacade {
 		accountDomainCompetitorHistoryDataRepository.deleteByAccountDomainIdAndDate(accountDomain.getId(), DateUtil.getTodaysMidnight());
 		accountDomainHistoryDataRepository.deleteByAccountDomainIdAndDate(accountDomain.getId(), DateUtil.getTodaysMidnight());
 		
+		List<Object[]> accountDomainHistoryObjectList = searchReportAccountRepository.getDomainScore(accountDomain.getId());
+
+		Object[] accountDomainHistoryObject = accountDomainHistoryObjectList!=null ? accountDomainHistoryObjectList.get(0) : null;
+
+		BigDecimal avgPosition = accountDomainHistoryObject!=null && accountDomainHistoryObject[1]!=null ? new BigDecimal((Double)accountDomainHistoryObject[1]) : new BigDecimal(0);
+		BigDecimal score = accountDomainHistoryObject!=null && accountDomainHistoryObject[1]!=null ? (BigDecimal)accountDomainHistoryObject[0] : new BigDecimal(0);
 		
+		AccountDomainHistoryData accountDomainHistoryData = new AccountDomainHistoryData();
+		accountDomainHistoryData.setAccountDomain(accountDomain);
+		accountDomainHistoryData.setAveragePosition(avgPosition);
+		accountDomainHistoryData.setDate(DateUtil.getTodaysMidnight());
+		accountDomainHistoryData.setDateCreate(new Date());
+		accountDomainHistoryData.setScore(score);
+		
+		accountDomainHistoryDataRepository.save(accountDomainHistoryData);		
+		
+				
 		for(DomainCompetitorTO domainCompetitor : domainCompetitorList)
 		{
 			if(domainCompetitor.getDomain().getId().equals(accountDomain.getDomain().getId()))
-			{
-				AccountDomainHistoryData accountDomainHistoryData = new AccountDomainHistoryData();
-				accountDomainHistoryData.setAccountDomain(accountDomain);
-				accountDomainHistoryData.setAveragePosition(domainCompetitor.getAvgPosition());
-				accountDomainHistoryData.setDate(DateUtil.getTodaysMidnight());
-				accountDomainHistoryData.setDateCreate(new Date());
-				accountDomainHistoryData.setScore(domainCompetitor.getScore());
-				
-				accountDomainHistoryDataRepository.save(accountDomainHistoryData);
+			{				
+				//DO NOTHING
 			}else
 			{
 				AccountDomainCompetitor adc = null;

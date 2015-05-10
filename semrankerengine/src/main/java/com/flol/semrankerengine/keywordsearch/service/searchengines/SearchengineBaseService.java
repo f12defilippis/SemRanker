@@ -21,20 +21,23 @@ public abstract class SearchengineBaseService {
 
 	protected static Pattern patternDomainName;
 	protected static Pattern patternUrlName;
+	protected static Pattern patternUrlFtpName;
 
 //	protected static final String DOMAIN_NAME_PATTERN = "([a-zA-Z0-9]([a-zA-Z0-9\\-]{0,61}[a-zA-Z0-9])?\\.)+[a-zA-Z]{2,6}";
 	protected static final String DOMAIN_NAME_PATTERN = "([A-Za-z0-9]([a-zA-Z0-9\\-]{0,61}[a-zA-Z0-9])?\\.)+[A-Za-z]{2,6}";
 	
 	protected static final String URL_NAME_PATTERN = "https?://[^/&]+(/[^/&]+){0,15}";	
+	protected static final String URL_NAME_PATTERN_FTP = "ftp://[^/&]+(/[^/&]+){0,15}";	
 
 	protected static final Integer MAX_LOOP = 20;	
 
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());  	
+    protected final Logger logger = LoggerFactory.getLogger(this.getClass());  	
 	
 	public SearchengineBaseService()
 	{
 		patternDomainName = Pattern.compile(DOMAIN_NAME_PATTERN);
 		patternUrlName = Pattern.compile(URL_NAME_PATTERN, Pattern.CASE_INSENSITIVE);
+		patternUrlFtpName = Pattern.compile(URL_NAME_PATTERN_FTP, Pattern.CASE_INSENSITIVE);
 	}
 	
 	public SearchResultItemsTO searchKeyword(SearchKeywordParameterTO parameter) throws Exception
@@ -136,8 +139,13 @@ public abstract class SearchengineBaseService {
 	protected String getUrl(String urlToParse) {
 		String url = "";
 		Matcher matcher = patternUrlName.matcher(urlToParse);
+		Matcher matcherFtp = patternUrlFtpName.matcher(urlToParse);
 		if (matcher.find()) {
 			url = matcher.group(0).toLowerCase().trim();
+			url = url.replaceAll(" ", "").replaceAll("/url?q=", "").trim();
+		}else if(matcherFtp.find())
+		{
+			url = matcherFtp.group(0).toLowerCase().trim();
 			url = url.replaceAll(" ", "").replaceAll("/url?q=", "").trim();
 		}
 		return url;

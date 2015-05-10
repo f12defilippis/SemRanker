@@ -1,433 +1,289 @@
-2015-05-09 17:14:00.497 INFO [pool-2-thread-1] It's not yet time to update the competitors there are still 3 job in progress. Wait for 4 minutes before retry
-2015-05-09 17:14:30.502 INFO [pool-2-thread-1] It's not yet time to update the competitors there are still 3 job in progress. Wait for 4 minutes before retry
-2015-05-09 17:14:50.033 INFO [jobExecutor-3] START searching keywords of SearchEngine: 3
-2015-05-09 17:14:50.033 INFO [jobExecutor-2] START searching keywords of SearchEngine: 2
-2015-05-09 17:14:50.033 INFO [jobExecutor-1] START searching keywords of SearchEngine: 1
-2015-05-09 17:14:50.056 INFO [jobExecutor-3] Found: 0 record to search
-2015-05-09 17:14:50.072 INFO [jobExecutor-3] Found: 1 proxy available
-2015-05-09 17:14:50.072 INFO [jobExecutor-2] Found: 3 record to search
-2015-05-09 17:14:50.072 INFO [jobExecutor-3] FINISH searching keywords of SearchEngine: 3
-2015-05-09 17:14:50.084 INFO [jobExecutor-2] Found: 3 proxy available
-2015-05-09 17:14:50.100 INFO [jobExecutor-1] Found: 13 record to search
-2015-05-09 17:14:50.128 INFO [jobExecutor-1] Found: 13 proxy available
-2015-05-09 17:14:50.150 INFO [SemRankerExecutor-1] CALL: https://it.search.yahoo.com/search?p=search engine optimization&pz=10&b=1 SYSPROXY: 111.161.126.100 APPPROXY: 111.161.126.100
-2015-05-09 17:14:50.152 INFO [SemRankerExecutor-2] CALL: https://www.google.it/search?q=pescare in mare&num=100&uule=w+CAIQICIFSXRhbHk&start=0 SYSPROXY: 190.73.145.229 APPPROXY: 190.73.145.229
-2015-05-09 17:14:50.547 INFO [SemRankerExecutor-3] CALL: https://it.search.yahoo.com/search?p=software seo&pz=10&b=1 SYSPROXY: 111.161.126.99 APPPROXY: 111.161.126.99
-2015-05-09 17:14:50.947 INFO [SemRankerExecutor-4] CALL: https://www.google.it/search?q=search engine optimization&num=100&uule=w+CAIQICIFSXRhbHk&start=0 SYSPROXY: 218.97.194.200 APPPROXY: 218.97.194.200
-2015-05-09 17:14:51.301 INFO [SemRankerExecutor-5] CALL: https://it.search.yahoo.com/search?p=search engine marketing&pz=10&b=1 SYSPROXY: 190.63.157.226 APPPROXY: 190.63.157.226
-2015-05-09 17:14:51.498 INFO [SemRankerExecutor-6] CALL: https://www.google.com/search?q=search engine optimization&num=100&uule=w+CAIQICINVW5pdGVkIFN0YXRlcw&start=0 SYSPROXY: 123.30.58.106 APPPROXY: 123.30.58.106
-2015-05-09 17:14:51.971 INFO [jobExecutor-2] 6 active threads. Waiting...
-2015-05-09 17:14:52.051 INFO [SemRankerExecutor-7] CALL: https://www.google.fr/search?q=search engine optimization&num=100&uule=w+CAIQICIGRnJhbmNl&start=0 SYSPROXY: 81.192.166.122 APPPROXY: 81.192.166.122
-2015-05-09 17:14:52.665 INFO [SemRankerExecutor-8] CALL: https://www.google.de/search?q=search engine optimization&num=100&uule=w+CAIQICIHR2VybWFueQ&start=0 SYSPROXY: 186.225.38.158 APPPROXY: 186.225.38.158
-2015-05-09 17:14:52.964 WARN [SemRankerExecutor-5] KEYWORD FAILED ON PROXY: kw=search engine marketing proxy=190.63.157.226 se=Yahoo Italy
-2015-05-09 17:14:53.283 INFO [SemRankerExecutor-9] CALL: https://www.google.it/search?q=software seo&num=100&uule=w+CAIQICIFSXRhbHk&start=0 SYSPROXY: 189.84.116.2 APPPROXY: 189.84.116.2
-2015-05-09 17:14:53.845 INFO [SemRankerExecutor-10] CALL: https://www.google.com/search?q=software seo&num=100&uule=w+CAIQICINVW5pdGVkIFN0YXRlcw&start=0 SYSPROXY: 112.78.13.4 APPPROXY: 112.78.13.4
-2015-05-09 17:14:54.590 INFO [SemRankerExecutor-11] CALL: https://www.google.fr/search?q=software seo&num=100&uule=w+CAIQICIGRnJhbmNl&start=0 SYSPROXY: 91.202.38.144 APPPROXY: 91.202.38.144
-2015-05-09 17:14:55.167 INFO [SemRankerExecutor-12] CALL: https://www.google.de/search?q=software seo&num=100&uule=w+CAIQICIHR2VybWFueQ&start=0 SYSPROXY: 124.202.169.226 APPPROXY: 124.202.169.226
-2015-05-09 17:14:55.629 INFO [SemRankerExecutor-13] CALL: https://www.google.it/search?q=search engine marketing&num=100&uule=w+CAIQICIFSXRhbHk&start=0 SYSPROXY: 211.23.248.22 APPPROXY: 211.23.248.22
-2015-05-09 17:14:56.095 INFO [SemRankerExecutor-10] StopWatch 'Google USA keyword: software seo Proxy: 112.78.13.4:3128 UA: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2227.0 Safari/537.36': running time (millis) = 2249
+2015-05-10 17:56:00.029 INFO [jobExecutor-1] START searching keywords of SearchEngine: 1
+2015-05-10 17:56:00.029 INFO [jobExecutor-3] START searching keywords of SearchEngine: 3
+2015-05-10 17:56:00.029 INFO [jobExecutor-2] START searching keywords of SearchEngine: 2
+2015-05-10 17:56:00.043 INFO [jobExecutor-3] Found: 0 record to search
+2015-05-10 17:56:00.043 INFO [jobExecutor-2] Found: 0 record to search
+2015-05-10 17:56:00.057 INFO [jobExecutor-3] Found: 1 proxy available
+2015-05-10 17:56:00.057 INFO [jobExecutor-2] Found: 1 proxy available
+2015-05-10 17:56:00.057 INFO [jobExecutor-3] FINISH searching keywords of SearchEngine: 3
+2015-05-10 17:56:00.057 INFO [jobExecutor-2] FINISH searching keywords of SearchEngine: 2
+2015-05-10 17:56:00.084 INFO [jobExecutor-1] Found: 7 record to search
+2015-05-10 17:56:00.108 INFO [jobExecutor-1] Found: 7 proxy available
+2015-05-10 17:56:00.191 INFO [SemRankerExecutor-1] CALL: https://www.google.it/search?q=best seo software&num=100&uule=w+CAIQICIFSXRhbHk&start=0 SYSPROXY: 92.255.27.50 APPPROXY: 92.255.27.50
+2015-05-10 17:56:00.603 INFO [pool-2-thread-1] It's not yet time to update the competitors there are still 1 job in progress. Wait for 4 minutes before retry
+2015-05-10 17:56:00.911 INFO [SemRankerExecutor-2] CALL: https://www.google.it/search?q=buy seo software&num=100&uule=w+CAIQICIFSXRhbHk&start=0 SYSPROXY: 186.93.179.238 APPPROXY: 186.93.179.238
+2015-05-10 17:56:01.535 INFO [SemRankerExecutor-3] CALL: https://www.google.com/search?q=best seo software&num=100&uule=w+CAIQICINVW5pdGVkIFN0YXRlcw&start=0 SYSPROXY: 201.243.107.241 APPPROXY: 201.243.107.241
+2015-05-10 17:56:02.250 INFO [SemRankerExecutor-4] CALL: https://www.google.com/search?q=buy seo software&num=100&uule=w+CAIQICINVW5pdGVkIFN0YXRlcw&start=0 SYSPROXY: 186.154.203.45 APPPROXY: 186.154.203.45
+2015-05-10 17:56:03.001 INFO [SemRankerExecutor-5] CALL: https://www.google.fr/search?q=best seo software&num=100&uule=w+CAIQICIGRnJhbmNl&start=0 SYSPROXY: 190.198.113.159 APPPROXY: 190.198.113.159
+2015-05-10 17:56:03.457 INFO [SemRankerExecutor-6] CALL: https://www.google.fr/search?q=buy seo software&num=100&uule=w+CAIQICIGRnJhbmNl&start=0 SYSPROXY: 112.150.156.223 APPPROXY: 112.150.156.223
+2015-05-10 17:56:04.073 INFO [SemRankerExecutor-7] CALL: https://www.google.de/search?q=buy seo software&num=100&uule=w+CAIQICIHR2VybWFueQ&start=0 SYSPROXY: 204.27.58.202 APPPROXY: 204.27.58.202
+2015-05-10 17:56:04.316 INFO [SemRankerExecutor-4] StopWatch 'Google USA keyword: buy seo software Proxy: 186.154.203.45:3128 UA: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36': running time (millis) = 2066
 -----------------------------------------
 ms     %     Task name
 -----------------------------------------
-02006  089%  Searchengine call
-00243  011%  Data parse
+01830  089%  Searchengine call
+00236  011%  Data parse
 
-2015-05-09 17:14:56.211 INFO [SemRankerExecutor-14] CALL: https://www.google.com/search?q=search engine marketing&num=100&uule=w+CAIQICINVW5pdGVkIFN0YXRlcw&start=0 SYSPROXY: 27.251.94.73 APPPROXY: 27.251.94.73
-2015-05-09 17:14:56.994 INFO [SemRankerExecutor-15] CALL: https://www.google.fr/search?q=search engine marketing&num=100&uule=w+CAIQICIGRnJhbmNl&start=0 SYSPROXY: 139.18.2.227 APPPROXY: 139.18.2.227
-2015-05-09 17:14:57.107 INFO [SemRankerExecutor-10] KEYWORD STORED BY PROXY: kw=software seo proxy=112.78.13.4 se=Google USA
-2015-05-09 17:14:57.461 INFO [SemRankerExecutor-16] CALL: https://www.google.de/search?q=search engine marketing&num=100&uule=w+CAIQICIHR2VybWFueQ&start=0 SYSPROXY: 202.4.105.138 APPPROXY: 202.4.105.138
-2015-05-09 17:14:57.727 WARN [SemRankerExecutor-13] KEYWORD FAILED ON PROXY: kw=search engine marketing proxy=211.23.248.22 se=Google Italy
-2015-05-09 17:14:58.054 INFO [jobExecutor-1] 13 active threads. Waiting...
-2015-05-09 17:14:58.694 WARN [SemRankerExecutor-11] KEYWORD FAILED ON PROXY: kw=software seo proxy=91.202.38.144 se=Google France
-2015-05-09 17:14:59.705 INFO [jobExecutor-2] 12 active threads. Waiting...
-2015-05-09 17:15:00.503 INFO [pool-2-thread-1] It's not yet time to update the competitors there are still 2 job in progress. Wait for 4 minutes before retry
-2015-05-09 17:15:00.641 INFO [SemRankerExecutor-3] CALL: https://it.search.yahoo.com/search?p=software seo&pz=10&b=11 SYSPROXY: 111.161.126.99 APPPROXY: 111.161.126.99
-2015-05-09 17:15:03.255 WARN [SemRankerExecutor-15] KEYWORD FAILED ON PROXY: kw=search engine marketing proxy=139.18.2.227 se=Google France
-2015-05-09 17:15:05.552 INFO [jobExecutor-1] 11 active threads. Waiting...
-2015-05-09 17:15:06.058 INFO [jobExecutor-2] 11 active threads. Waiting...
-2015-05-09 17:15:10.216 INFO [jobExecutor-2] 11 active threads. Waiting...
-2015-05-09 17:15:12.298 WARN [SemRankerExecutor-12] KEYWORD FAILED ON PROXY: kw=software seo proxy=124.202.169.226 se=Google Germany
-2015-05-09 17:15:13.102 INFO [jobExecutor-1] 10 active threads. Waiting...
-2015-05-09 17:15:14.732 INFO [SemRankerExecutor-3] CALL: https://it.search.yahoo.com/search?p=software seo&pz=10&b=21 SYSPROXY: 111.161.126.99 APPPROXY: 111.161.126.99
-2015-05-09 17:15:16.959 INFO [jobExecutor-2] 10 active threads. Waiting...
-2015-05-09 17:15:17.736 INFO [jobExecutor-1] 10 active threads. Waiting...
-2015-05-09 17:15:18.923 INFO [SemRankerExecutor-16] CALL: https://www.google.de/search?q=search engine marketing&num=100&uule=w+CAIQICIHR2VybWFueQ&start=99 SYSPROXY: 202.4.105.138 APPPROXY: 202.4.105.138
-2015-05-09 17:15:19.555 WARN [SemRankerExecutor-6] KEYWORD FAILED ON PROXY: kw=search engine optimization proxy=123.30.58.106 se=Google USA
-2015-05-09 17:15:20.730 INFO [SemRankerExecutor-16] StopWatch 'Google Germany keyword: search engine marketing Proxy: 202.4.105.138:8080 UA: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36': running time (millis) = 19627
+2015-05-10 17:56:04.615 INFO [jobExecutor-1] 7 active threads. Waiting...
+2015-05-10 17:56:04.924 INFO [SemRankerExecutor-4] KEYWORD STORED BY PROXY: kw=buy seo software proxy=186.154.203.45 se=Google USA
+2015-05-10 17:56:11.402 INFO [jobExecutor-1] 6 active threads. Waiting...
+2015-05-10 17:56:13.998 WARN [SemRankerExecutor-6] KEYWORD FAILED ON PROXY: kw=buy seo software proxy=112.150.156.223 se=Google France
+2015-05-10 17:56:14.315 WARN [SemRankerExecutor-1] KEYWORD FAILED ON PROXY: kw=best seo software proxy=92.255.27.50 se=Google Italy
+2015-05-10 17:56:17.550 INFO [jobExecutor-1] 4 active threads. Waiting...
+2015-05-10 17:56:24.175 INFO [jobExecutor-1] 4 active threads. Waiting...
+2015-05-10 17:56:31.938 INFO [jobExecutor-1] 4 active threads. Waiting...
+2015-05-10 17:56:37.245 INFO [jobExecutor-1] 4 active threads. Waiting...
+2015-05-10 17:56:43.286 INFO [jobExecutor-1] 4 active threads. Waiting...
+2015-05-10 17:56:49.908 INFO [jobExecutor-1] 4 active threads. Waiting...
+2015-05-10 17:56:56.888 WARN [SemRankerExecutor-5] KEYWORD FAILED ON PROXY: kw=best seo software proxy=190.198.113.159 se=Google France
+2015-05-10 17:56:57.613 INFO [jobExecutor-1] 3 active threads. Waiting...
+2015-05-10 17:57:02.408 INFO [SemRankerExecutor-2] StopWatch 'Google Italy keyword: buy seo software Proxy: 186.93.179.238:8080 UA: Mozilla/5.0 (Windows NT 6.3; rv:36.0) Gecko/20100101 Firefox/36.0': running time (millis) = 61498
 -----------------------------------------
 ms     %     Task name
 -----------------------------------------
-17730  090%  Searchengine call
-00090  000%  Data parse
-01762  009%  Searchengine call
-00045  000%  Data parse
+61404  100%  Searchengine call
+00094  000%  Data parse
 
-2015-05-09 17:15:21.348 INFO [SemRankerExecutor-16] KEYWORD STORED BY PROXY: kw=search engine marketing proxy=202.4.105.138 se=Google Germany
-2015-05-09 17:15:21.921 INFO [jobExecutor-2] 8 active threads. Waiting...
-2015-05-09 17:15:25.498 INFO [jobExecutor-1] 8 active threads. Waiting...
-2015-05-09 17:15:28.231 INFO [jobExecutor-2] 8 active threads. Waiting...
-2015-05-09 17:15:30.508 INFO [pool-2-thread-1] It's not yet time to update the competitors there are still 2 job in progress. Wait for 4 minutes before retry
-2015-05-09 17:15:30.843 INFO [SemRankerExecutor-3] CALL: https://it.search.yahoo.com/search?p=software seo&pz=10&b=31 SYSPROXY: 111.161.126.99 APPPROXY: 111.161.126.99
-2015-05-09 17:15:32.680 INFO [jobExecutor-1] 8 active threads. Waiting...
-2015-05-09 17:15:33.656 INFO [jobExecutor-2] 8 active threads. Waiting...
-2015-05-09 17:15:37.001 WARN [SemRankerExecutor-9] KEYWORD FAILED ON PROXY: kw=software seo proxy=189.84.116.2 se=Google Italy
-2015-05-09 17:15:37.057 WARN [SemRankerExecutor-7] KEYWORD FAILED ON PROXY: kw=search engine optimization proxy=81.192.166.122 se=Google France
-2015-05-09 17:15:37.239 INFO [jobExecutor-1] 6 active threads. Waiting...
-2015-05-09 17:15:37.971 INFO [jobExecutor-2] 6 active threads. Waiting...
-2015-05-09 17:15:40.132 INFO [SemRankerExecutor-3] CALL: https://it.search.yahoo.com/search?p=software seo&pz=10&b=41 SYSPROXY: 111.161.126.99 APPPROXY: 111.161.126.99
-2015-05-09 17:15:41.307 INFO [jobExecutor-1] 6 active threads. Waiting...
-2015-05-09 17:15:45.149 INFO [jobExecutor-2] 6 active threads. Waiting...
-2015-05-09 17:15:46.114 INFO [jobExecutor-1] 6 active threads. Waiting...
-2015-05-09 17:15:50.756 INFO [jobExecutor-1] 6 active threads. Waiting...
-2015-05-09 17:15:51.247 INFO [SemRankerExecutor-2] StopWatch 'Google Italy keyword: pescare in mare Proxy: 190.73.145.229:8080 UA: Mozilla/5.0 (X11; Linux i586; rv:31.0) Gecko/20100101 Firefox/31.0': running time (millis) = 61095
+2015-05-10 17:57:02.592 INFO [SemRankerExecutor-3] StopWatch 'Google USA keyword: best seo software Proxy: 201.243.107.241:8080 UA: Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; AS; rv:11.0) like Gecko': running time (millis) = 61057
 -----------------------------------------
 ms     %     Task name
 -----------------------------------------
-61070  100%  Searchengine call
-00025  000%  Data parse
+60954  100%  Searchengine call
+00103  000%  Data parse
 
-2015-05-09 17:15:51.249 INFO [SemRankerExecutor-3] CALL: https://it.search.yahoo.com/search?p=software seo&pz=10&b=51 SYSPROXY: 111.161.126.99 APPPROXY: 111.161.126.99
-2015-05-09 17:15:51.762 INFO [SemRankerExecutor-2] KEYWORD STORED BY PROXY: kw=pescare in mare proxy=190.73.145.229 se=Google Italy
-2015-05-09 17:15:52.916 INFO [jobExecutor-2] 5 active threads. Waiting...
-2015-05-09 17:15:53.759 INFO [SemRankerExecutor-1] CALL: https://it.search.yahoo.com/search?p=search engine optimization&pz=10&b=11 SYSPROXY: 111.161.126.100 APPPROXY: 111.161.126.100
-2015-05-09 17:15:54.699 INFO [SemRankerExecutor-8] StopWatch 'Google Germany keyword: search engine optimization Proxy: 186.225.38.158:8080 UA: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:31.0) Gecko/20130401 Firefox/31.0': running time (millis) = 62034
+2015-05-10 17:57:02.793 INFO [SemRankerExecutor-2] KEYWORD STORED BY PROXY: kw=buy seo software proxy=186.93.179.238 se=Google Italy
+2015-05-10 17:57:02.966 INFO [SemRankerExecutor-3] KEYWORD STORED BY PROXY: kw=best seo software proxy=201.243.107.241 se=Google USA
+2015-05-10 17:57:05.005 INFO [SemRankerExecutor-7] StopWatch 'Google Germany keyword: buy seo software Proxy: 204.27.58.202:3128 UA: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2227.0 Safari/537.36': running time (millis) = 60932
 -----------------------------------------
 ms     %     Task name
 -----------------------------------------
-62011  100%  Searchengine call
-00023  000%  Data parse
+60891  100%  Searchengine call
+00041  000%  Data parse
 
-2015-05-09 17:15:55.232 INFO [SemRankerExecutor-8] KEYWORD STORED BY PROXY: kw=search engine optimization proxy=186.225.38.158 se=Google Germany
-2015-05-09 17:15:55.370 INFO [SemRankerExecutor-4] CALL: https://www.google.it/search?q=search engine optimization&num=100&uule=w+CAIQICIFSXRhbHk&start=99 SYSPROXY: 218.97.194.200 APPPROXY: 218.97.194.200
-2015-05-09 17:15:55.389 INFO [jobExecutor-1] 4 active threads. Waiting...
-2015-05-09 17:15:56.259 INFO [SemRankerExecutor-4] StopWatch 'Google Italy keyword: search engine optimization Proxy: 218.97.194.200:81 UA: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36': running time (millis) = 61924
+2015-05-10 17:57:05.221 INFO [SemRankerExecutor-7] KEYWORD STORED BY PROXY: kw=buy seo software proxy=204.27.58.202 se=Google Germany
+2015-05-10 17:57:05.253 INFO [jobExecutor-1] Waiting 20 seconds between iteration...
+2015-05-10 17:57:25.258 INFO [jobExecutor-1] Iteration num. 1 max: 60
+2015-05-10 17:57:25.269 INFO [jobExecutor-1] Found: 3 record to search
+2015-05-10 17:57:25.276 INFO [jobExecutor-1] Found: 3 proxy available
+2015-05-10 17:57:25.308 INFO [SemRankerExecutor-8] CALL: https://www.google.it/search?q=best seo software&num=100&uule=w+CAIQICIFSXRhbHk&start=0 SYSPROXY: 186.93.125.205 APPPROXY: 186.93.125.205
+2015-05-10 17:57:26.033 INFO [SemRankerExecutor-9] CALL: https://www.google.fr/search?q=best seo software&num=100&uule=w+CAIQICIGRnJhbmNl&start=0 SYSPROXY: 94.23.59.45 APPPROXY: 94.23.59.45
+2015-05-10 17:57:26.754 INFO [SemRankerExecutor-10] CALL: https://www.google.fr/search?q=buy seo software&num=100&uule=w+CAIQICIGRnJhbmNl&start=0 SYSPROXY: 190.39.99.233 APPPROXY: 190.39.99.233
+2015-05-10 17:57:27.365 INFO [jobExecutor-1] 3 active threads. Waiting...
+2015-05-10 17:57:32.090 INFO [jobExecutor-1] 3 active threads. Waiting...
+2015-05-10 17:57:38.996 INFO [jobExecutor-1] 3 active threads. Waiting...
+2015-05-10 17:57:46.484 INFO [jobExecutor-1] 3 active threads. Waiting...
+2015-05-10 17:57:53.792 INFO [jobExecutor-1] 3 active threads. Waiting...
+2015-05-10 17:58:00.193 INFO [jobExecutor-1] 3 active threads. Waiting...
+2015-05-10 17:58:04.296 INFO [jobExecutor-1] 3 active threads. Waiting...
+2015-05-10 17:58:11.522 INFO [jobExecutor-1] 3 active threads. Waiting...
+2015-05-10 17:58:16.093 INFO [jobExecutor-1] 3 active threads. Waiting...
+2015-05-10 17:58:22.986 INFO [jobExecutor-1] 3 active threads. Waiting...
+2015-05-10 17:58:27.714 INFO [SemRankerExecutor-10] StopWatch 'Google France keyword: buy seo software Proxy: 190.39.99.233:8080 UA: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2227.0 Safari/537.36': running time (millis) = 60960
 -----------------------------------------
 ms     %     Task name
 -----------------------------------------
-61014  099%  Searchengine call
-00021  000%  Data parse
-00719  001%  Searchengine call
-00170  000%  Data parse
+60936  100%  Searchengine call
+00024  000%  Data parse
 
-2015-05-09 17:15:56.769 INFO [SemRankerExecutor-4] KEYWORD STORED BY PROXY: kw=search engine optimization proxy=218.97.194.200 se=Google Italy
-2015-05-09 17:16:00.336 INFO [jobExecutor-2] 3 active threads. Waiting...
-2015-05-09 17:16:00.509 INFO [pool-2-thread-1] It's not yet time to update the competitors there are still 2 job in progress. Wait for 4 minutes before retry
-2015-05-09 17:16:01.458 INFO [SemRankerExecutor-14] CALL: https://www.google.com/search?q=search engine marketing&num=100&uule=w+CAIQICINVW5pdGVkIFN0YXRlcw&start=99 SYSPROXY: 27.251.94.73 APPPROXY: 27.251.94.73
-2015-05-09 17:16:01.581 INFO [jobExecutor-1] 3 active threads. Waiting...
-2015-05-09 17:16:06.222 INFO [jobExecutor-1] 3 active threads. Waiting...
-2015-05-09 17:16:07.001 INFO [SemRankerExecutor-1] CALL: https://it.search.yahoo.com/search?p=search engine optimization&pz=10&b=21 SYSPROXY: 111.161.126.100 APPPROXY: 111.161.126.100
-2015-05-09 17:16:07.280 INFO [jobExecutor-2] 3 active threads. Waiting...
-2015-05-09 17:16:08.213 INFO [SemRankerExecutor-3] CALL: https://it.search.yahoo.com/search?p=software seo&pz=10&b=61 SYSPROXY: 111.161.126.99 APPPROXY: 111.161.126.99
-2015-05-09 17:16:11.859 INFO [jobExecutor-2] 3 active threads. Waiting...
-2015-05-09 17:16:13.239 INFO [jobExecutor-1] 3 active threads. Waiting...
-2015-05-09 17:16:17.131 INFO [jobExecutor-2] 3 active threads. Waiting...
-2015-05-09 17:16:19.971 INFO [jobExecutor-1] 3 active threads. Waiting...
-2015-05-09 17:16:22.243 INFO [jobExecutor-2] 3 active threads. Waiting...
-2015-05-09 17:16:23.349 INFO [SemRankerExecutor-3] CALL: https://it.search.yahoo.com/search?p=software seo&pz=10&b=71 SYSPROXY: 111.161.126.99 APPPROXY: 111.161.126.99
-2015-05-09 17:16:25.068 INFO [SemRankerExecutor-1] CALL: https://it.search.yahoo.com/search?p=search engine optimization&pz=10&b=31 SYSPROXY: 111.161.126.100 APPPROXY: 111.161.126.100
-2015-05-09 17:16:25.251 INFO [jobExecutor-1] 3 active threads. Waiting...
-2015-05-09 17:16:27.482 INFO [jobExecutor-2] 3 active threads. Waiting...
-2015-05-09 17:16:30.511 INFO [pool-2-thread-1] It's not yet time to update the competitors there are still 2 job in progress. Wait for 4 minutes before retry
-2015-05-09 17:16:31.163 INFO [jobExecutor-1] 3 active threads. Waiting...
-2015-05-09 17:16:33.078 INFO [SemRankerExecutor-1] CALL: https://it.search.yahoo.com/search?p=search engine optimization&pz=10&b=41 SYSPROXY: 111.161.126.100 APPPROXY: 111.161.126.100
-2015-05-09 17:16:33.702 INFO [jobExecutor-2] 3 active threads. Waiting...
-2015-05-09 17:16:35.833 INFO [jobExecutor-1] 3 active threads. Waiting...
-2015-05-09 17:16:40.640 INFO [jobExecutor-2] 3 active threads. Waiting...
-2015-05-09 17:16:41.161 INFO [jobExecutor-1] 3 active threads. Waiting...
-2015-05-09 17:16:41.533 INFO [SemRankerExecutor-1] CALL: https://it.search.yahoo.com/search?p=search engine optimization&pz=10&b=51 SYSPROXY: 111.161.126.100 APPPROXY: 111.161.126.100
-2015-05-09 17:16:42.970 INFO [SemRankerExecutor-3] CALL: https://it.search.yahoo.com/search?p=software seo&pz=10&b=81 SYSPROXY: 111.161.126.99 APPPROXY: 111.161.126.99
-2015-05-09 17:16:46.095 INFO [jobExecutor-2] 3 active threads. Waiting...
-2015-05-09 17:16:46.734 INFO [jobExecutor-1] 3 active threads. Waiting...
-2015-05-09 17:16:51.614 INFO [jobExecutor-2] 3 active threads. Waiting...
-2015-05-09 17:16:52.350 INFO [jobExecutor-1] 3 active threads. Waiting...
-2015-05-09 17:16:54.409 INFO [SemRankerExecutor-1] CALL: https://it.search.yahoo.com/search?p=search engine optimization&pz=10&b=61 SYSPROXY: 111.161.126.100 APPPROXY: 111.161.126.100
-2015-05-09 17:16:55.960 INFO [SemRankerExecutor-3] CALL: https://it.search.yahoo.com/search?p=software seo&pz=10&b=91 SYSPROXY: 111.161.126.99 APPPROXY: 111.161.126.99
-2015-05-09 17:16:58.579 INFO [jobExecutor-2] 3 active threads. Waiting...
-2015-05-09 17:17:00.191 INFO [jobExecutor-1] 3 active threads. Waiting...
-2015-05-09 17:17:00.515 INFO [pool-2-thread-1] It's not yet time to update the competitors there are still 2 job in progress. Wait for 4 minutes before retry
-2015-05-09 17:17:02.731 INFO [SemRankerExecutor-14] StopWatch 'Google USA keyword: search engine marketing Proxy: 27.251.94.73:3128 UA: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2227.1 Safari/537.36': running time (millis) = 122556
+2015-05-10 17:58:27.921 INFO [SemRankerExecutor-10] KEYWORD STORED BY PROXY: kw=buy seo software proxy=190.39.99.233 se=Google France
+2015-05-10 17:58:28.640 WARN [SemRankerExecutor-8] KEYWORD FAILED ON PROXY: kw=best seo software proxy=186.93.125.205 se=Google Italy
+2015-05-10 17:58:30.340 INFO [jobExecutor-1] 1 active threads. Waiting...
+2015-05-10 17:58:32.520 WARN [SemRankerExecutor-9] KEYWORD FAILED ON PROXY: kw=best seo software proxy=94.23.59.45 se=Google France
+2015-05-10 17:58:37.193 INFO [jobExecutor-1] Waiting 20 seconds between iteration...
+2015-05-10 17:58:57.202 INFO [jobExecutor-1] Iteration num. 2 max: 60
+2015-05-10 17:58:57.212 INFO [jobExecutor-1] Found: 2 record to search
+2015-05-10 17:58:57.218 INFO [jobExecutor-1] Found: 2 proxy available
+2015-05-10 17:58:57.252 INFO [SemRankerExecutor-11] CALL: https://www.google.it/search?q=best seo software&num=100&uule=w+CAIQICIFSXRhbHk&start=0 SYSPROXY: 190.201.27.9 APPPROXY: 190.201.27.9
+2015-05-10 17:58:57.862 INFO [SemRankerExecutor-12] CALL: https://www.google.fr/search?q=best seo software&num=100&uule=w+CAIQICIGRnJhbmNl&start=0 SYSPROXY: 183.224.97.90 APPPROXY: 183.224.97.90
+2015-05-10 17:58:58.608 INFO [jobExecutor-1] 2 active threads. Waiting...
+2015-05-10 17:59:04.946 INFO [jobExecutor-1] 2 active threads. Waiting...
+2015-05-10 17:59:10.956 INFO [jobExecutor-1] 2 active threads. Waiting...
+2015-05-10 17:59:16.295 INFO [jobExecutor-1] 2 active threads. Waiting...
+2015-05-10 17:59:22.730 INFO [jobExecutor-1] 2 active threads. Waiting...
+2015-05-10 17:59:28.866 WARN [SemRankerExecutor-11] KEYWORD FAILED ON PROXY: kw=best seo software proxy=190.201.27.9 se=Google Italy
+2015-05-10 17:59:30.710 INFO [jobExecutor-1] 1 active threads. Waiting...
+2015-05-10 17:59:37.367 INFO [jobExecutor-1] 1 active threads. Waiting...
+2015-05-10 17:59:44.891 INFO [jobExecutor-1] 1 active threads. Waiting...
+2015-05-10 17:59:51.220 INFO [jobExecutor-1] 1 active threads. Waiting...
+2015-05-10 17:59:56.500 INFO [jobExecutor-1] 1 active threads. Waiting...
+2015-05-10 18:00:00.606 INFO [pool-2-thread-1] It's not yet time to update the competitors there are still 1 job in progress. Wait for 4 minutes before retry
+2015-05-10 18:00:03.263 WARN [SemRankerExecutor-12] KEYWORD FAILED ON PROXY: kw=best seo software proxy=183.224.97.90 se=Google France
+2015-05-10 18:00:04.328 INFO [jobExecutor-1] Waiting 20 seconds between iteration...
+2015-05-10 18:00:24.333 INFO [jobExecutor-1] Iteration num. 3 max: 60
+2015-05-10 18:00:24.342 INFO [jobExecutor-1] Found: 2 record to search
+2015-05-10 18:00:24.348 INFO [jobExecutor-1] Found: 2 proxy available
+2015-05-10 18:00:24.377 INFO [SemRankerExecutor-13] CALL: https://www.google.it/search?q=best seo software&num=100&uule=w+CAIQICIFSXRhbHk&start=0 SYSPROXY: 186.154.203.45 APPPROXY: 186.154.203.45
+2015-05-10 18:00:25.100 INFO [SemRankerExecutor-14] CALL: https://www.google.fr/search?q=best seo software&num=100&uule=w+CAIQICIGRnJhbmNl&start=0 SYSPROXY: 204.27.58.202 APPPROXY: 204.27.58.202
+2015-05-10 18:00:25.564 INFO [SemRankerExecutor-13] StopWatch 'Google Italy keyword: best seo software Proxy: 186.154.203.45:3128 UA: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2227.1 Safari/537.36': running time (millis) = 1187
 -----------------------------------------
 ms     %     Task name
 -----------------------------------------
-61263  050%  Searchengine call
-00020  000%  Data parse
-61253  050%  Searchengine call
-00020  000%  Data parse
+01162  098%  Searchengine call
+00025  002%  Data parse
 
-2015-05-09 17:17:02.846 INFO [SemRankerExecutor-1] CALL: https://it.search.yahoo.com/search?p=search engine optimization&pz=10&b=71 SYSPROXY: 111.161.126.100 APPPROXY: 111.161.126.100
-2015-05-09 17:17:03.204 INFO [SemRankerExecutor-14] KEYWORD STORED BY PROXY: kw=search engine marketing proxy=27.251.94.73 se=Google USA
-2015-05-09 17:17:05.030 INFO [jobExecutor-2] 2 active threads. Waiting...
-2015-05-09 17:17:06.916 INFO [jobExecutor-1] 2 active threads. Waiting...
-2015-05-09 17:17:07.261 INFO [SemRankerExecutor-3] StopWatch 'Yahoo Italy keyword: software seo Proxy: 111.161.126.99:80 UA: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:31.0) Gecko/20130401 Firefox/31.0': running time (millis) = 110342
+2015-05-10 18:00:25.660 INFO [jobExecutor-1] 2 active threads. Waiting...
+2015-05-10 18:00:25.776 INFO [SemRankerExecutor-13] KEYWORD STORED BY PROXY: kw=best seo software proxy=186.154.203.45 se=Google Italy
+2015-05-10 18:00:32.334 INFO [jobExecutor-1] 1 active threads. Waiting...
+2015-05-10 18:00:38.769 INFO [jobExecutor-1] 1 active threads. Waiting...
+2015-05-10 18:00:43.306 WARN [SemRankerExecutor-14] KEYWORD FAILED ON PROXY: kw=best seo software proxy=204.27.58.202 se=Google France
+2015-05-10 18:00:43.785 INFO [jobExecutor-1] Waiting 20 seconds between iteration...
+2015-05-10 18:01:03.792 INFO [jobExecutor-1] Iteration num. 4 max: 60
+2015-05-10 18:01:03.800 INFO [jobExecutor-1] Found: 1 record to search
+2015-05-10 18:01:03.806 INFO [jobExecutor-1] Found: 1 proxy available
+2015-05-10 18:01:03.838 INFO [SemRankerExecutor-15] CALL: https://www.google.fr/search?q=best seo software&num=100&uule=w+CAIQICIGRnJhbmNl&start=0 SYSPROXY: 190.39.99.233 APPPROXY: 190.39.99.233
+2015-05-10 18:01:04.287 INFO [jobExecutor-1] 1 active threads. Waiting...
+2015-05-10 18:01:11.317 INFO [jobExecutor-1] 1 active threads. Waiting...
+2015-05-10 18:01:17.032 INFO [jobExecutor-1] 1 active threads. Waiting...
+2015-05-10 18:01:23.987 INFO [jobExecutor-1] 1 active threads. Waiting...
+2015-05-10 18:01:29.209 INFO [jobExecutor-1] 1 active threads. Waiting...
+2015-05-10 18:01:35.732 INFO [jobExecutor-1] 1 active threads. Waiting...
+2015-05-10 18:01:42.321 INFO [jobExecutor-1] 1 active threads. Waiting...
+2015-05-10 18:01:49.011 INFO [jobExecutor-1] 1 active threads. Waiting...
+2015-05-10 18:01:53.936 INFO [jobExecutor-1] 1 active threads. Waiting...
+2015-05-10 18:02:00.122 INFO [jobExecutor-1] 1 active threads. Waiting...
+2015-05-10 18:02:04.970 INFO [SemRankerExecutor-15] StopWatch 'Google France keyword: best seo software Proxy: 190.39.99.233:8080 UA: Mozilla/5.0 (X11; Linux i586; rv:31.0) Gecko/20100101 Firefox/31.0': running time (millis) = 61131
 -----------------------------------------
 ms     %     Task name
 -----------------------------------------
-07559  007%  Searchengine call
-00018  000%  Data parse
-11290  010%  Searchengine call
-00017  000%  Data parse
-13032  012%  Searchengine call
-00007  000%  Data parse
-05573  005%  Searchengine call
-00006  000%  Data parse
-07273  007%  Searchengine call
-00005  000%  Data parse
-14548  013%  Searchengine call
-00004  000%  Data parse
-12128  011%  Searchengine call
-00004  000%  Data parse
-17229  016%  Searchengine call
-00004  000%  Data parse
-10341  009%  Searchengine call
-00004  000%  Data parse
-11297  010%  Searchengine call
-00003  000%  Data parse
+61096  100%  Searchengine call
+00035  000%  Data parse
 
-2015-05-09 17:17:07.693 INFO [SemRankerExecutor-3] KEYWORD STORED BY PROXY: kw=software seo proxy=111.161.126.99 se=Yahoo Italy
-2015-05-09 17:17:10.587 INFO [jobExecutor-2] 1 active threads. Waiting...
-2015-05-09 17:17:11.306 INFO [SemRankerExecutor-1] CALL: https://it.search.yahoo.com/search?p=search engine optimization&pz=10&b=81 SYSPROXY: 111.161.126.100 APPPROXY: 111.161.126.100
-2015-05-09 17:17:14.668 INFO [jobExecutor-1] 1 active threads. Waiting...
-2015-05-09 17:17:15.739 INFO [jobExecutor-2] 1 active threads. Waiting...
-2015-05-09 17:17:18.763 INFO [jobExecutor-1] 1 active threads. Waiting...
-2015-05-09 17:17:19.437 INFO [SemRankerExecutor-1] CALL: https://it.search.yahoo.com/search?p=search engine optimization&pz=10&b=91 SYSPROXY: 111.161.126.100 APPPROXY: 111.161.126.100
-2015-05-09 17:17:21.961 INFO [jobExecutor-2] 1 active threads. Waiting...
-2015-05-09 17:17:23.208 INFO [jobExecutor-1] 1 active threads. Waiting...
-2015-05-09 17:17:28.170 INFO [jobExecutor-2] 1 active threads. Waiting...
-2015-05-09 17:17:29.798 INFO [jobExecutor-1] 1 active threads. Waiting...
-2015-05-09 17:17:30.518 INFO [pool-2-thread-1] It's not yet time to update the competitors there are still 2 job in progress. Wait for 4 minutes before retry
-2015-05-09 17:17:32.667 INFO [jobExecutor-2] 1 active threads. Waiting...
-2015-05-09 17:17:34.235 INFO [SemRankerExecutor-1] StopWatch 'Yahoo Italy keyword: search engine optimization Proxy: 111.161.126.100:80 UA: Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; AS; rv:11.0) like Gecko': running time (millis) = 135684
------------------------------------------
-ms     %     Task name
------------------------------------------
-61170  045%  Searchengine call
-00003  000%  Data parse
-10894  008%  Searchengine call
-00004  000%  Data parse
-15182  011%  Searchengine call
-00004  000%  Data parse
-04628  003%  Searchengine call
-00004  000%  Data parse
-05903  004%  Searchengine call
-00004  000%  Data parse
-09527  007%  Searchengine call
-00003  000%  Data parse
-04436  003%  Searchengine call
-00004  000%  Data parse
-04680  003%  Searchengine call
-00002  000%  Data parse
-04435  003%  Searchengine call
-00003  000%  Data parse
-14794  011%  Searchengine call
-00004  000%  Data parse
-
-2015-05-09 17:17:34.653 INFO [SemRankerExecutor-1] KEYWORD STORED BY PROXY: kw=search engine optimization proxy=111.161.126.100 se=Yahoo Italy
-2015-05-09 17:17:37.113 INFO [jobExecutor-1] Waiting 20 seconds between iteration...
-2015-05-09 17:17:40.464 INFO [jobExecutor-2] Waiting 20 seconds between iteration...
-2015-05-09 17:17:57.121 INFO [jobExecutor-1] Iteration num. 1 max: 60
-2015-05-09 17:17:57.134 INFO [jobExecutor-1] Found: 7 record to search
-2015-05-09 17:17:57.143 INFO [jobExecutor-1] Found: 7 proxy available
-2015-05-09 17:17:57.169 INFO [SemRankerExecutor-17] CALL: https://www.google.com/search?q=search engine optimization&num=100&uule=w+CAIQICINVW5pdGVkIFN0YXRlcw&start=0 SYSPROXY: 190.73.145.229 APPPROXY: 190.73.145.229
-2015-05-09 17:17:57.791 INFO [SemRankerExecutor-18] CALL: https://www.google.fr/search?q=search engine optimization&num=100&uule=w+CAIQICIGRnJhbmNl&start=0 SYSPROXY: 112.78.13.4 APPPROXY: 112.78.13.4
-2015-05-09 17:17:58.518 INFO [SemRankerExecutor-19] CALL: https://www.google.it/search?q=software seo&num=100&uule=w+CAIQICIFSXRhbHk&start=0 SYSPROXY: 186.225.38.158 APPPROXY: 186.225.38.158
-2015-05-09 17:17:59.294 INFO [SemRankerExecutor-20] CALL: https://www.google.fr/search?q=software seo&num=100&uule=w+CAIQICIGRnJhbmNl&start=0 SYSPROXY: 217.15.133.110 APPPROXY: 217.15.133.110
-2015-05-09 17:17:59.339 INFO [SemRankerExecutor-18] StopWatch 'Google France keyword: search engine optimization Proxy: 112.78.13.4:3128 UA: Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; AS; rv:11.0) like Gecko': running time (millis) = 1548
------------------------------------------
-ms     %     Task name
------------------------------------------
-01530  099%  Searchengine call
-00018  001%  Data parse
-
-2015-05-09 17:17:59.735 INFO [SemRankerExecutor-18] KEYWORD STORED BY PROXY: kw=search engine optimization proxy=112.78.13.4 se=Google France
-2015-05-09 17:17:59.840 INFO [SemRankerExecutor-21] CALL: https://www.google.de/search?q=software seo&num=100&uule=w+CAIQICIHR2VybWFueQ&start=0 SYSPROXY: 124.202.181.110 APPPROXY: 124.202.181.110
-2015-05-09 17:18:00.472 INFO [jobExecutor-2] Iteration num. 1 max: 60
-2015-05-09 17:18:00.477 INFO [jobExecutor-2] Found: 1 record to search
-2015-05-09 17:18:00.482 INFO [jobExecutor-2] Found: 1 proxy available
-2015-05-09 17:18:00.505 INFO [SemRankerExecutor-22] CALL: https://it.search.yahoo.com/search?p=search engine marketing&pz=10&b=1 SYSPROXY: 111.161.126.101 APPPROXY: 111.161.126.101
-2015-05-09 17:18:00.519 INFO [pool-2-thread-1] It's not yet time to update the competitors there are still 2 job in progress. Wait for 4 minutes before retry
-2015-05-09 17:18:00.555 INFO [SemRankerExecutor-23] CALL: https://www.google.it/search?q=search engine marketing&num=100&uule=w+CAIQICIFSXRhbHk&start=0 SYSPROXY: 177.128.86.242 APPPROXY: 177.128.86.242
-2015-05-09 17:18:01.033 INFO [SemRankerExecutor-24] CALL: https://www.google.fr/search?q=search engine marketing&num=100&uule=w+CAIQICIGRnJhbmNl&start=0 SYSPROXY: 123.58.129.48 APPPROXY: 123.58.129.48
-2015-05-09 17:18:01.210 INFO [jobExecutor-2] 7 active threads. Waiting...
-2015-05-09 17:18:01.624 INFO [jobExecutor-1] 7 active threads. Waiting...
-2015-05-09 17:18:02.146 WARN [SemRankerExecutor-20] KEYWORD FAILED ON PROXY: kw=software seo proxy=217.15.133.110 se=Google France
-2015-05-09 17:18:03.948 INFO [SemRankerExecutor-24] CALL: https://www.google.fr/search?q=search engine marketing&num=100&uule=w+CAIQICIGRnJhbmNl&start=99 SYSPROXY: 123.58.129.48 APPPROXY: 123.58.129.48
-2015-05-09 17:18:04.702 INFO [SemRankerExecutor-24] StopWatch 'Google France keyword: search engine marketing Proxy: 123.58.129.48:443 UA: Mozilla/5.0 (X11; Linux i586; rv:31.0) Gecko/20100101 Firefox/31.0': running time (millis) = 1543
------------------------------------------
-ms     %     Task name
------------------------------------------
-00774  050%  Searchengine call
-00016  001%  Data parse
-00739  048%  Searchengine call
-00014  001%  Data parse
-
-2015-05-09 17:18:05.104 INFO [SemRankerExecutor-24] KEYWORD STORED BY PROXY: kw=search engine marketing proxy=123.58.129.48 se=Google France
-2015-05-09 17:18:06.588 INFO [SemRankerExecutor-22] CALL: https://it.search.yahoo.com/search?p=search engine marketing&pz=10&b=11 SYSPROXY: 111.161.126.101 APPPROXY: 111.161.126.101
-2015-05-09 17:18:07.676 WARN [SemRankerExecutor-21] KEYWORD FAILED ON PROXY: kw=software seo proxy=124.202.181.110 se=Google Germany
-2015-05-09 17:18:07.704 INFO [jobExecutor-2] 4 active threads. Waiting...
-2015-05-09 17:18:09.621 INFO [jobExecutor-1] 4 active threads. Waiting...
-2015-05-09 17:18:13.872 INFO [jobExecutor-2] 4 active threads. Waiting...
-2015-05-09 17:18:14.202 INFO [jobExecutor-1] 4 active threads. Waiting...
-2015-05-09 17:18:19.458 INFO [jobExecutor-1] 4 active threads. Waiting...
-2015-05-09 17:18:20.728 INFO [jobExecutor-2] 4 active threads. Waiting...
-2015-05-09 17:18:22.485 INFO [SemRankerExecutor-22] CALL: https://it.search.yahoo.com/search?p=search engine marketing&pz=10&b=21 SYSPROXY: 111.161.126.101 APPPROXY: 111.161.126.101
-2015-05-09 17:18:25.050 INFO [jobExecutor-1] 4 active threads. Waiting...
-2015-05-09 17:18:25.613 INFO [jobExecutor-2] 4 active threads. Waiting...
-2015-05-09 17:18:30.520 INFO [pool-2-thread-1] It's not yet time to update the competitors there are still 2 job in progress. Wait for 4 minutes before retry
-2015-05-09 17:18:31.895 INFO [jobExecutor-1] 4 active threads. Waiting...
-2015-05-09 17:18:33.066 INFO [jobExecutor-2] 4 active threads. Waiting...
-2015-05-09 17:18:36.912 INFO [jobExecutor-1] 4 active threads. Waiting...
-2015-05-09 17:18:39.068 INFO [SemRankerExecutor-22] CALL: https://it.search.yahoo.com/search?p=search engine marketing&pz=10&b=31 SYSPROXY: 111.161.126.101 APPPROXY: 111.161.126.101
-2015-05-09 17:18:39.782 INFO [jobExecutor-2] 4 active threads. Waiting...
-2015-05-09 17:18:41.624 WARN [SemRankerExecutor-23] KEYWORD FAILED ON PROXY: kw=search engine marketing proxy=177.128.86.242 se=Google Italy
-2015-05-09 17:18:42.102 INFO [jobExecutor-1] 3 active threads. Waiting...
-2015-05-09 17:18:44.967 INFO [jobExecutor-2] 3 active threads. Waiting...
-2015-05-09 17:18:46.925 INFO [jobExecutor-1] 3 active threads. Waiting...
-2015-05-09 17:18:51.342 INFO [SemRankerExecutor-22] CALL: https://it.search.yahoo.com/search?p=search engine marketing&pz=10&b=41 SYSPROXY: 111.161.126.101 APPPROXY: 111.161.126.101
-2015-05-09 17:18:51.614 INFO [jobExecutor-2] 3 active threads. Waiting...
-2015-05-09 17:18:53.818 INFO [jobExecutor-1] 3 active threads. Waiting...
-2015-05-09 17:18:56.976 INFO [jobExecutor-2] 3 active threads. Waiting...
-2015-05-09 17:18:59.350 INFO [SemRankerExecutor-19] StopWatch 'Google Italy keyword: software seo Proxy: 186.225.38.158:8080 UA: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2227.0 Safari/537.36': running time (millis) = 60832
------------------------------------------
-ms     %     Task name
------------------------------------------
-60817  100%  Searchengine call
-00015  000%  Data parse
-
-2015-05-09 17:18:59.667 INFO [jobExecutor-1] 3 active threads. Waiting...
-2015-05-09 17:18:59.725 INFO [SemRankerExecutor-19] KEYWORD STORED BY PROXY: kw=software seo proxy=186.225.38.158 se=Google Italy
-2015-05-09 17:19:00.419 INFO [SemRankerExecutor-22] CALL: https://it.search.yahoo.com/search?p=search engine marketing&pz=10&b=51 SYSPROXY: 111.161.126.101 APPPROXY: 111.161.126.101
-2015-05-09 17:19:00.523 INFO [pool-2-thread-1] It's not yet time to update the competitors there are still 2 job in progress. Wait for 4 minutes before retry
-2015-05-09 17:19:01.230 INFO [SemRankerExecutor-17] CALL: https://www.google.com/search?q=search engine optimization&num=100&uule=w+CAIQICINVW5pdGVkIFN0YXRlcw&start=99 SYSPROXY: 190.73.145.229 APPPROXY: 190.73.145.229
-2015-05-09 17:19:01.735 INFO [jobExecutor-2] 2 active threads. Waiting...
-2015-05-09 17:19:05.903 INFO [jobExecutor-1] 2 active threads. Waiting...
-2015-05-09 17:19:06.052 INFO [jobExecutor-2] 2 active threads. Waiting...
-2015-05-09 17:19:11.540 INFO [jobExecutor-1] 2 active threads. Waiting...
-2015-05-09 17:19:12.172 INFO [jobExecutor-2] 2 active threads. Waiting...
-2015-05-09 17:19:13.374 INFO [SemRankerExecutor-22] CALL: https://it.search.yahoo.com/search?p=search engine marketing&pz=10&b=61 SYSPROXY: 111.161.126.101 APPPROXY: 111.161.126.101
-2015-05-09 17:19:17.579 INFO [jobExecutor-1] 2 active threads. Waiting...
-2015-05-09 17:19:17.778 INFO [jobExecutor-2] 2 active threads. Waiting...
-2015-05-09 17:19:21.991 INFO [jobExecutor-1] 2 active threads. Waiting...
-2015-05-09 17:19:24.949 INFO [SemRankerExecutor-22] CALL: https://it.search.yahoo.com/search?p=search engine marketing&pz=10&b=71 SYSPROXY: 111.161.126.101 APPPROXY: 111.161.126.101
-2015-05-09 17:19:25.555 INFO [jobExecutor-2] 2 active threads. Waiting...
-2015-05-09 17:19:29.609 INFO [jobExecutor-1] 2 active threads. Waiting...
-2015-05-09 17:19:30.526 INFO [pool-2-thread-1] It's not yet time to update the competitors there are still 2 job in progress. Wait for 4 minutes before retry
-2015-05-09 17:19:32.945 INFO [jobExecutor-2] 2 active threads. Waiting...
-2015-05-09 17:19:33.666 INFO [jobExecutor-1] 2 active threads. Waiting...
-2015-05-09 17:19:36.550 INFO [SemRankerExecutor-22] CALL: https://it.search.yahoo.com/search?p=search engine marketing&pz=10&b=81 SYSPROXY: 111.161.126.101 APPPROXY: 111.161.126.101
-2015-05-09 17:19:40.772 INFO [jobExecutor-2] 2 active threads. Waiting...
-2015-05-09 17:19:41.435 INFO [jobExecutor-1] 2 active threads. Waiting...
-2015-05-09 17:19:45.077 INFO [jobExecutor-2] 2 active threads. Waiting...
-2015-05-09 17:19:45.448 INFO [SemRankerExecutor-22] CALL: https://it.search.yahoo.com/search?p=search engine marketing&pz=10&b=91 SYSPROXY: 111.161.126.101 APPPROXY: 111.161.126.101
-2015-05-09 17:19:45.850 INFO [jobExecutor-1] 2 active threads. Waiting...
-2015-05-09 17:19:49.894 INFO [jobExecutor-2] 2 active threads. Waiting...
-2015-05-09 17:19:50.668 INFO [jobExecutor-1] 2 active threads. Waiting...
-2015-05-09 17:19:52.495 INFO [SemRankerExecutor-22] StopWatch 'Yahoo Italy keyword: search engine marketing Proxy: 111.161.126.101:80 UA: Mozilla/5.0 (Windows NT 6.3; rv:36.0) Gecko/20100101 Firefox/36.0': running time (millis) = 85918
------------------------------------------
-ms     %     Task name
------------------------------------------
-03992  005%  Searchengine call
-00004  000%  Data parse
-12081  014%  Searchengine call
-00004  000%  Data parse
-13429  016%  Searchengine call
-00009  000%  Data parse
-09854  011%  Searchengine call
-00002  000%  Data parse
-05578  006%  Searchengine call
-00003  000%  Data parse
-10311  012%  Searchengine call
-00004  000%  Data parse
-09546  011%  Searchengine call
-00004  000%  Data parse
-08420  010%  Searchengine call
-00003  000%  Data parse
-05624  007%  Searchengine call
-00004  000%  Data parse
-07042  008%  Searchengine call
-00004  000%  Data parse
-
-2015-05-09 17:19:52.923 INFO [SemRankerExecutor-22] KEYWORD STORED BY PROXY: kw=search engine marketing proxy=111.161.126.101 se=Yahoo Italy
-2015-05-09 17:19:55.475 INFO [jobExecutor-1] 1 active threads. Waiting...
-2015-05-09 17:19:57.348 INFO [jobExecutor-2] 1 active threads. Waiting...
-2015-05-09 17:20:00.530 INFO [pool-2-thread-1] It's not yet time to update the competitors there are still 2 job in progress. Wait for 4 minutes before retry
-2015-05-09 17:20:01.914 INFO [jobExecutor-1] 1 active threads. Waiting...
-2015-05-09 17:20:02.531 INFO [SemRankerExecutor-17] StopWatch 'Google USA keyword: search engine optimization Proxy: 190.73.145.229:8080 UA: Mozilla/5.0 (Windows NT 6.3; rv:36.0) Gecko/20100101 Firefox/36.0': running time (millis) = 122596
------------------------------------------
-ms     %     Task name
------------------------------------------
-61278  050%  Searchengine call
-00017  000%  Data parse
-61285  050%  Searchengine call
-00016  000%  Data parse
-
-2015-05-09 17:20:02.893 INFO [SemRankerExecutor-17] KEYWORD STORED BY PROXY: kw=search engine optimization proxy=190.73.145.229 se=Google USA
-2015-05-09 17:20:03.367 INFO [jobExecutor-2] Waiting 20 seconds between iteration...
-2015-05-09 17:20:06.132 INFO [jobExecutor-1] Waiting 20 seconds between iteration...
-2015-05-09 17:20:23.372 INFO [jobExecutor-2] Iteration num. 2 max: 60
-2015-05-09 17:20:23.374 INFO [jobExecutor-2] Found: 0 record to search
-2015-05-09 17:20:23.376 INFO [jobExecutor-2] Waiting 20 seconds between iteration...
-2015-05-09 17:20:26.136 INFO [jobExecutor-1] Iteration num. 2 max: 60
-2015-05-09 17:20:26.144 INFO [jobExecutor-1] Found: 3 record to search
-2015-05-09 17:20:26.150 INFO [jobExecutor-1] Found: 3 proxy available
-2015-05-09 17:20:26.178 INFO [SemRankerExecutor-25] CALL: https://www.google.fr/search?q=software seo&num=100&uule=w+CAIQICIGRnJhbmNl&start=0 SYSPROXY: 218.97.194.200 APPPROXY: 218.97.194.200
-2015-05-09 17:20:26.905 INFO [SemRankerExecutor-26] CALL: https://www.google.de/search?q=software seo&num=100&uule=w+CAIQICIHR2VybWFueQ&start=0 SYSPROXY: 27.251.94.73 APPPROXY: 27.251.94.73
-2015-05-09 17:20:27.620 INFO [SemRankerExecutor-27] CALL: https://www.google.it/search?q=search engine marketing&num=100&uule=w+CAIQICIFSXRhbHk&start=0 SYSPROXY: 202.4.105.138 APPPROXY: 202.4.105.138
-2015-05-09 17:20:28.323 INFO [jobExecutor-1] 3 active threads. Waiting...
-2015-05-09 17:20:30.532 INFO [pool-2-thread-1] It's not yet time to update the competitors there are still 2 job in progress. Wait for 4 minutes before retry
-2015-05-09 17:20:34.296 INFO [jobExecutor-1] 3 active threads. Waiting...
-2015-05-09 17:20:38.965 INFO [jobExecutor-1] 3 active threads. Waiting...
-2015-05-09 17:20:43.380 INFO [jobExecutor-2] FINISH searching keywords of SearchEngine: 2
-2015-05-09 17:20:44.170 INFO [jobExecutor-1] 3 active threads. Waiting...
-2015-05-09 17:20:50.924 INFO [jobExecutor-1] 3 active threads. Waiting...
-2015-05-09 17:20:52.738 INFO [SemRankerExecutor-27] CALL: https://www.google.it/search?q=search engine marketing&num=100&uule=w+CAIQICIFSXRhbHk&start=99 SYSPROXY: 202.4.105.138 APPPROXY: 202.4.105.138
-2015-05-09 17:20:54.350 INFO [SemRankerExecutor-27] StopWatch 'Google Italy keyword: search engine marketing Proxy: 202.4.105.138:8080 UA: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2227.0 Safari/537.36': running time (millis) = 23357
------------------------------------------
-ms     %     Task name
------------------------------------------
-21727  093%  Searchengine call
-00017  000%  Data parse
-01596  007%  Searchengine call
-00017  000%  Data parse
-
-2015-05-09 17:20:54.713 INFO [SemRankerExecutor-27] KEYWORD STORED BY PROXY: kw=search engine marketing proxy=202.4.105.138 se=Google Italy
-2015-05-09 17:20:56.392 INFO [jobExecutor-1] 2 active threads. Waiting...
-2015-05-09 17:21:00.536 INFO [pool-2-thread-1] It's not yet time to update the competitors there are still 1 job in progress. Wait for 4 minutes before retry
-2015-05-09 17:21:03.951 INFO [jobExecutor-1] 2 active threads. Waiting...
-2015-05-09 17:21:10.907 INFO [jobExecutor-1] 2 active threads. Waiting...
-2015-05-09 17:21:17.471 INFO [jobExecutor-1] 2 active threads. Waiting...
-2015-05-09 17:21:22.702 INFO [jobExecutor-1] 2 active threads. Waiting...
-2015-05-09 17:21:27.041 INFO [SemRankerExecutor-25] StopWatch 'Google France keyword: software seo Proxy: 218.97.194.200:81 UA: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2227.0 Safari/537.36': running time (millis) = 60863
------------------------------------------
-ms     %     Task name
------------------------------------------
-60849  100%  Searchengine call
-00014  000%  Data parse
-
-2015-05-09 17:21:27.421 INFO [SemRankerExecutor-25] KEYWORD STORED BY PROXY: kw=software seo proxy=218.97.194.200 se=Google France
-2015-05-09 17:21:27.951 INFO [SemRankerExecutor-26] StopWatch 'Google Germany keyword: software seo Proxy: 27.251.94.73:3128 UA: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36': running time (millis) = 61046
------------------------------------------
-ms     %     Task name
------------------------------------------
-61030  100%  Searchengine call
-00016  000%  Data parse
-
-2015-05-09 17:21:28.365 INFO [SemRankerExecutor-26] KEYWORD STORED BY PROXY: kw=software seo proxy=27.251.94.73 se=Google Germany
-2015-05-09 17:21:30.532 INFO [jobExecutor-1] Waiting 20 seconds between iteration...
-2015-05-09 17:21:30.538 INFO [pool-2-thread-1] It's not yet time to update the competitors there are still 1 job in progress. Wait for 4 minutes before retry
-2015-05-09 17:21:50.536 INFO [jobExecutor-1] Iteration num. 3 max: 60
-2015-05-09 17:21:50.538 INFO [jobExecutor-1] Found: 0 record to search
-2015-05-09 17:21:50.540 INFO [jobExecutor-1] Waiting 20 seconds between iteration...
-2015-05-09 17:22:00.542 INFO [pool-2-thread-1] It's not yet time to update the competitors there are still 1 job in progress. Wait for 4 minutes before retry
-2015-05-09 17:22:10.543 INFO [jobExecutor-1] FINISH searching keywords of SearchEngine: 1
-2015-05-09 17:38:00.033 INFO [jobExecutor-1] START searching keywords of SearchEngine: 1
-2015-05-09 17:38:00.033 INFO [jobExecutor-3] START searching keywords of SearchEngine: 3
-2015-05-09 17:38:00.033 INFO [jobExecutor-2] START searching keywords of SearchEngine: 2
-2015-05-09 17:38:00.049 INFO [jobExecutor-2] Found: 0 record to search
-2015-05-09 17:38:00.049 INFO [jobExecutor-3] Found: 0 record to search
-2015-05-09 17:38:00.049 INFO [jobExecutor-1] Found: 0 record to search
-2015-05-09 17:38:00.063 INFO [jobExecutor-1] Found: 1 proxy available
-2015-05-09 17:38:00.063 INFO [jobExecutor-2] Found: 1 proxy available
-2015-05-09 17:38:00.063 INFO [jobExecutor-3] Found: 1 proxy available
-2015-05-09 17:38:00.063 INFO [jobExecutor-1] FINISH searching keywords of SearchEngine: 1
-2015-05-09 17:38:00.063 INFO [jobExecutor-2] FINISH searching keywords of SearchEngine: 2
-2015-05-09 17:38:00.063 INFO [jobExecutor-3] FINISH searching keywords of SearchEngine: 3
+2015-05-10 18:02:05.302 INFO [SemRankerExecutor-15] KEYWORD STORED BY PROXY: kw=best seo software proxy=190.39.99.233 se=Google France
+2015-05-10 18:02:06.026 INFO [jobExecutor-1] Waiting 20 seconds between iteration...
+2015-05-10 18:02:26.031 INFO [jobExecutor-1] Iteration num. 5 max: 60
+2015-05-10 18:02:26.036 INFO [jobExecutor-1] Found: 0 record to search
+2015-05-10 18:02:26.037 INFO [jobExecutor-1] Waiting 20 seconds between iteration...
+2015-05-10 18:02:46.042 INFO [jobExecutor-1] FINISH searching keywords of SearchEngine: 1
+2015-05-10 18:04:00.608 INFO [pool-2-thread-1] It's time to update the competitors
+2015-05-10 18:04:00.619 INFO [pool-2-thread-1] Found 2 accountDomain to update
+2015-05-10 18:04:00.620 INFO [pool-2-thread-1] Updating competitors for AccountDomain with domain name: pescareinmare.com
+2015-05-10 18:04:00.643 INFO [pool-2-thread-1] Updating competitors for AccountDomain with domain name: positionly.com
+2015-05-10 18:04:01.132 INFO [pool-2-thread-1] Competitors Updated
+2015-05-10 18:30:00.034 INFO [jobExecutor-1] START searching keywords of SearchEngine: 1
+2015-05-10 18:30:00.034 INFO [jobExecutor-3] START searching keywords of SearchEngine: 3
+2015-05-10 18:30:00.034 INFO [jobExecutor-2] START searching keywords of SearchEngine: 2
+2015-05-10 18:30:00.049 INFO [jobExecutor-3] Found: 0 record to search
+2015-05-10 18:30:00.049 INFO [jobExecutor-2] Found: 0 record to search
+2015-05-10 18:30:00.050 INFO [jobExecutor-1] Found: 0 record to search
+2015-05-10 18:30:00.064 INFO [jobExecutor-3] Found: 1 proxy available
+2015-05-10 18:30:00.064 INFO [jobExecutor-2] Found: 1 proxy available
+2015-05-10 18:30:00.064 INFO [jobExecutor-1] Found: 1 proxy available
+2015-05-10 18:30:00.064 INFO [jobExecutor-3] FINISH searching keywords of SearchEngine: 3
+2015-05-10 18:30:00.064 INFO [jobExecutor-2] FINISH searching keywords of SearchEngine: 2
+2015-05-10 18:30:00.064 INFO [jobExecutor-1] FINISH searching keywords of SearchEngine: 1
+2015-05-10 18:30:00.638 INFO [pool-2-thread-1] It's time to update the competitors
+2015-05-10 18:30:00.648 INFO [pool-2-thread-1] Found 2 accountDomain to update
+2015-05-10 18:30:00.648 INFO [pool-2-thread-1] Updating competitors for AccountDomain with domain name: pescareinmare.com
+2015-05-10 18:34:00.030 INFO [jobExecutor-1] START searching keywords of SearchEngine: 1
+2015-05-10 18:34:00.044 INFO [jobExecutor-3] START searching keywords of SearchEngine: 3
+2015-05-10 18:34:00.044 INFO [jobExecutor-2] START searching keywords of SearchEngine: 2
+2015-05-10 18:34:00.069 INFO [jobExecutor-3] Found: 0 record to search
+2015-05-10 18:34:00.069 INFO [jobExecutor-2] Found: 0 record to search
+2015-05-10 18:34:00.070 INFO [jobExecutor-1] Found: 0 record to search
+2015-05-10 18:34:00.082 INFO [jobExecutor-1] Found: 1 proxy available
+2015-05-10 18:34:00.082 INFO [jobExecutor-3] Found: 1 proxy available
+2015-05-10 18:34:00.082 INFO [jobExecutor-2] Found: 1 proxy available
+2015-05-10 18:34:00.083 INFO [jobExecutor-1] FINISH searching keywords of SearchEngine: 1
+2015-05-10 18:34:00.083 INFO [jobExecutor-3] FINISH searching keywords of SearchEngine: 3
+2015-05-10 18:34:00.083 INFO [jobExecutor-2] FINISH searching keywords of SearchEngine: 2
+2015-05-10 18:34:00.681 INFO [pool-2-thread-1] It's time to update the competitors
+2015-05-10 18:34:00.689 INFO [pool-2-thread-1] Found 2 accountDomain to update
+2015-05-10 18:34:00.689 INFO [pool-2-thread-1] Updating competitors for AccountDomain with domain name: pescareinmare.com
+2015-05-10 18:35:00.056 INFO [jobExecutor-1] START searching keywords of SearchEngine: 1
+2015-05-10 18:35:00.056 INFO [jobExecutor-3] START searching keywords of SearchEngine: 3
+2015-05-10 18:35:00.056 INFO [jobExecutor-2] START searching keywords of SearchEngine: 2
+2015-05-10 18:35:00.070 INFO [jobExecutor-3] Found: 0 record to search
+2015-05-10 18:35:00.070 INFO [jobExecutor-2] Found: 0 record to search
+2015-05-10 18:35:00.072 INFO [jobExecutor-1] Found: 0 record to search
+2015-05-10 18:35:00.085 INFO [jobExecutor-2] Found: 1 proxy available
+2015-05-10 18:35:00.085 INFO [jobExecutor-3] Found: 1 proxy available
+2015-05-10 18:35:00.085 INFO [jobExecutor-1] Found: 1 proxy available
+2015-05-10 18:35:00.085 INFO [jobExecutor-2] FINISH searching keywords of SearchEngine: 2
+2015-05-10 18:35:00.085 INFO [jobExecutor-3] FINISH searching keywords of SearchEngine: 3
+2015-05-10 18:35:00.086 INFO [jobExecutor-1] FINISH searching keywords of SearchEngine: 1
+2015-05-10 18:35:00.590 INFO [pool-2-thread-1] It's time to update the competitors
+2015-05-10 18:35:00.600 INFO [pool-2-thread-1] Found 2 accountDomain to update
+2015-05-10 18:35:00.600 INFO [pool-2-thread-1] Updating competitors for AccountDomain with domain name: pescareinmare.com
+2015-05-10 18:36:27.012 INFO [pool-2-thread-1] Updating competitors for AccountDomain with domain name: positionly.com
+2015-05-10 18:36:31.860 INFO [pool-2-thread-1] Competitors Updated
+2015-05-10 18:38:00.030 INFO [jobExecutor-1] START searching keywords of SearchEngine: 1
+2015-05-10 18:38:00.044 INFO [jobExecutor-2] START searching keywords of SearchEngine: 2
+2015-05-10 18:38:00.044 INFO [jobExecutor-3] START searching keywords of SearchEngine: 3
+2015-05-10 18:38:00.071 INFO [jobExecutor-3] Found: 0 record to search
+2015-05-10 18:38:00.071 INFO [jobExecutor-2] Found: 0 record to search
+2015-05-10 18:38:00.072 INFO [jobExecutor-1] Found: 0 record to search
+2015-05-10 18:38:00.085 INFO [jobExecutor-2] Found: 1 proxy available
+2015-05-10 18:38:00.085 INFO [jobExecutor-1] Found: 1 proxy available
+2015-05-10 18:38:00.085 INFO [jobExecutor-3] Found: 1 proxy available
+2015-05-10 18:38:00.085 INFO [jobExecutor-2] FINISH searching keywords of SearchEngine: 2
+2015-05-10 18:38:00.085 INFO [jobExecutor-1] FINISH searching keywords of SearchEngine: 1
+2015-05-10 18:38:00.085 INFO [jobExecutor-3] FINISH searching keywords of SearchEngine: 3
+2015-05-10 18:38:00.648 INFO [pool-2-thread-1] It's time to update the competitors
+2015-05-10 18:38:00.656 INFO [pool-2-thread-1] Found 2 accountDomain to update
+2015-05-10 18:38:00.656 INFO [pool-2-thread-1] Updating competitors for AccountDomain with domain name: pescareinmare.com
+2015-05-10 18:38:57.887 INFO [pool-2-thread-1] Updating competitors for AccountDomain with domain name: positionly.com
+2015-05-10 18:40:09.014 INFO [pool-2-thread-1] Competitors Updated
+2015-05-10 18:41:00.029 INFO [jobExecutor-3] START searching keywords of SearchEngine: 3
+2015-05-10 18:41:00.029 INFO [jobExecutor-1] START searching keywords of SearchEngine: 1
+2015-05-10 18:41:00.029 INFO [jobExecutor-2] START searching keywords of SearchEngine: 2
+2015-05-10 18:41:00.045 INFO [jobExecutor-3] Found: 0 record to search
+2015-05-10 18:41:00.045 INFO [jobExecutor-2] Found: 0 record to search
+2015-05-10 18:41:00.047 INFO [jobExecutor-1] Found: 0 record to search
+2015-05-10 18:41:00.060 INFO [jobExecutor-3] Found: 1 proxy available
+2015-05-10 18:41:00.060 INFO [jobExecutor-2] Found: 1 proxy available
+2015-05-10 18:41:00.060 INFO [jobExecutor-1] Found: 1 proxy available
+2015-05-10 18:41:00.061 INFO [jobExecutor-3] FINISH searching keywords of SearchEngine: 3
+2015-05-10 18:41:00.061 INFO [jobExecutor-2] FINISH searching keywords of SearchEngine: 2
+2015-05-10 18:41:00.061 INFO [jobExecutor-1] FINISH searching keywords of SearchEngine: 1
+2015-05-10 18:41:00.444 INFO [pool-2-thread-1] It's time to update the competitors
+2015-05-10 18:41:00.453 INFO [pool-2-thread-1] Found 2 accountDomain to update
+2015-05-10 18:41:00.454 INFO [pool-2-thread-1] Updating competitors for AccountDomain with domain name: pescareinmare.com
+2015-05-10 18:43:00.027 INFO [jobExecutor-1] START searching keywords of SearchEngine: 1
+2015-05-10 18:43:00.027 INFO [jobExecutor-3] START searching keywords of SearchEngine: 3
+2015-05-10 18:43:00.027 INFO [jobExecutor-2] START searching keywords of SearchEngine: 2
+2015-05-10 18:43:00.042 INFO [jobExecutor-2] Found: 0 record to search
+2015-05-10 18:43:00.042 INFO [jobExecutor-3] Found: 0 record to search
+2015-05-10 18:43:00.043 INFO [jobExecutor-1] Found: 0 record to search
+2015-05-10 18:43:00.057 INFO [jobExecutor-1] Found: 1 proxy available
+2015-05-10 18:43:00.057 INFO [jobExecutor-2] Found: 1 proxy available
+2015-05-10 18:43:00.057 INFO [jobExecutor-3] Found: 1 proxy available
+2015-05-10 18:43:00.058 INFO [jobExecutor-1] FINISH searching keywords of SearchEngine: 1
+2015-05-10 18:43:00.058 INFO [jobExecutor-2] FINISH searching keywords of SearchEngine: 2
+2015-05-10 18:43:00.058 INFO [jobExecutor-3] FINISH searching keywords of SearchEngine: 3
+2015-05-10 18:43:00.769 INFO [pool-2-thread-1] It's time to update the competitors
+2015-05-10 18:43:00.778 INFO [pool-2-thread-1] Found 2 accountDomain to update
+2015-05-10 18:43:00.779 INFO [pool-2-thread-1] Updating competitors for AccountDomain with domain name: pescareinmare.com
+2015-05-10 18:48:00.031 INFO [jobExecutor-1] START searching keywords of SearchEngine: 1
+2015-05-10 18:48:00.031 INFO [jobExecutor-2] START searching keywords of SearchEngine: 2
+2015-05-10 18:48:00.031 INFO [jobExecutor-3] START searching keywords of SearchEngine: 3
+2015-05-10 18:48:00.045 INFO [jobExecutor-3] Found: 0 record to search
+2015-05-10 18:48:00.045 INFO [jobExecutor-2] Found: 0 record to search
+2015-05-10 18:48:00.046 INFO [jobExecutor-1] Found: 0 record to search
+2015-05-10 18:48:00.059 INFO [jobExecutor-3] Found: 1 proxy available
+2015-05-10 18:48:00.059 INFO [jobExecutor-2] Found: 1 proxy available
+2015-05-10 18:48:00.059 INFO [jobExecutor-1] Found: 1 proxy available
+2015-05-10 18:48:00.060 INFO [jobExecutor-3] FINISH searching keywords of SearchEngine: 3
+2015-05-10 18:48:00.060 INFO [jobExecutor-2] FINISH searching keywords of SearchEngine: 2
+2015-05-10 18:48:00.060 INFO [jobExecutor-1] FINISH searching keywords of SearchEngine: 1
+2015-05-10 18:48:00.508 INFO [pool-2-thread-1] It's time to update the competitors
+2015-05-10 18:48:00.519 INFO [pool-2-thread-1] Found 2 accountDomain to update
+2015-05-10 18:48:00.519 INFO [pool-2-thread-1] Updating competitors for AccountDomain with domain name: pescareinmare.com
+2015-05-10 18:48:08.297 INFO [pool-2-thread-1] Updating competitors for AccountDomain with domain name: positionly.com
+2015-05-10 18:48:23.500 INFO [pool-2-thread-1] Competitors Updated
+2015-05-10 18:51:00.029 INFO [jobExecutor-1] START searching keywords of SearchEngine: 1
+2015-05-10 18:51:00.029 INFO [jobExecutor-3] START searching keywords of SearchEngine: 3
+2015-05-10 18:51:00.029 INFO [jobExecutor-2] START searching keywords of SearchEngine: 2
+2015-05-10 18:51:00.048 INFO [jobExecutor-3] Found: 0 record to search
+2015-05-10 18:51:00.048 INFO [jobExecutor-2] Found: 0 record to search
+2015-05-10 18:51:00.050 INFO [jobExecutor-1] Found: 0 record to search
+2015-05-10 18:51:00.064 INFO [jobExecutor-2] Found: 1 proxy available
+2015-05-10 18:51:00.064 INFO [jobExecutor-3] Found: 1 proxy available
+2015-05-10 18:51:00.064 INFO [jobExecutor-1] Found: 1 proxy available
+2015-05-10 18:51:00.064 INFO [jobExecutor-2] FINISH searching keywords of SearchEngine: 2
+2015-05-10 18:51:00.064 INFO [jobExecutor-3] FINISH searching keywords of SearchEngine: 3
+2015-05-10 18:51:00.064 INFO [jobExecutor-1] FINISH searching keywords of SearchEngine: 1
+2015-05-10 18:51:00.669 INFO [pool-2-thread-1] It's time to update the competitors
+2015-05-10 18:51:00.680 INFO [pool-2-thread-1] Found 2 accountDomain to update
+2015-05-10 18:51:00.680 INFO [pool-2-thread-1] Updating competitors for AccountDomain with domain name: pescareinmare.com
+2015-05-10 18:51:13.884 INFO [pool-2-thread-1] Updating competitors for AccountDomain with domain name: positionly.com
+2015-05-10 18:51:37.574 INFO [pool-2-thread-1] Competitors Updated
