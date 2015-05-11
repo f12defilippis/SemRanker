@@ -130,7 +130,7 @@ public class ExampleDataLoadController {
 				{
 					PopulateKeywordsReadyBeanTO readyBean = new PopulateKeywordsReadyBeanTO();
 					readyBean.setKeyword(bean.getKeyword());
-					readyBean.setAvgMonthlySearches(bean.getAvgMonthlySearches()!=null && !bean.getAvgMonthlySearches().equals("") ? Integer.parseInt(bean.getAvgMonthlySearches().replace(" ", "")) : null);
+					readyBean.setAvgMonthlySearches(bean.getAvgMonthlySearches()!=null && !bean.getAvgMonthlySearches().equals("") ? Integer.parseInt(bean.getAvgMonthlySearches().replace(" ", "")) : 0);
 					readyBean.setCompetition(bean.getCompetition()!=null && !bean.getCompetition().replace("\"", "").equals("") ? Double.parseDouble(bean.getCompetition().replace("\"", "").replace(",", ".")) : null);
 					readyBean.setSuggestedBid(bean.getSuggestedBid()!=null && !bean.getSuggestedBid().replace("\"", "").equals("") ? Double.parseDouble(bean.getSuggestedBid().replace("\"", "").replace(",", ".")) : null);
 					readyList.add(readyBean);

@@ -182,6 +182,9 @@ public class KeywordSearchFacade {
 			parameter.setUule(uule);
 		}
 		
+		parameter.setAcceptLanguage(keywordScanSummary.getKeywordSearchengineAccountDomain().getKeywordSearchengine().getAggregatedSearchengine().getSearchengineCountry().getAcceptLanguage());
+		parameter.setHost(keywordScanSummary.getKeywordSearchengineAccountDomain().getKeywordSearchengine().getAggregatedSearchengine().getSearchengineCountry().getHost());
+		
 		SearchResultItemsTO ret = searchEngineService.searchKeyword(parameter);
 		return ret;
 	}

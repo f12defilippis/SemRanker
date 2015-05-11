@@ -19,6 +19,10 @@ public class SearchKeywordParameterTO {
 	
 	private Integer mobile;
 	
+	private String acceptLanguage;
+	
+	private String host;
+	
 	public String getKeyword() {
 		return keyword;
 	}
@@ -84,6 +88,18 @@ public class SearchKeywordParameterTO {
 	}
 	public void setSearchEngineCountry(SearchengineCountry searchEngineCountry) {
 		this.searchEngineCountry = searchEngineCountry;
+	}
+	public String getAcceptLanguage() {
+		return acceptLanguage;
+	}
+	public void setAcceptLanguage(String acceptLanguage) {
+		this.acceptLanguage = acceptLanguage;
+	}
+	public String getHost() {
+		return host;
+	}
+	public void setHost(String host) {
+		this.host = host;
 	}
 
 	

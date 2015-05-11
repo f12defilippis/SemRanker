@@ -2,6 +2,7 @@ package com.flol.semrankercommon.domain;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -26,6 +27,12 @@ public class SearchengineCountry extends BaseDomain implements Serializable {
 	private String name;
 
 	private String tld;
+	
+	@Column(name = "accept_language", nullable = true)
+	private String acceptLanguage;
+	
+	private String host;
+	
 	
 	@ManyToOne
     @JoinColumn(name = "searchengine", referencedColumnName = "id", nullable = false)
@@ -74,6 +81,30 @@ public class SearchengineCountry extends BaseDomain implements Serializable {
 
 	public void setSearchengine(Searchengine searchengine) {
 		this.searchengine = searchengine;
+	}
+
+
+
+	public String getAcceptLanguage() {
+		return acceptLanguage;
+	}
+
+
+
+	public void setAcceptLanguage(String acceptLanguage) {
+		this.acceptLanguage = acceptLanguage;
+	}
+
+
+
+	public String getHost() {
+		return host;
+	}
+
+
+
+	public void setHost(String host) {
+		this.host = host;
 	}
 
 }

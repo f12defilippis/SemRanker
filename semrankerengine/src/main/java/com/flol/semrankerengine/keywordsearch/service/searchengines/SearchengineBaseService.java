@@ -58,7 +58,7 @@ public abstract class SearchengineBaseService {
 					stopWatch.start("Searchengine call");
 					lastScan = new Date();
 					byte[] doc = executeCall(parameter.getSearchEngineCountry().getSearchengine().getRequest(),parameter.getKeyword(), parameter.getUserAgent(), parameter.getProxyHost(), parameter.getProxyPort(), parameter.getProxyUser(), parameter.getProxyPassword(), parameter.getTld(), 
-							String.valueOf(parameter.getSearchEngineCountry().getSearchengine().getMaxResultsPerPage()), parameter.getUule(), getFirstResult(returnValue.getItems().size()));
+							String.valueOf(parameter.getSearchEngineCountry().getSearchengine().getMaxResultsPerPage()), parameter.getUule(), getFirstResult(returnValue.getItems().size()), parameter.getAcceptLanguage(), parameter.getHost());
 					stopWatch.stop();
 					
 					if(parameter.getSearchEngineCountry().getSearchengine().isCachePage())
@@ -102,7 +102,7 @@ public abstract class SearchengineBaseService {
 		return numResult+1;
 	}
 
-	private byte[] executeCall(String requestString, String keyword, String userAgent, String proxyHost, String proxyPort, String proxyUser, String proxyPassword, String tld, String numResultToSearch, String uule, Integer firstResult) throws Exception
+	private byte[] executeCall(String requestString, String keyword, String userAgent, String proxyHost, String proxyPort, String proxyUser, String proxyPassword, String tld, String numResultToSearch, String uule, Integer firstResult, String acceptLanguage, String host) throws Exception
 	{
 		String request = requestString.replace("{TLD}", tld).replace("{KEYWORD}", keyword).replace("{NUM_RESULTS}", numResultToSearch).replace("{UULE}", uule!=null ? uule : "").replace("{FIRST_RESULT}", String.valueOf(firstResult));
 
@@ -128,6 +128,13 @@ public abstract class SearchengineBaseService {
 		byte[] doc = Jsoup
 				.connect(request)
 				.userAgent(userAgent)
+				.header("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8")
+				.header("Accept-Encoding", "gzip, deflate")
+				.header("Connection", "keep-alive")
+				.header("Accept-Language", acceptLanguage)
+				.header("Host", host)
+				.header("cache-control", "no-cache")
+				.header("pragma", "no-cache")
 				.timeout(60000).execute().bodyAsBytes();
 		
 		ProxyUtil.removeProxy(proxyHost);

@@ -18,7 +18,7 @@ public class SearchengineBingService extends SearchengineBaseService{
 	{
 		List<SearchResultItemTO> items = new ArrayList<SearchResultItemTO>();
 		int position = pos;
-
+		System.out.println(doc.toString());
 		Elements hrclassr = doc.getElementsByClass("b_algo");
 		System.out.println(doc.toString());
 		for (int i = 0 ; i < hrclassr.size() ; i++) {
