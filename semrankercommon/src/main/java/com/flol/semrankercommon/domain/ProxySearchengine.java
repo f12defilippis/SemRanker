@@ -52,6 +52,11 @@ public class ProxySearchengine {
 
 	@Column(name="streak")
 	private Integer streak;	
+	
+//	@Lob
+//	@Column(name = "serializedCookies")
+////	@Basic(fetch=FetchType.LAZY)
+//	private Object serializedCookies;
 
 	public Integer getId() {
 		return id;
@@ -134,6 +139,16 @@ public class ProxySearchengine {
 	public void setStreak(Integer streak) {
 		this.streak = streak;
 	}
+
+//	public Object getSerializedCookies() {
+//		return serializedCookies;
+//	}
+//
+//	public void setSerializedCookies(Object serializedCookies) {
+//		this.serializedCookies = serializedCookies;
+//	}
+
+
 	
 	
 }

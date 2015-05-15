@@ -46,6 +46,13 @@ public class KeywordScanSummary extends BaseDomain implements Serializable{
 	@Basic(fetch=FetchType.LAZY)
 	private byte[] cachePage;
 
+	
+	
+	@Column(name="num_parse_fails")
+	private Integer numParseFails;	
+	
+	
+	
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "date_create", nullable = true)
 	private Date dateCreate;
@@ -143,6 +150,14 @@ public class KeywordScanSummary extends BaseDomain implements Serializable{
 
 	public void setDateUpdate(Date dateUpdate) {
 		this.dateUpdate = dateUpdate;
+	}
+
+	public Integer getNumParseFails() {
+		return numParseFails;
+	}
+
+	public void setNumParseFails(Integer numParseFails) {
+		this.numParseFails = numParseFails;
 	}
 	
 	

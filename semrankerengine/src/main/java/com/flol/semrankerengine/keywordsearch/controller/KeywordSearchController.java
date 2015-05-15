@@ -83,9 +83,11 @@ public class KeywordSearchController {
 		SearchengineParameter webRequestWaitParameter = searchengineParameterRepository.findOne("WEB_REQUEST_WAIT_SECOND");
 		Integer webRequestWait = Integer.valueOf(webRequestWaitParameter.getValue());
 		
+		SearchengineParameter maxParseFailsParameter = searchengineParameterRepository.findOne("MAX_PARSE_FAILS");
+		Integer maxParseFails = Integer.valueOf(maxParseFailsParameter.getValue());
 		
 		
-		List<KeywordSearchengineAccountDomain> keywordSearchengineAccountDomainList = (List<KeywordSearchengineAccountDomain>) keywordSearchengineAccountDomainRepository.findDataToSearch(DateUtil.getTodaysMidnight(), searchengine);
+		List<KeywordSearchengineAccountDomain> keywordSearchengineAccountDomainList = (List<KeywordSearchengineAccountDomain>) keywordSearchengineAccountDomainRepository.findDataToSearch(DateUtil.getTodaysMidnight(), searchengine, maxParseFails);
 		log.info("Found: " + keywordSearchengineAccountDomainList.size() + " record to search");
 		// get the same number of proxy and ksad 
 		Pageable pageable = new PageRequest(0, keywordSearchengineAccountDomainList!=null && keywordSearchengineAccountDomainList.size()>0 ? keywordSearchengineAccountDomainList.size() : 1);
@@ -118,7 +120,7 @@ public class KeywordSearchController {
 				if(iteration > 0)
 				{
 					log.info("Iteration num. " + iteration + " max: " + maxIteration);
-					keywordSearchengineAccountDomainList = (List<KeywordSearchengineAccountDomain>) keywordSearchengineAccountDomainRepository.findDataToSearch(DateUtil.getTodaysMidnight(), searchengine);
+					keywordSearchengineAccountDomainList = (List<KeywordSearchengineAccountDomain>) keywordSearchengineAccountDomainRepository.findDataToSearch(DateUtil.getTodaysMidnight(), searchengine, maxParseFails);
 					log.info("Found: " + keywordSearchengineAccountDomainList.size() + " record to search");
 					if(keywordSearchengineAccountDomainList!=null && keywordSearchengineAccountDomainList.size()>0)
 					{
@@ -189,10 +191,16 @@ public class KeywordSearchController {
 				SemRankerUtil.waitBetweenThreads();
 			}
 		}
+		waited = 0;
 		while(threadPoolTaskExecutor.getActiveCount()>0)
 		{
-			log.info(threadPoolTaskExecutor.getActiveCount() + " active threads. Waiting...");
+			if(waited % 5 == 0)
+			{
+				log.info(threadPoolTaskExecutor.getActiveCount() + " active threads. Waiting...");
+				waited = 0;
+			}
 			SemRankerUtil.waitForFreeThreads();
+			waited++;
 		}
 		return availableResource;
 	}

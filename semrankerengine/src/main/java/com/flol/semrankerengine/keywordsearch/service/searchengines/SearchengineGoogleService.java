@@ -32,7 +32,6 @@ public class SearchengineGoogleService extends SearchengineBaseService {
 				item.setDomain(domainName);
 				item.setUrl(getUrl(temp));
 				item.setPosition(position);
-				position++;
 				if (item.getDomain() == null || item.getDomain().equals("")
 						|| item.getDomain().trim().equals("")
 						|| item.getUrl() == null || item.getUrl().equals("")

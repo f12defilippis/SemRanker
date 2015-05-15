@@ -11,11 +11,12 @@ public class SearchResultItemsTO implements Serializable{
 
 	private String keyword;
 	private boolean error;
+	private boolean parseError;
+	private boolean callError;
 	
 	private Date lastScan;
 	
-	private byte[] cachePage;
-	
+	private byte[] cachePage;	
 	
 	private List<SearchResultItemTO> items;
 	
@@ -62,6 +63,22 @@ public class SearchResultItemsTO implements Serializable{
 
 	public void setLastScan(Date lastScan) {
 		this.lastScan = lastScan;
+	}
+
+	public boolean isParseError() {
+		return parseError;
+	}
+
+	public void setParseError(boolean parseError) {
+		this.parseError = parseError;
+	}
+
+	public boolean isCallError() {
+		return callError;
+	}
+
+	public void setCallError(boolean callError) {
+		this.callError = callError;
 	}
 	
 	

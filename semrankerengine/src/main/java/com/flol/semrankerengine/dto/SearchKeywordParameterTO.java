@@ -23,6 +23,8 @@ public class SearchKeywordParameterTO {
 	
 	private String host;
 	
+//	private Map<String,String> cookies;
+	
 	public String getKeyword() {
 		return keyword;
 	}
@@ -101,6 +103,12 @@ public class SearchKeywordParameterTO {
 	public void setHost(String host) {
 		this.host = host;
 	}
+//	public Map<String, String> getCookies() {
+//		return cookies;
+//	}
+//	public void setCookies(Map<String, String> cookies) {
+//		this.cookies = cookies;
+//	}
 
 	
 	
