@@ -5,8 +5,6 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.jsoup.Connection;
-import org.jsoup.Connection.Response;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.slf4j.Logger;
@@ -18,7 +16,6 @@ import com.flol.semrankercommon.util.SemRankerUtil;
 import com.flol.semrankerengine.dto.SearchKeywordParameterTO;
 import com.flol.semrankerengine.dto.SearchResultItemTO;
 import com.flol.semrankerengine.dto.SearchResultItemsTO;
-import com.flol.semrankerengine.dto.SearchengineCallReturnTO;
 import com.flol.semrankerengine.keywordsearch.exception.KeywordCallException;
 import com.flol.semrankerengine.keywordsearch.exception.KeywordParseException;
 

@@ -23,8 +23,14 @@ public class SearchengineYahooService extends SearchengineBaseService{
 		for (int i = 0 ; i < hrclassr.size() ; i++) {
 			Element link = hrclassr.get(i).select("a[href]").get(0);
 			String temp = link.attr("href");
-			temp = temp.substring(temp.indexOf("RU=")+3, temp.indexOf("RK")-1);
-			temp = java.net.URLDecoder.decode(temp, "UTF-8");
+			if(temp.indexOf("RU=")<0 || temp.indexOf("RK")<0)
+			{
+				logger.debug("Yahoo: NO RU HREF: " + temp);
+			}else
+			{
+				temp = temp.substring(temp.indexOf("RU=")+3, temp.indexOf("RK")-1);
+				temp = java.net.URLDecoder.decode(temp, "UTF-8");
+			}
 			String domainName = getDomainName(temp);
 			if (!domainName.equals("webcache.googleusercontent.com")
 					&& !(domainName.equals("www.youtube.com") && i>0 && getDomainName(hrclassr.get(i - 1).select("a[href]").get(0).attr("href")).equals("www.youtube.com"))
@@ -49,17 +55,15 @@ public class SearchengineYahooService extends SearchengineBaseService{
 //		SearchengineYahooService service = new SearchengineYahooService();
 //		
 //		try {
-//			byte[] doc = Jsoup
-//					.connect("https://it.search.yahoo.com/search?p=pescare+in+mare&pz=10&b=1")
-//					.userAgent(UserAgentMap.getRandomAgent())
-//					.timeout(60000).execute().bodyAsBytes();
+////			FileInputStream fis = new FileInputStream(new File("/Users/francescodefilippis/Desktop/offline.html"));
+////			byte[] doc = Jsoup.parse(fis.toString());
 //			
-//			Document document = Jsoup.parse(new String(doc));
+//			Document document = Jsoup.parse(new File("/Users/francescodefilippis/Desktop/offline.html"),"UTF-8");
 //			
-//			System.out.println(document.toString());
+////			System.out.println(document.toString());
 //			
-//			service.parseSearchResult(document, 1);
-//			
+//			List<SearchResultItemTO> list = service.parseSearchResult(document, 1);
+//			System.out.println(list.size());
 //			
 //		} catch (Exception e) {
 //			// TODO Auto-generated catch block
