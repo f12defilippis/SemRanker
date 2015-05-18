@@ -18,7 +18,7 @@ public class SearchengineGoogleService extends SearchengineBaseService {
 			throws Exception {
 		List<SearchResultItemTO> items = new ArrayList<SearchResultItemTO>();
 		int position = pos;
-		Elements hrclassr = doc.getElementsByClass("r");
+		Elements hrclassr = doc.getElementsByClass("g");
 		for (int i = 0; i < hrclassr.size(); i++) {
 			Element link = hrclassr.get(i).select("a[href]").get(0);
 			String temp = link.attr("href");
@@ -54,4 +54,35 @@ public class SearchengineGoogleService extends SearchengineBaseService {
 		return numResult;
 	}
 
+//	public static void main(String[] args) {
+//
+//		SearchengineGoogleService service = new SearchengineGoogleService();
+//
+//		try {
+//			// FileInputStream fis = new FileInputStream(new
+//			// File("/Users/francescodefilippis/Desktop/offline.html"));
+//			// byte[] doc = Jsoup.parse(fis.toString());
+//
+//			Document document = Jsoup
+//					.parse(new File(
+//							"/Users/francescodefilippis/Desktop/offline.html"),
+//							"UTF-8");
+//
+//			// System.out.println(document.toString());
+//
+//			List<SearchResultItemTO> list = service.parseSearchResult(document,
+//					1);
+//			System.out.println(list.size());
+//			for (SearchResultItemTO se : list) {
+//				System.out.println("Domain: " + se.getDomain() + " URL: "
+//						+ se.getUrl());
+//			}
+//
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//	}
+	
+	
 }

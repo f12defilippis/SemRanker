@@ -3052,3 +3052,108 @@
 2015-05-15 23:58:00.607 INFO [pool-2-thread-1] Updating competitors for AccountDomain with domain name: pescareinmare.com
 2015-05-15 23:58:00.644 INFO [pool-2-thread-1] Updating competitors for AccountDomain with domain name: positionly.com
 2015-05-15 23:58:01.992 INFO [pool-2-thread-1] Competitors Updated
+2015-05-18 17:03:00.039 INFO [jobExecutor-1] START searching keywords of SearchEngine: 1
+2015-05-18 17:03:00.039 INFO [jobExecutor-3] START searching keywords of SearchEngine: 3
+2015-05-18 17:03:00.039 INFO [jobExecutor-2] START searching keywords of SearchEngine: 2
+2015-05-18 17:03:00.775 INFO [pool-2-thread-1] It's time to update the competitors
+2015-05-18 17:03:00.794 INFO [pool-2-thread-1] Found 0 accountDomain to update
+2015-05-18 17:03:00.795 INFO [pool-2-thread-1] Competitors Updated
+2015-05-18 17:06:00.033 INFO [jobExecutor-1] START searching keywords of SearchEngine: 1
+2015-05-18 17:06:00.033 INFO [jobExecutor-3] START searching keywords of SearchEngine: 3
+2015-05-18 17:06:00.033 INFO [jobExecutor-2] START searching keywords of SearchEngine: 2
+2015-05-18 17:06:00.577 INFO [pool-2-thread-1] It's time to update the competitors
+2015-05-18 17:06:00.582 INFO [pool-2-thread-1] Found 0 accountDomain to update
+2015-05-18 17:06:00.582 INFO [pool-2-thread-1] Competitors Updated
+2015-05-18 17:08:00.035 INFO [jobExecutor-2] START searching keywords of SearchEngine: 2
+2015-05-18 17:08:00.035 INFO [jobExecutor-3] START searching keywords of SearchEngine: 3
+2015-05-18 17:08:00.035 INFO [jobExecutor-1] START searching keywords of SearchEngine: 1
+2015-05-18 17:08:00.058 INFO [jobExecutor-1] Found: 0 record to search
+2015-05-18 17:08:00.062 INFO [jobExecutor-3] Found: 0 record to search
+2015-05-18 17:08:00.073 INFO [jobExecutor-2] Found: 1 record to search
+2015-05-18 17:08:00.073 INFO [jobExecutor-1] Found: 1 proxy available
+2015-05-18 17:08:00.073 INFO [jobExecutor-3] Found: 1 proxy available
+2015-05-18 17:08:00.073 INFO [jobExecutor-1] FINISH searching keywords of SearchEngine: 1
+2015-05-18 17:08:00.074 INFO [jobExecutor-3] FINISH searching keywords of SearchEngine: 3
+2015-05-18 17:08:00.079 INFO [jobExecutor-2] Found: 1 proxy available
+2015-05-18 17:08:00.454 INFO [pool-2-thread-1] It's not yet time to update the competitors there are still 1 job in progress. Wait for 4 minutes before retry
+2015-05-18 17:08:00.798 INFO [jobExecutor-2] 1 active threads. Waiting...
+2015-05-18 17:08:30.738 INFO [jobExecutor-2] 1 active threads. Waiting...
+2015-05-18 17:09:08.058 INFO [jobExecutor-2] 1 active threads. Waiting...
+2015-05-18 17:09:22.502 INFO [SemRankerExecutor-1] CALL: https://it.search.yahoo.com/search?p=pescare in mare&pz=10&b=1 SYSPROXY: alpha01.tesoro.it APPPROXY: 2.237.76.230
+2015-05-18 17:09:36.418 INFO [jobExecutor-2] 1 active threads. Waiting...
+2015-05-18 17:10:08.418 INFO [jobExecutor-2] 1 active threads. Waiting...
+2015-05-18 17:10:28.688 INFO [SemRankerExecutor-1] CALL: https://it.search.yahoo.com/search?p=pescare in mare&pz=10&b=11 SYSPROXY: alpha01.tesoro.it APPPROXY: 2.237.76.230
+2015-05-18 17:10:37.732 INFO [jobExecutor-2] 1 active threads. Waiting...
+2015-05-18 17:11:02.766 INFO [jobExecutor-2] 1 active threads. Waiting...
+2015-05-18 17:11:06.829 INFO [SemRankerExecutor-1] CALL: https://it.search.yahoo.com/search?p=pescare in mare&pz=10&b=21 SYSPROXY: alpha01.tesoro.it APPPROXY: 2.237.76.230
+2015-05-18 17:11:15.698 INFO [SemRankerExecutor-1] CALL: https://it.search.yahoo.com/search?p=pescare in mare&pz=10&b=31 SYSPROXY: alpha01.tesoro.it APPPROXY: 2.237.76.230
+2015-05-18 17:11:20.662 INFO [SemRankerExecutor-1] CALL: https://it.search.yahoo.com/search?p=pescare in mare&pz=10&b=41 SYSPROXY: alpha01.tesoro.it APPPROXY: 2.237.76.230
+2015-05-18 17:11:24.889 INFO [SemRankerExecutor-1] CALL: https://it.search.yahoo.com/search?p=pescare in mare&pz=10&b=51 SYSPROXY: alpha01.tesoro.it APPPROXY: 2.237.76.230
+2015-05-18 17:11:29.725 INFO [SemRankerExecutor-1] CALL: https://it.search.yahoo.com/search?p=pescare in mare&pz=10&b=61 SYSPROXY: alpha01.tesoro.it APPPROXY: 2.237.76.230
+2015-05-18 17:11:32.668 INFO [jobExecutor-2] 1 active threads. Waiting...
+2015-05-18 17:11:34.238 INFO [SemRankerExecutor-1] CALL: https://it.search.yahoo.com/search?p=pescare in mare&pz=10&b=71 SYSPROXY: alpha01.tesoro.it APPPROXY: 2.237.76.230
+2015-05-18 17:11:37.725 INFO [SemRankerExecutor-1] CALL: https://it.search.yahoo.com/search?p=pescare in mare&pz=10&b=81 SYSPROXY: alpha01.tesoro.it APPPROXY: 2.237.76.230
+2015-05-18 17:11:43.145 INFO [SemRankerExecutor-1] CALL: https://it.search.yahoo.com/search?p=pescare in mare&pz=10&b=91 SYSPROXY: alpha01.tesoro.it APPPROXY: 2.237.76.230
+2015-05-18 17:11:44.084 INFO [SemRankerExecutor-1] StopWatch 'Yahoo Italy keyword: pescare in mare Proxy: 2.237.76.230:3128 UA: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2227.1 Safari/537.36': running time (millis) = 107634
+-----------------------------------------
+ms     %     Task name
+-----------------------------------------
+30189  028%  Searchengine call
+14217  013%  Data parse
+43045  040%  Searchengine call
+00025  000%  Data parse
+11688  011%  Searchengine call
+00024  000%  Data parse
+01694  002%  Searchengine call
+00022  000%  Data parse
+01079  001%  Searchengine call
+00020  000%  Data parse
+00945  001%  Searchengine call
+00018  000%  Data parse
+00979  001%  Searchengine call
+00016  000%  Data parse
+00977  001%  Searchengine call
+00015  000%  Data parse
+01727  002%  Searchengine call
+00016  000%  Data parse
+00923  001%  Searchengine call
+00015  000%  Data parse
+
+2015-05-18 17:11:45.101 INFO [SemRankerExecutor-1] KEYWORD STORED BY PROXY: kw=pescare in mare proxy=2.237.76.230 se=Yahoo Italy
+2015-05-18 17:11:45.176 INFO [jobExecutor-2] Waiting 20 seconds between iteration...
+2015-05-18 17:12:00.455 INFO [pool-2-thread-1] It's not yet time to update the competitors there are still 1 job in progress. Wait for 4 minutes before retry
+2015-05-18 17:12:05.183 INFO [jobExecutor-2] Iteration num. 1 max: 60
+2015-05-18 17:12:05.186 INFO [jobExecutor-2] Found: 0 record to search
+2015-05-18 17:12:05.188 INFO [jobExecutor-2] Waiting 20 seconds between iteration...
+2015-05-18 17:12:25.192 INFO [jobExecutor-2] FINISH searching keywords of SearchEngine: 2
+2015-05-18 17:15:00.031 INFO [jobExecutor-1] START searching keywords of SearchEngine: 1
+2015-05-18 17:15:00.031 INFO [jobExecutor-3] START searching keywords of SearchEngine: 3
+2015-05-18 17:15:00.031 INFO [jobExecutor-2] START searching keywords of SearchEngine: 2
+2015-05-18 17:15:00.054 INFO [jobExecutor-2] Found: 0 record to search
+2015-05-18 17:15:00.054 INFO [jobExecutor-3] Found: 0 record to search
+2015-05-18 17:15:00.067 INFO [jobExecutor-3] Found: 1 proxy available
+2015-05-18 17:15:00.067 INFO [jobExecutor-1] Found: 1 record to search
+2015-05-18 17:15:00.067 INFO [jobExecutor-2] Found: 1 proxy available
+2015-05-18 17:15:00.068 INFO [jobExecutor-3] FINISH searching keywords of SearchEngine: 3
+2015-05-18 17:15:00.068 INFO [jobExecutor-2] FINISH searching keywords of SearchEngine: 2
+2015-05-18 17:15:00.073 INFO [jobExecutor-1] Found: 1 proxy available
+2015-05-18 17:15:00.126 INFO [SemRankerExecutor-1] CALL: https://www.google.it/search?q=pescare in mare&num=100&uule=w+CAIQICIFSXRhbHk&start=0 SYSPROXY: alpha01.tesoro.it APPPROXY: 2.237.76.230
+2015-05-18 17:15:00.660 INFO [pool-2-thread-1] It's not yet time to update the competitors there are still 1 job in progress. Wait for 4 minutes before retry
+2015-05-18 17:15:00.842 INFO [jobExecutor-1] 1 active threads. Waiting...
+2015-05-18 17:15:06.129 INFO [SemRankerExecutor-1] StopWatch 'Google Italy keyword: pescare in mare Proxy: 2.237.76.230:3128 UA: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2227.0 Safari/537.36': running time (millis) = 6002
+-----------------------------------------
+ms     %     Task name
+-----------------------------------------
+01367  023%  Searchengine call
+04635  077%  Data parse
+
+2015-05-18 17:15:07.216 INFO [SemRankerExecutor-1] KEYWORD STORED BY PROXY: kw=pescare in mare proxy=2.237.76.230 se=Google Italy
+2015-05-18 17:15:12.206 INFO [jobExecutor-1] Waiting 20 seconds between iteration...
+2015-05-18 17:15:32.214 INFO [jobExecutor-1] Iteration num. 1 max: 60
+2015-05-18 17:15:32.217 INFO [jobExecutor-1] Found: 0 record to search
+2015-05-18 17:15:32.219 INFO [jobExecutor-1] Waiting 20 seconds between iteration...
+2015-05-18 17:15:52.221 INFO [jobExecutor-1] FINISH searching keywords of SearchEngine: 1
+2015-05-18 17:19:00.661 INFO [pool-2-thread-1] It's time to update the competitors
+2015-05-18 17:19:00.673 INFO [pool-2-thread-1] Found 1 accountDomain to update
+2015-05-18 17:19:00.673 INFO [pool-2-thread-1] Updating competitors for AccountDomain with domain name: pescareinmare.com
+2015-05-18 17:19:00.699 INFO [pool-2-thread-1] Competitors Updated

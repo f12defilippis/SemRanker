@@ -9,6 +9,7 @@ import org.jsoup.select.Elements;
 import org.springframework.stereotype.Service;
 
 import com.flol.semrankerengine.dto.SearchResultItemTO;
+import com.flol.semrankerengine.keywordsearch.exception.KeywordParseException;
 
 @Service("yahooService")
 public class SearchengineYahooService extends SearchengineBaseService{
@@ -23,28 +24,35 @@ public class SearchengineYahooService extends SearchengineBaseService{
 		for (int i = 0 ; i < hrclassr.size() ; i++) {
 			Element link = hrclassr.get(i).select("a[href]").get(0);
 			String temp = link.attr("href");
-			if(temp.indexOf("RU=")<0 || temp.indexOf("RK")<0)
+			try
 			{
-				logger.debug("Yahoo: NO RU HREF: " + temp);
-			}else
-			{
-				temp = temp.substring(temp.indexOf("RU=")+3, temp.indexOf("RK")-1);
-				temp = java.net.URLDecoder.decode(temp, "UTF-8");
-			}
-			String domainName = getDomainName(temp);
-			if (!domainName.equals("webcache.googleusercontent.com")
-					&& !(domainName.equals("www.youtube.com") && i>0 && getDomainName(hrclassr.get(i - 1).select("a[href]").get(0).attr("href")).equals("www.youtube.com"))
-					&& !(domainName == null || domainName.equals(""))) {
-				SearchResultItemTO item = new SearchResultItemTO();
-				item.setDomain(domainName);
-				item.setUrl(getUrl(temp));
-				item.setPosition(position);
-				items.add(item);
-				if(item.getDomain()==null || item.getDomain().equals("") || item.getUrl()==null || item.getUrl().equals(""))
+				if(temp.indexOf("RU=")<0 || temp.indexOf("RK")<0)
 				{
-					throw new Exception("Url/Domain null");
-				}				
-				position++;
+					logger.debug("Yahoo: NO RU HREF: " + temp);
+				}else
+				{
+					temp = temp.substring(temp.indexOf("RU=")+3, temp.indexOf("RK")-1);
+					temp = java.net.URLDecoder.decode(temp, "UTF-8");
+				}
+				String domainName = getDomainName(temp);
+				if (!domainName.equals("webcache.googleusercontent.com")
+						&& !(domainName.equals("www.youtube.com") && i>0 && getDomainName(hrclassr.get(i - 1).select("a[href]").get(0).attr("href")).equals("www.youtube.com"))
+						&& !(domainName == null || domainName.equals(""))) {
+					SearchResultItemTO item = new SearchResultItemTO();
+					item.setDomain(domainName);
+					item.setUrl(getUrl(temp));
+					item.setPosition(position);
+					items.add(item);
+					if(item.getDomain()==null || item.getDomain().equals("") || item.getUrl()==null || item.getUrl().equals(""))
+					{
+						throw new Exception("Url/Domain null");
+					}				
+					position++;
+				}
+				
+			}catch(Exception e)
+			{
+				throw new KeywordParseException(e, temp);
 			}
 		}
 		return items;
