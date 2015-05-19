@@ -184,7 +184,7 @@ public class KeywordStoreDataService {
 	
 	private void storeSearchReport(Url url, SearchResultItemTO item, KeywordScanSummary keywordScanSummary)
 	{
-		List<SearchReport> searchReportList = searchReportRepository.findByKeywordSearchengineAndUrlAndDateClosedNull(keywordScanSummary.getKeywordSearchengineAccountDomain().getKeywordSearchengine(), url, DateUtil.getTodaysMidnight());
+		List<SearchReport> searchReportList = searchReportRepository.findByKeywordSearchengineAndPositionAndDateClosedNull(keywordScanSummary.getKeywordSearchengineAccountDomain().getKeywordSearchengine(), item.getPosition(), DateUtil.getTodaysMidnight());
 		Date now = DateUtil.getTodaysMidnight();
 		boolean changed = true;
 		if(searchReportList!=null && searchReportList.size()>0)
@@ -192,7 +192,7 @@ public class KeywordStoreDataService {
 //			changed = false;
 			for(SearchReport searchReport : searchReportList)
 			{
-				if(searchReport.getPosition()!=item.getPosition())
+				if(!searchReport.getUrl().equals(url))
 				{
 					searchReport.setDateClosed(now);
 				}else

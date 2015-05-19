@@ -38,6 +38,10 @@ public class SearchengineCountry extends BaseDomain implements Serializable {
     @JoinColumn(name = "searchengine", referencedColumnName = "id", nullable = false)
 	private Searchengine searchengine;
 
+	@ManyToOne
+    @JoinColumn(name = "country", referencedColumnName = "id", nullable = false)
+	private Country country;
+
 	public SearchengineCountry() {
 	}
 
@@ -105,6 +109,18 @@ public class SearchengineCountry extends BaseDomain implements Serializable {
 
 	public void setHost(String host) {
 		this.host = host;
+	}
+
+
+
+	public Country getCountry() {
+		return country;
+	}
+
+
+
+	public void setCountry(Country country) {
+		this.country = country;
 	}
 
 }

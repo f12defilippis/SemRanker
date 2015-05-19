@@ -3157,3 +3157,50 @@ ms     %     Task name
 2015-05-18 17:19:00.673 INFO [pool-2-thread-1] Found 1 accountDomain to update
 2015-05-18 17:19:00.673 INFO [pool-2-thread-1] Updating competitors for AccountDomain with domain name: pescareinmare.com
 2015-05-18 17:19:00.699 INFO [pool-2-thread-1] Competitors Updated
+2015-05-19 15:53:00.034 INFO [jobExecutor-1] START searching keywords of SearchEngine: 1
+2015-05-19 15:53:00.034 INFO [jobExecutor-3] START searching keywords of SearchEngine: 3
+2015-05-19 15:53:00.034 INFO [jobExecutor-2] START searching keywords of SearchEngine: 2
+2015-05-19 15:53:00.060 INFO [jobExecutor-2] Found: 0 record to search
+2015-05-19 15:53:00.060 INFO [jobExecutor-3] Found: 0 record to search
+2015-05-19 15:53:00.074 INFO [jobExecutor-3] Found: 1 proxy available
+2015-05-19 15:53:00.074 INFO [jobExecutor-2] Found: 1 proxy available
+2015-05-19 15:53:00.075 INFO [jobExecutor-3] FINISH searching keywords of SearchEngine: 3
+2015-05-19 15:53:00.075 INFO [jobExecutor-2] FINISH searching keywords of SearchEngine: 2
+2015-05-19 15:53:00.075 INFO [jobExecutor-1] Found: 1 record to search
+2015-05-19 15:53:00.083 INFO [jobExecutor-1] Found: 1 proxy available
+2015-05-19 15:53:00.200 INFO [SemRankerExecutor-1] CALL: https://www.google.it/search?q=pescare in mare&num=100&uule=w+CAIQICIFSXRhbHk&start=0 SYSPROXY: alpha01.tesoro.it APPPROXY: 2.237.76.230
+2015-05-19 15:53:00.588 INFO [pool-2-thread-1] It's not yet time to update the competitors there are still 1 job in progress. Wait for 4 minutes before retry
+2015-05-19 15:53:00.622 INFO [jobExecutor-1] 1 active threads. Waiting...
+2015-05-19 15:53:02.259 INFO [SemRankerExecutor-1] StopWatch 'Google Italy keyword: pescare in mare Proxy: 2.237.76.230:3128 UA: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36': running time (millis) = 2060
+-----------------------------------------
+ms     %     Task name
+-----------------------------------------
+01793  087%  Searchengine call
+00267  013%  Data parse
+
+2015-05-19 15:53:03.641 INFO [SemRankerExecutor-1] KEYWORD STORED BY PROXY: kw=pescare in mare proxy=2.237.76.230 se=Google Italy
+2015-05-19 15:53:04.866 INFO [jobExecutor-1] Waiting 20 seconds between iteration...
+2015-05-19 15:53:24.871 INFO [jobExecutor-1] Iteration num. 1 max: 60
+2015-05-19 15:53:24.880 INFO [jobExecutor-1] Found: 0 record to search
+2015-05-19 15:53:24.882 INFO [jobExecutor-1] Waiting 20 seconds between iteration...
+2015-05-19 15:53:44.886 INFO [jobExecutor-1] FINISH searching keywords of SearchEngine: 1
+2015-05-19 15:57:00.590 INFO [pool-2-thread-1] It's time to update the competitors
+2015-05-19 15:57:00.597 INFO [pool-2-thread-1] Found 1 accountDomain to update
+2015-05-19 15:57:00.597 INFO [pool-2-thread-1] Updating competitors for AccountDomain with domain name: pescareinmare.com
+2015-05-19 15:57:00.624 INFO [pool-2-thread-1] Competitors Updated
+2015-05-19 18:22:00.033 INFO [jobExecutor-1] START searching keywords of SearchEngine: 1
+2015-05-19 18:22:00.033 INFO [jobExecutor-3] START searching keywords of SearchEngine: 3
+2015-05-19 18:22:00.033 INFO [jobExecutor-2] START searching keywords of SearchEngine: 2
+2015-05-19 18:22:00.057 INFO [jobExecutor-1] Found: 0 record to search
+2015-05-19 18:22:00.057 INFO [jobExecutor-3] Found: 0 record to search
+2015-05-19 18:22:00.057 INFO [jobExecutor-2] Found: 0 record to search
+2015-05-19 18:22:00.070 INFO [jobExecutor-2] Found: 1 proxy available
+2015-05-19 18:22:00.070 INFO [jobExecutor-3] Found: 1 proxy available
+2015-05-19 18:22:00.071 INFO [jobExecutor-1] Found: 1 proxy available
+2015-05-19 18:22:00.071 INFO [jobExecutor-2] FINISH searching keywords of SearchEngine: 2
+2015-05-19 18:22:00.071 INFO [jobExecutor-3] FINISH searching keywords of SearchEngine: 3
+2015-05-19 18:22:00.071 INFO [jobExecutor-1] FINISH searching keywords of SearchEngine: 1
+2015-05-19 18:22:00.828 INFO [pool-2-thread-1] It's time to update the competitors
+2015-05-19 18:22:00.842 INFO [pool-2-thread-1] Found 1 accountDomain to update
+2015-05-19 18:22:00.842 INFO [pool-2-thread-1] Updating competitors for AccountDomain with domain name: pescareinmare.com
+2015-05-19 18:22:00.931 INFO [pool-2-thread-1] Competitors Updated

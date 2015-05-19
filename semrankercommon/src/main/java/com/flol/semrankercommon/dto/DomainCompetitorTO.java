@@ -2,7 +2,9 @@ package com.flol.semrankercommon.dto;
 
 import java.math.BigDecimal;
 
+import com.flol.semrankercommon.domain.Country;
 import com.flol.semrankercommon.domain.Domain;
+import com.flol.semrankercommon.domain.Searchengine;
 
 public class DomainCompetitorTO {
 
@@ -10,6 +12,10 @@ public class DomainCompetitorTO {
 	private Integer commonKeywords;
 	private BigDecimal avgPosition;
 	private BigDecimal score;
+	
+	private Searchengine searchengine;
+	private Country country;
+	
 	public Domain getDomain() {
 		return domain;
 	}
@@ -33,6 +39,18 @@ public class DomainCompetitorTO {
 	}
 	public void setScore(BigDecimal score) {
 		this.score = score;
+	}
+	public Searchengine getSearchengine() {
+		return searchengine;
+	}
+	public void setSearchengine(Searchengine searchengine) {
+		this.searchengine = searchengine;
+	}
+	public Country getCountry() {
+		return country;
+	}
+	public void setCountry(Country country) {
+		this.country = country;
 	}
 	
 	

@@ -7,7 +7,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
+import com.flol.semrankercommon.domain.Country;
 import com.flol.semrankercommon.domain.SearchReportAccount;
+import com.flol.semrankercommon.domain.Searchengine;
 import com.flol.semrankercommon.domain.Url;
 
 public interface SearchReportAccountRepository extends CrudRepository<SearchReportAccount, Integer>{
@@ -17,6 +19,11 @@ public interface SearchReportAccountRepository extends CrudRepository<SearchRepo
 			+ "url = :url and dateFirstSeen <> :date and dateLastSeen <> :date and dateClosed is null")
 	List<SearchReportAccount> findOpenByKeywordSearchengineAccountDomainIdAndUrl(@Param("keywordSearchengineAccountDomainId") Integer keywordScanSummaryKeywordSearchengineAccountDomainId, @Param("url") Url url, @Param("date") Date date);
 
+	@Query("from SearchReportAccount where keywordScanSummary.keywordSearchengineAccountDomain.id = :keywordSearchengineAccountDomainId and "
+			+ "position = :position and dateFirstSeen <> :date and dateLastSeen <> :date and dateClosed is null")
+	List<SearchReportAccount> findOpenByKeywordSearchengineAccountDomainIdAndPosition(@Param("keywordSearchengineAccountDomainId") Integer keywordScanSummaryKeywordSearchengineAccountDomainId, @Param("position") Integer position, @Param("date") Date date);
+	
+	
 	List<SearchReportAccount> findByKeywordScanSummaryKeywordSearchengineAccountDomainIdAndKeywordScanSummaryKeywordSearchengineAccountDomainKeywordSearchengineAggregatedSearchengineIdAndDateClosedNotNull(Integer KeywordScanSummaryKeywordSearchengineAccountDomainId, Integer keywordScanSummaryKeywordSearchengineAggregatedSearchengineId);
 
 	@Query("from SearchReportAccount where keywordScanSummary.keywordSearchengineAccountDomain.accountDomain.id = :accountDomainId and "
@@ -30,9 +37,11 @@ public interface SearchReportAccountRepository extends CrudRepository<SearchRepo
 			+ "sra.keywordScanSummary.keywordSearchengineAccountDomain.keywordSearchengine.keyword.id = khd.keyword "
 			+ "and sra.position = kpv.id "
 			+ "and sra.keywordScanSummary.keywordSearchengineAccountDomain.accountDomain.id = :accountDomainId "
+			+ "and (:searchengine is null or sra.keywordScanSummary.keywordSearchengineAccountDomain.keywordSearchengine.aggregatedSearchengine.searchengineCountry.searchengine = :searchengine) "
+			+ "and (:country is null or sra.keywordScanSummary.keywordSearchengineAccountDomain.keywordSearchengine.aggregatedSearchengine.searchengineCountry.country = :country) "
 			+ "and sra.dateClosed is null"
 			+ "")
-	List<Object[]> getDomainScore(@Param("accountDomainId") Integer accountDomainId);
+	List<Object[]> getDomainScore(@Param("accountDomainId") Integer accountDomainId, @Param("searchengine") Searchengine searchengine, @Param("country") Country country);
 	
 	
 }

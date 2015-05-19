@@ -9,7 +9,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
+import com.flol.semrankercommon.domain.Country;
 import com.flol.semrankercommon.domain.KeywordSearchengineAccountDomain;
+import com.flol.semrankercommon.domain.Searchengine;
 
 @Transactional
 public interface KeywordSearchengineAccountDomainRepository extends CrudRepository<KeywordSearchengineAccountDomain, Integer>{
@@ -21,5 +23,15 @@ public interface KeywordSearchengineAccountDomainRepository extends CrudReposito
 			+ ")")
 	List<KeywordSearchengineAccountDomain> findDataToSearch(@Param("date") Date date, @Param("searchengine") Integer searchengine, @Param("maxParseFails") Integer maxParseFails);
 	
+
+	
+	@Query("select distinct ksad.keywordSearchengine.aggregatedSearchengine.searchengineCountry.searchengine from KeywordSearchengineAccountDomain ksad "
+			+ "where ksad.accountDomain.id = :accountDomainId")
+	List<Searchengine> getSearchengineByAccountDomainId(@Param("accountDomainId") Integer accountDomainId);
+
+	@Query("select distinct ksad.keywordSearchengine.aggregatedSearchengine.searchengineCountry.country from KeywordSearchengineAccountDomain ksad "
+			+ "where ksad.accountDomain.id = :accountDomainId")
+	List<Country> getCountryByAccountDomainId(@Param("accountDomainId") Integer accountDomainId);
+
 	
 }

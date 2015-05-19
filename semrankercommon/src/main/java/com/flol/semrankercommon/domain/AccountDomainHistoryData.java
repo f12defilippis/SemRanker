@@ -33,6 +33,15 @@ public class AccountDomainHistoryData {
 
 	private BigDecimal score;
 	
+	@ManyToOne
+    @JoinColumn(name = "searchengine", referencedColumnName = "id", nullable = false)
+	private Searchengine searchengine;
+
+	@ManyToOne
+    @JoinColumn(name = "country", referencedColumnName = "id", nullable = false)
+	private Country country;
+
+	
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "date_create", nullable = true)
 	private Date dateCreate;
@@ -95,6 +104,22 @@ public class AccountDomainHistoryData {
 
 	public void setDateUpdate(Date dateUpdate) {
 		this.dateUpdate = dateUpdate;
+	}
+
+	public Searchengine getSearchengine() {
+		return searchengine;
+	}
+
+	public void setSearchengine(Searchengine searchengine) {
+		this.searchengine = searchengine;
+	}
+
+	public Country getCountry() {
+		return country;
+	}
+
+	public void setCountry(Country country) {
+		this.country = country;
 	}	
 	
 }

@@ -1,19 +1,14 @@
 package com.flol.semrankerengine.controller;
 
-import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.flol.semrankercommon.domain.Keyword;
-import com.flol.semrankercommon.dto.DomainCompetitorTO;
 import com.flol.semrankercommon.repository.AccountDomainCompetitorHistoryDataRepository;
 import com.flol.semrankercommon.repository.SearchReportAccountRepository;
 import com.flol.semrankercommon.util.DateUtil;
@@ -52,13 +47,13 @@ public class TestController {
 //    	return returnBig;
 //    }
     
-    @RequestMapping(value = "/scores", method = RequestMethod.GET)
-    public List<DomainCompetitorTO> getScores() {
-    	log.info("Chiamata funzione score");
-    	Pageable pageableInt = new PageRequest(0, 5);
-    	List<DomainCompetitorTO> scores =  searchReportRepositoryService.getDomainsScore(2,pageableInt);
-    	return scores;
-    }
+//    @RequestMapping(value = "/scores", method = RequestMethod.GET)
+//    public List<DomainCompetitorTO> getScores() {
+//    	log.info("Chiamata funzione score");
+//    	Pageable pageableInt = new PageRequest(0, 5);
+//    	List<DomainCompetitorTO> scores =  searchReportRepositoryService.getDomainsScore(2,pageableInt);
+//    	return scores;
+//    }
     
     @RequestMapping(value = "/adc", method = RequestMethod.GET)
     public String getAdc() {

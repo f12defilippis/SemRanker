@@ -40,8 +40,8 @@ public class AccountDomainCompetitor extends BaseDomain implements Serializable 
 
 	@ManyToOne
     @JoinColumn(name = "domain_competitor", referencedColumnName = "id", nullable = false)
-	private Domain domain;
-
+	private Domain domain;	
+	
 	public AccountDomainCompetitor() {
 	}
 

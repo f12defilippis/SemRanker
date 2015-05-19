@@ -18,10 +18,13 @@ import com.flol.semrankercommon.domain.AccountDomain;
 import com.flol.semrankercommon.domain.AccountDomainCompetitor;
 import com.flol.semrankercommon.domain.AccountDomainCompetitorHistoryData;
 import com.flol.semrankercommon.domain.AccountDomainHistoryData;
+import com.flol.semrankercommon.domain.Country;
+import com.flol.semrankercommon.domain.Searchengine;
 import com.flol.semrankercommon.dto.DomainCompetitorTO;
 import com.flol.semrankercommon.repository.AccountDomainCompetitorHistoryDataRepository;
 import com.flol.semrankercommon.repository.AccountDomainCompetitorRepository;
 import com.flol.semrankercommon.repository.AccountDomainHistoryDataRepository;
+import com.flol.semrankercommon.repository.KeywordSearchengineAccountDomainRepository;
 import com.flol.semrankercommon.repository.SearchReportAccountRepository;
 import com.flol.semrankercommon.util.DateUtil;
 import com.flol.semrankerengine.updatecompetitors.service.SearchReportRepositoryService;
@@ -42,7 +45,10 @@ public class UpdateCompetitorsFacade {
 	private AccountDomainCompetitorHistoryDataRepository accountDomainCompetitorHistoryDataRepository;
 	
 	@Autowired
-	private AccountDomainHistoryDataRepository accountDomainHistoryDataRepository;	
+	private AccountDomainHistoryDataRepository accountDomainHistoryDataRepository;
+	
+	@Autowired
+	private KeywordSearchengineAccountDomainRepository keywordSearchengineAccountDomainRepository;
 	
 	private static int MAX_COMPETITORS = 30;
 	
@@ -52,6 +58,9 @@ public class UpdateCompetitorsFacade {
 		Pageable pageableInt = new PageRequest(0, MAX_COMPETITORS);
 //		List<Integer> oldAccountDomainCompetitorList = accountDomainCompetitorRepository.findDomainIdByAccountDomainId(accountDomainId);
 		List<AccountDomainCompetitor> accountDomainCompetitorList = accountDomainCompetitorRepository.findByAccountDomainId(accountDomain.getId());
+		
+		List<Searchengine> searchEngineList = keywordSearchengineAccountDomainRepository.getSearchengineByAccountDomainId(accountDomain.getId());
+		List<Country> countryList = keywordSearchengineAccountDomainRepository.getCountryByAccountDomainId(accountDomain.getId());
 
 		Map<Integer,AccountDomainCompetitor> accountDomainCompetitorMap = new HashMap<Integer, AccountDomainCompetitor>();
 		for(AccountDomainCompetitor accountDomainCompetitor : accountDomainCompetitorList)
@@ -61,26 +70,27 @@ public class UpdateCompetitorsFacade {
 		
 		List<AccountDomainCompetitorHistoryData> accountDomainCompetitorHistoryDataList = new ArrayList<AccountDomainCompetitorHistoryData>();
 		
-		List<DomainCompetitorTO> domainCompetitorList = searchReportRepositoryService.getDomainsScore(accountDomain.getId(), pageableInt);
+		List<DomainCompetitorTO> domainCompetitorList = searchReportRepositoryService.getDomainsScore(accountDomain.getId(), null, null, pageableInt);
+		
+		for(Searchengine searchengine : searchEngineList)
+		{
+			domainCompetitorList.addAll(searchReportRepositoryService.getDomainsScore(accountDomain.getId(), searchengine, null, pageableInt));
+		}
+		
+		for(Country country : countryList)
+		{
+			domainCompetitorList.addAll(searchReportRepositoryService.getDomainsScore(accountDomain.getId(), null, country, pageableInt));
+		}
+
+		for(Searchengine searchengine : searchEngineList)
+		{
+			for(Country country : countryList)
+			{
+				domainCompetitorList.addAll(searchReportRepositoryService.getDomainsScore(accountDomain.getId(), searchengine, country, pageableInt));
+			}
+		}
 		
 		accountDomainCompetitorHistoryDataRepository.deleteByAccountDomainIdAndDate(accountDomain.getId(), DateUtil.getTodaysMidnight());
-		accountDomainHistoryDataRepository.deleteByAccountDomainIdAndDate(accountDomain.getId(), DateUtil.getTodaysMidnight());
-		
-		List<Object[]> accountDomainHistoryObjectList = searchReportAccountRepository.getDomainScore(accountDomain.getId());
-
-		Object[] accountDomainHistoryObject = accountDomainHistoryObjectList!=null ? accountDomainHistoryObjectList.get(0) : null;
-
-		BigDecimal avgPosition = accountDomainHistoryObject!=null && accountDomainHistoryObject[1]!=null ? new BigDecimal((Double)accountDomainHistoryObject[1]) : new BigDecimal(0);
-		BigDecimal score = accountDomainHistoryObject!=null && accountDomainHistoryObject[1]!=null ? (BigDecimal)accountDomainHistoryObject[0] : new BigDecimal(0);
-		
-		AccountDomainHistoryData accountDomainHistoryData = new AccountDomainHistoryData();
-		accountDomainHistoryData.setAccountDomain(accountDomain);
-		accountDomainHistoryData.setAveragePosition(avgPosition);
-		accountDomainHistoryData.setDate(DateUtil.getTodaysMidnight());
-		accountDomainHistoryData.setDateCreate(new Date());
-		accountDomainHistoryData.setScore(score);
-		
-		accountDomainHistoryDataRepository.save(accountDomainHistoryData);		
 		
 				
 		for(DomainCompetitorTO domainCompetitor : domainCompetitorList)
@@ -119,7 +129,52 @@ public class UpdateCompetitorsFacade {
 		accountDomainCompetitorHistoryDataRepository.save(accountDomainCompetitorHistoryDataList);
 		
 		
+		accountDomainHistoryDataRepository.deleteByAccountDomainIdAndDate(accountDomain.getId(), DateUtil.getTodaysMidnight());
+		
+		saveAccountDomainHistoryData(accountDomain, null, null);
+		
+		for(Searchengine searchengine : searchEngineList)
+		{
+			saveAccountDomainHistoryData(accountDomain, searchengine, null);
+		}
+		
+		for(Country country : countryList)
+		{
+			saveAccountDomainHistoryData(accountDomain, null, country);
+		}
+
+		for(Searchengine searchengine : searchEngineList)
+		{
+			for(Country country : countryList)
+			{
+				saveAccountDomainHistoryData(accountDomain, searchengine, country);
+			}
+		}
+		
+		
 	}
+	
+	private void saveAccountDomainHistoryData(AccountDomain accountDomain, Searchengine searchengine, Country country)
+	{
+		List<Object[]> accountDomainHistoryObjectList = searchReportAccountRepository.getDomainScore(accountDomain.getId(), searchengine, country);
+
+		Object[] accountDomainHistoryObject = accountDomainHistoryObjectList!=null ? accountDomainHistoryObjectList.get(0) : null;
+
+		BigDecimal avgPosition = accountDomainHistoryObject!=null && accountDomainHistoryObject[1]!=null ? new BigDecimal((Double)accountDomainHistoryObject[1]) : new BigDecimal(0);
+		BigDecimal score = accountDomainHistoryObject!=null && accountDomainHistoryObject[1]!=null ? (BigDecimal)accountDomainHistoryObject[0] : new BigDecimal(0);
+		
+		AccountDomainHistoryData accountDomainHistoryData = new AccountDomainHistoryData();
+		accountDomainHistoryData.setAccountDomain(accountDomain);
+		accountDomainHistoryData.setAveragePosition(avgPosition);
+		accountDomainHistoryData.setDate(DateUtil.getTodaysMidnight());
+		accountDomainHistoryData.setDateCreate(new Date());
+		accountDomainHistoryData.setScore(score);
+		accountDomainHistoryData.setSearchengine(searchengine);
+		accountDomainHistoryData.setCountry(country);
+		
+		accountDomainHistoryDataRepository.save(accountDomainHistoryData);		
+	}
+	
 	
 	
 }

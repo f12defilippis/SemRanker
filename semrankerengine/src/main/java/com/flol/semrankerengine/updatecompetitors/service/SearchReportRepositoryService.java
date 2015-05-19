@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
+import com.flol.semrankercommon.domain.Country;
 import com.flol.semrankercommon.domain.Domain;
+import com.flol.semrankercommon.domain.Searchengine;
 import com.flol.semrankercommon.dto.DomainCompetitorTO;
 import com.flol.semrankercommon.repository.SearchReportRepository;
 
@@ -18,10 +20,10 @@ public class SearchReportRepositoryService {
 	@Autowired
 	private SearchReportRepository searchReportRepository;
 	
-	public List<DomainCompetitorTO> getDomainsScore(Integer accountDomainId, Pageable pageable)
+	public List<DomainCompetitorTO> getDomainsScore(Integer accountDomainId, Searchengine searchengine, Country country, Pageable pageable)
 	{
 		List<DomainCompetitorTO> ret = new ArrayList<DomainCompetitorTO>();
-		List<Object[]> scoresObject = searchReportRepository.getDomainsScore(accountDomainId, pageable);
+		List<Object[]> scoresObject = searchReportRepository.getDomainsScore(accountDomainId, searchengine, country, pageable);
 		for(Object [] obj : scoresObject)
 		{
 			DomainCompetitorTO dcTo = new DomainCompetitorTO();
@@ -29,6 +31,9 @@ public class SearchReportRepositoryService {
 			dcTo.setCommonKeywords(((Long)obj[1]).intValue());
 			dcTo.setAvgPosition(new BigDecimal((Double)obj[2]));
 			dcTo.setScore((BigDecimal)obj[3]);
+			
+			dcTo.setSearchengine(searchengine);
+			dcTo.setCountry(country);
 			
 			ret.add(dcTo);
 		}
