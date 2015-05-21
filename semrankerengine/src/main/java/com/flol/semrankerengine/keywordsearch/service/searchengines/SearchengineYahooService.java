@@ -67,25 +67,25 @@ public class SearchengineYahooService extends SearchengineBaseService{
 //	}
 
 	
-	public static void main(String[] args) {
-		
-		SearchengineYahooService service = new SearchengineYahooService();
-		
-		try {
-//			FileInputStream fis = new FileInputStream(new File("/Users/francescodefilippis/Desktop/offline.html"));
-//			byte[] doc = Jsoup.parse(fis.toString());
-			
-			Document document = Jsoup.parse(new File("/Users/francescodefilippis/Desktop/offline.html"),"UTF-8");
-			
-//			System.out.println(document.toString());
-			
-			List<SearchResultItemTO> list = service.parseSearchResult(document, 1);
-			System.out.println(list.size());
-			
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+//	public static void main(String[] args) {
+//		
+//		SearchengineYahooService service = new SearchengineYahooService();
+//		
+//		try {
+////			FileInputStream fis = new FileInputStream(new File("/Users/francescodefilippis/Desktop/offline.html"));
+////			byte[] doc = Jsoup.parse(fis.toString());
+//			
+//			Document document = Jsoup.parse(new File("/Users/francescodefilippis/Desktop/offline.html"),"UTF-8");
+//			
+////			System.out.println(document.toString());
+//			
+//			List<SearchResultItemTO> list = service.parseSearchResult(document, 1);
+//			System.out.println(list.size());
+//			
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//	}
 	
 }
