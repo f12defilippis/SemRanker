@@ -159,22 +159,6 @@ public class ExampleDataLoadController {
 				keyword.setWordcount(readyBean.getKeyword().split(" ").length);
 				
 				keywordRepository.save(keyword);
-				
-				for(AggregatedSearchengine sec : secList)
-				{
-					KeywordSearchengine ksec = new KeywordSearchengine();
-					ksec.setAggregatedSearchengine(sec);
-					ksec.setKeyword(keyword);
-					
-					keywordSearchengineRepository.save(ksec);
-					
-					KeywordSearchengineAccountDomain ksad = new KeywordSearchengineAccountDomain();
-					ksad.setKeywordSearchengine(ksec);
-					ksad.setAccountDomain(ac);
-					
-					keywordSearchengineAccountDomainRepository.save(ksad);
-				}
-				
 				kSaved++;
 				
 			}else
@@ -182,6 +166,22 @@ public class ExampleDataLoadController {
 				keyword = kwList.get(0);
 				kSkipped++;
 			}
+
+			for(AggregatedSearchengine sec : secList)
+			{
+				KeywordSearchengine ksec = new KeywordSearchengine();
+				ksec.setAggregatedSearchengine(sec);
+				ksec.setKeyword(keyword);
+				
+				keywordSearchengineRepository.save(ksec);
+				
+				KeywordSearchengineAccountDomain ksad = new KeywordSearchengineAccountDomain();
+				ksad.setKeywordSearchengine(ksec);
+				ksad.setAccountDomain(ac);
+				
+				keywordSearchengineAccountDomainRepository.save(ksad);
+			}
+
 			
 			List<Period> periodList = periodRepository.findByMonthAndYear(Calendar.getInstance().get(Calendar.MONTH)+1, Calendar.getInstance().get(Calendar.YEAR));
 			Period period = periodList.get(0);
