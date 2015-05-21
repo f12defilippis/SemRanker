@@ -169,17 +169,20 @@ public class ExampleDataLoadController {
 
 			for(AggregatedSearchengine sec : secList)
 			{
-				KeywordSearchengine ksec = new KeywordSearchengine();
-				ksec.setAggregatedSearchengine(sec);
-				ksec.setKeyword(keyword);
-				
-				keywordSearchengineRepository.save(ksec);
-				
-				KeywordSearchengineAccountDomain ksad = new KeywordSearchengineAccountDomain();
-				ksad.setKeywordSearchengine(ksec);
-				ksad.setAccountDomain(ac);
-				
-				keywordSearchengineAccountDomainRepository.save(ksad);
+				if(keywordSearchengineRepository.findByAggregatedSearchengineIdAndKeywordId(sec.getId(), keyword.getId())==null)
+				{
+					KeywordSearchengine ksec = new KeywordSearchengine();
+					ksec.setAggregatedSearchengine(sec);
+					ksec.setKeyword(keyword);
+					
+					keywordSearchengineRepository.save(ksec);
+					
+					KeywordSearchengineAccountDomain ksad = new KeywordSearchengineAccountDomain();
+					ksad.setKeywordSearchengine(ksec);
+					ksad.setAccountDomain(ac);
+					
+					keywordSearchengineAccountDomainRepository.save(ksad);
+				}
 			}
 
 			
