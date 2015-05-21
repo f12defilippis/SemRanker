@@ -6,12 +6,14 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @ComponentScan
 @Configuration
 @EnableJpaRepositories(basePackages = {"com.flol.semrankercommon.repository"})
 @EnableAutoConfiguration
 @EnableTransactionManagement
+@EnableWebMvc
 public class SemRankerWeb {
     public static void main(String[] args) {
         SpringApplication.run(SemRankerWeb.class, args);

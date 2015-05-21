@@ -1,8 +1,10 @@
 package com.flol.semrankerengine.keywordsearch.service.searchengines;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -58,25 +60,32 @@ public class SearchengineYahooService extends SearchengineBaseService{
 		return items;
 	}
 	
-//	public static void main(String[] args) {
-//		
-//		SearchengineYahooService service = new SearchengineYahooService();
-//		
-//		try {
-////			FileInputStream fis = new FileInputStream(new File("/Users/francescodefilippis/Desktop/offline.html"));
-////			byte[] doc = Jsoup.parse(fis.toString());
-//			
-//			Document document = Jsoup.parse(new File("/Users/francescodefilippis/Desktop/offline.html"),"UTF-8");
-//			
-////			System.out.println(document.toString());
-//			
-//			List<SearchResultItemTO> list = service.parseSearchResult(document, 1);
-//			System.out.println(list.size());
-//			
-//		} catch (Exception e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//	}
+	@Override
+	public Integer getFirstResult(int numResult, int page, int maxResultsPerPage)
+	{
+		return page == 1 ? 1 : (page-1)*maxResultsPerPage+1;
+	}
+
+	
+	public static void main(String[] args) {
+		
+		SearchengineYahooService service = new SearchengineYahooService();
+		
+		try {
+//			FileInputStream fis = new FileInputStream(new File("/Users/francescodefilippis/Desktop/offline.html"));
+//			byte[] doc = Jsoup.parse(fis.toString());
+			
+			Document document = Jsoup.parse(new File("/Users/francescodefilippis/Desktop/offline.html"),"UTF-8");
+			
+//			System.out.println(document.toString());
+			
+			List<SearchResultItemTO> list = service.parseSearchResult(document, 1);
+			System.out.println(list.size());
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	
 }

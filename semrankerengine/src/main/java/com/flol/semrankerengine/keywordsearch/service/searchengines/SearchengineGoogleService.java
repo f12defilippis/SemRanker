@@ -50,7 +50,7 @@ public class SearchengineGoogleService extends SearchengineBaseService {
 	}
 
 	@Override
-	public Integer getFirstResult(int numResult) {
+	public Integer getFirstResult(int numResult, int page, int maxResultsPerPage) {
 		return numResult;
 	}
 

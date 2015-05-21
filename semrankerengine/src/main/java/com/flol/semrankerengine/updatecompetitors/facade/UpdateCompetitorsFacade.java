@@ -121,6 +121,9 @@ public class UpdateCompetitorsFacade {
 				accountDomainCompetitorHistoryData.setKeywordsPositioned(domainCompetitor.getCommonKeywords());
 				accountDomainCompetitorHistoryData.setScore(domainCompetitor.getScore());
 				
+				accountDomainCompetitorHistoryData.setCountry(domainCompetitor.getCountry());
+				accountDomainCompetitorHistoryData.setSearchengine(domainCompetitor.getSearchengine());
+				
 				accountDomainCompetitorHistoryDataList.add(accountDomainCompetitorHistoryData);
 			}
 			

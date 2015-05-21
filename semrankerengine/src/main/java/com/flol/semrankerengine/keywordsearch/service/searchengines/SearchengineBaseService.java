@@ -67,8 +67,11 @@ public abstract class SearchengineBaseService {
 				stopWatch.start("Searchengine call");
 				lastScan = new Date();
 				callReturn = executeCallWithCookie(parameter.getSearchEngineCountry().getSearchengine().getRequest(),parameter.getKeyword(), parameter.getUserAgent(), parameter.getProxyHost(), parameter.getProxyPort(), parameter.getProxyUser(), parameter.getProxyPassword(), parameter.getTld(), 
-						String.valueOf(parameter.getSearchEngineCountry().getSearchengine().getMaxResultsPerPage()), parameter.getUule(), getFirstResult(returnValue.getItems().size()), parameter.getAcceptLanguage(), parameter.getHost(),cookies);
-				cookies = callReturn.getCookies();
+						String.valueOf(parameter.getSearchEngineCountry().getSearchengine().getMaxResultsPerPage()), parameter.getUule(), getFirstResult(returnValue.getItems().size(),loops+1,parameter.getSearchEngineCountry().getSearchengine().getMaxResultsPerPage()), parameter.getAcceptLanguage(), parameter.getHost(),cookies);
+				if(callReturn.getCookies()!=null)
+				{
+					cookies = callReturn.getCookies();
+				}
 				stopWatch.stop();
 			}catch(Exception e)
 			{
@@ -117,10 +120,13 @@ public abstract class SearchengineBaseService {
 		return null;
 	}
 	
-	public Integer getFirstResult(int numResult)
+	public Integer getFirstResult(int numResult, int page, int maxResultsPerPage)
 	{
 		return numResult+1;
 	}
+
+
+	
 
 	@SuppressWarnings("unused")
 	private byte[] executeCall(String requestString, String keyword, String userAgent, String proxyHost, String proxyPort, String proxyUser, String proxyPassword, String tld, String numResultToSearch, String uule, Integer firstResult, String acceptLanguage, String host) throws Exception
