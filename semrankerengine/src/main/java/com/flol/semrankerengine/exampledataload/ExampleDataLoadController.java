@@ -169,7 +169,7 @@ public class ExampleDataLoadController {
 
 			for(AggregatedSearchengine sec : secList)
 			{
-				if(keywordSearchengineRepository.findByAggregatedSearchengineIdAndKeywordId(sec.getId(), keyword.getId())==null)
+				if(keywordSearchengineRepository.findByAggregatedSearchengineIdAndKeywordId(sec.getId(), keyword.getId())==null || keywordSearchengineRepository.findByAggregatedSearchengineIdAndKeywordId(sec.getId(), keyword.getId()).size()==0)
 				{
 					KeywordSearchengine ksec = new KeywordSearchengine();
 					ksec.setAggregatedSearchengine(sec);
