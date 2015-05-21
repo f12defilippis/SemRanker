@@ -60,11 +60,11 @@ public class SearchengineYahooService extends SearchengineBaseService{
 		return items;
 	}
 	
-	@Override
-	public Integer getFirstResult(int numResult, int page, int maxResultsPerPage)
-	{
-		return page == 1 ? 1 : (page-1)*maxResultsPerPage+1;
-	}
+//	@Override
+//	public Integer getFirstResult(int numResult, int page, int maxResultsPerPage)
+//	{
+//		return page == 1 ? 1 : (page-1)*maxResultsPerPage+1;
+//	}
 
 	
 	public static void main(String[] args) {
