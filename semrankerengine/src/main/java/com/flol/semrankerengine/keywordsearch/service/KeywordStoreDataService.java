@@ -130,6 +130,10 @@ public class KeywordStoreDataService {
 	private Url checkUrl(Domain domain, String url)
 	{
 		Url urlRet = null;
+		if(url.length()>=400)
+		{
+			url = url.substring(0, 399);
+		}
 		List<Url> urlList = urlRepository.findByUrl(url);
 		if(urlList==null || urlList.size()==0)
 		{

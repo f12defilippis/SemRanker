@@ -13,6 +13,15 @@ public class Country extends BaseDomain{
 
 	private String name;
 
+	
+	public Country(){}
+	
+	public Country(Integer pid)
+	{
+		id = pid;
+	}
+	
+	
 	public Integer getId() {
 		return id;
 	}

@@ -20,30 +20,33 @@ public class SearchengineGoogleService extends SearchengineBaseService {
 		int position = pos;
 		Elements hrclassr = doc.getElementsByClass("g");
 		for (int i = 0; i < hrclassr.size(); i++) {
-			Element link = hrclassr.get(i).select("a[href]").get(0);
-			String temp = link.attr("href");
-			String domainName = getDomainName(temp);
-			if (!domainName.equals("webcache.googleusercontent.com")
-					&& !(domainName.equals("www.youtube.com") && i > 0 && getDomainName(
-							hrclassr.get(i - 1).select("a[href]").get(0)
-									.attr("href")).equals("www.youtube.com"))
-					&& !(domainName == null || domainName.equals(""))) {
-				SearchResultItemTO item = new SearchResultItemTO();
-				item.setDomain(domainName);
-				item.setUrl(getUrl(temp));
-				item.setPosition(position);
-				if (item.getDomain() == null || item.getDomain().equals("")
-						|| item.getDomain().trim().equals("")
-						|| item.getUrl() == null || item.getUrl().equals("")
-						|| item.getUrl().trim().equals("")) {
-					logger.error("Url/Domain null. Link: " + link.toString());
-					logger.error("Url/Domain null. DomainName: " + item.getDomain());
-					logger.error("Url/Domain null. Url: " + item.getUrl());
-				}else
-				{
-					items.add(item);
+			if(hrclassr.get(i).select("a[href]")!=null && hrclassr.get(i).select("a[href]").size()>0)
+			{
+				Element link = hrclassr.get(i).select("a[href]").get(0);
+				String temp = link.attr("href");
+				String domainName = getDomainName(temp);
+				if (!domainName.equals("webcache.googleusercontent.com")
+						&& !(domainName.equals("www.youtube.com") && i > 0 && getDomainName(
+								hrclassr.get(i - 1).select("a[href]").get(0)
+										.attr("href")).equals("www.youtube.com"))
+						&& !(domainName == null || domainName.equals(""))) {
+					SearchResultItemTO item = new SearchResultItemTO();
+					item.setDomain(domainName);
+					item.setUrl(getUrl(temp));
+					item.setPosition(position);
+					if (item.getDomain() == null || item.getDomain().equals("")
+							|| item.getDomain().trim().equals("")
+							|| item.getUrl() == null || item.getUrl().equals("")
+							|| item.getUrl().trim().equals("")) {
+						logger.error("Url/Domain null. Link: " + link.toString());
+						logger.error("Url/Domain null. DomainName: " + item.getDomain());
+						logger.error("Url/Domain null. Url: " + item.getUrl());
+					}else
+					{
+						items.add(item);
+					}
+					position++;
 				}
-				position++;
 			}
 		}
 		return items;

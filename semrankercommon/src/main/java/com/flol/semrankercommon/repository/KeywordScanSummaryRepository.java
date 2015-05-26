@@ -15,10 +15,10 @@ import com.flol.semrankercommon.domain.KeywordScanSummary;
 @Transactional
 public interface KeywordScanSummaryRepository extends CrudRepository<KeywordScanSummary, Integer>{
 	
-	@Query("from KeywordScanSummary where keywordSearchengineAccountDomain.keywordSearchengine.id = :keywordSearchengineId and "
+	@Query("from KeywordScanSummary where keywordSearchengineAccountDomain.id = :keywordSearchengineAccountDomainId and "
 			+ "date = :date and keywordScanSummaryStatus.id <> 1 and keywordScanSummaryStatus.id <> 4"
 			)	
-	List<KeywordScanSummary> findBykeywordSearchengineIdAndDateNotCompleted(@Param("keywordSearchengineId") Integer keywordSearchengineId, @Param("date") Date date);
+	List<KeywordScanSummary> findBykeywordSearchengineAccountDomainIdAndDateNotCompleted(@Param("keywordSearchengineAccountDomainId") Integer keywordSearchengineAccountDomainId, @Param("date") Date date);
 
 	@Query("from KeywordScanSummary where keywordSearchengineAccountDomain.keywordSearchengine.id = :keywordSearchengineId and "
 			+ "date = :date and (keywordScanSummaryStatus.id = 1 or keywordScanSummaryStatus.id = 4)"

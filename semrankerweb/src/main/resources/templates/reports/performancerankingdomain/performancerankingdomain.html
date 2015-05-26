@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout">
+<head>
+<title>Breaking SEM Performance Ranking Domain</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="page-header"
+					th:text="#{reports.performance_ranking_domain}">Tables</h1>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-12">
+ 				<form th:action="@{/performance_ranking_domain}" id="performance_ranking_domain_form"
+					th:object="${performanceRankingDomainSearchForm}" method="post">
+					<div class="panel panel-yellow">
+						<div class="panel-heading" th:text="#{reports.search_criteria}">Hover</div>
+						<div class="panel-body">
+							<div class="col-lg-3">
+								<label th:text="#{reports.search_criteria.searchengine}"></label>
+								<select class="form-control" multiple="multiple" th:field="*{searchengineId}">
+									<option selected="selected" value="-1">All</option>
+									<option th:each="searchengine : ${searchengineList}" th:value="${searchengine.id}"
+										th:text="${searchengine.name}">searchengine</option>
+								</select> 
+							</div>
+							<div class="col-lg-3">
+								<label th:text="#{reports.search_criteria.country}"></label>
+								<select class="form-control" multiple="multiple" th:field="*{countryId}">
+									<option selected="selected" value="-1">All</option>
+									<option th:each="country : ${countryList}" th:value="${country.id}"
+										th:text="${country.name}">country</option>
+								</select> 
+ 							</div>
+<!--							<div class="col-lg-3">
+								<label th:text="#{reports.search_criteria.domain}"></label> 
+								<select class="form-control" multiple="multiple" th:field="*{domainId}">
+									<option selected="selected" value="-1">All</option>
+									<option th:each="domain : ${domainList}" th:value="${domain.id}"
+										th:text="${domain.name}">domain</option>
+								</select> 
+							</div>  -->
+							<div class="col-lg-3 form-group">
+								<label th:text="#{reports.search_criteria.date_from}"></label> 
+<!--  								<input
+									type="text" class="span2 datepicker" placeholder="Data Da"
+									id="dataDa"></input> -->
+
+
+ 								<input type="text" name="dateFrom" value="10/24/1984" th:field="*{dateFrom}" class="form-control"/>
+ 								
+
+							</div>
+
+							<div class="col-lg-3 form-group">
+								<label th:text="#{reports.search_criteria.date_to}"></label> 
+
+ 								<input type="text" name="dateFrom" value="10/24/1984" th:field="*{dateTo}" class="form-control"/>
+ 								
+
+							</div>
+ 								<script type="text/javascript">
+								$(function() {
+								    $('input[name="dateFrom"]').daterangepicker({
+								        singleDatePicker: true,
+								        showDropdowns: true,
+								        format: 'YYYY/MM/DD',
+								        timePicker: false
+								    });
+								});
+								$(function() {
+								    $('input[name="dateTo"]').daterangepicker({
+								        singleDatePicker: true,
+								        showDropdowns: true,
+								        format: 'YYYY/MM/DD',
+								        timePicker: false
+								    });
+								});
+								</script>
+
+						</div>
+						<div class="panel-footer" style="text-align:right">
+							<button class="btn btn-outline btn-warning" type="submit">Search...</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="panel panel-green">
+					<div class="panel-heading" th:text="#{reports.results}">Hover
+						Rows</div>
+					<!-- /.panel-heading -->
+					<div class="panel-body">
+						<div class="table-responsive">
+							<table class="table table-hover">
+								<thead>
+									<tr>
+										<th th:text="#{reports.performancerankingdomain.engine}">Motore</th>
+										<th th:text="#{reports.performancerankingdomain.country}">Nazione</th>
+										<th th:text="#{reports.performancerankingdomain.domain}">Dominio</th>
+										<th th:text="#{reports.performancerankingdomain.date}">Data</th>
+										<th th:text="#{reports.performancerankingdomain.position}">Posizione</th>
+										<th th:text="#{reports.performancerankingdomain.score}">Score</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:unless="${#lists.isEmpty(returnList)}"
+										th:each="item : ${returnList}">
+										<td th:text="${item.engine}">1</td>
+										<td th:text="${item.country}">1</td>
+										<td th:text="${item.domain}">1</td>
+										<td th:text="${item.date}">1</td>
+										<td th:text="${item.position}">1</td>
+										<td th:text="${item.score}">1</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<!-- /.table-responsive -->
+					</div>
+					<!-- /.panel-body -->
+				</div>
+				<!-- /.panel -->
+			</div>
+			<!-- /.col-lg-12 -->
+		</div>
+		<!-- /.row -->
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="panel panel-primary">
+					<div class="panel-heading" th:text="#{reports.graph}">Hover
+						Rows
+					</div>
+					<div class="panel-body">
+						<div id="line-example"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+
+
+		//getting JSON data from external sources
+		var json_data = (function() {
+		    var json;
+		    $.ajax({
+		         type:'GET',
+		         data: $("#performance_ranking_domain_form").serialize(),
+		         url: 'http://localhost:8082/performance_ranking_domain/json',
+		         async: false,
+		         global: false,
+		        success: function(data) {
+		            json = data;
+		        }, 
+		        error:function(){
+		            alert("Error loading chart");
+		        }
+		    });
+		    return json;
+		})();
+
+		
+	/*
+	 * Play with this code and it'll update in the panel opposite.
+	 *
+	 * Why not try some of the options above?
+	 */
+	Morris.Line({
+	  element: 'line-example',
+	  data: json_data,
+	  xkey: 'date',
+	  ykeys: ['position', 'score'],
+	  labels: ['Position A', 'Score B']
+	});
+
+	</script>
+	</div>
+</body>
+</html>

@@ -141,7 +141,7 @@ public class KeywordSearchFacade {
 			Proxy proxy)
 	{
 		KeywordScanSummary kss = null;
-		List<KeywordScanSummary> listKss = keywordScanSummaryRepository.findBykeywordSearchengineIdAndDateNotCompleted(keywordSearchengineAccountDomain.getKeywordSearchengine().getId(), DateUtil.getTodaysMidnight());
+		List<KeywordScanSummary> listKss = keywordScanSummaryRepository.findBykeywordSearchengineAccountDomainIdAndDateNotCompleted(keywordSearchengineAccountDomain.getId(), DateUtil.getTodaysMidnight());
 		if(listKss!=null && listKss.size()>0)
 		{
 			kss = listKss.get(0);

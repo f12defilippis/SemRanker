@@ -3204,3 +3204,47 @@ ms     %     Task name
 2015-05-19 18:22:00.842 INFO [pool-2-thread-1] Found 1 accountDomain to update
 2015-05-19 18:22:00.842 INFO [pool-2-thread-1] Updating competitors for AccountDomain with domain name: pescareinmare.com
 2015-05-19 18:22:00.931 INFO [pool-2-thread-1] Competitors Updated
+2015-05-26 21:31:00.054 INFO [jobExecutor-1] START searching keywords of SearchEngine: 1
+2015-05-26 21:31:00.054 INFO [jobExecutor-2] START searching keywords of SearchEngine: 2
+2015-05-26 21:31:00.054 INFO [jobExecutor-3] START searching keywords of SearchEngine: 3
+2015-05-26 21:31:00.775 INFO [pool-2-thread-1] It's not yet time to update the competitors there are still 3 job in progress. Wait for 4 minutes before retry
+2015-05-26 21:35:00.034 INFO [jobExecutor-1] START searching keywords of SearchEngine: 1
+2015-05-26 21:35:00.034 INFO [jobExecutor-3] START searching keywords of SearchEngine: 3
+2015-05-26 21:35:00.034 INFO [jobExecutor-2] START searching keywords of SearchEngine: 2
+2015-05-26 21:35:00.516 INFO [pool-2-thread-1] It's not yet time to update the competitors there are still 3 job in progress. Wait for 4 minutes before retry
+2015-05-26 21:39:00.518 INFO [pool-2-thread-1] It's not yet time to update the competitors there are still 3 job in progress. Wait for 4 minutes before retry
+2015-05-26 21:42:44.775 INFO [jobExecutor-2] Found: 0 record to search
+2015-05-26 21:42:44.792 INFO [jobExecutor-2] Found: 1 proxy available
+2015-05-26 21:42:44.792 INFO [jobExecutor-2] FINISH searching keywords of SearchEngine: 2
+2015-05-26 21:43:00.518 INFO [pool-2-thread-1] It's not yet time to update the competitors there are still 2 job in progress. Wait for 4 minutes before retry
+2015-05-26 21:43:06.607 INFO [jobExecutor-3] Found: 0 record to search
+2015-05-26 21:43:06.613 INFO [jobExecutor-3] Found: 1 proxy available
+2015-05-26 21:43:06.613 INFO [jobExecutor-3] FINISH searching keywords of SearchEngine: 3
+2015-05-26 21:51:00.033 INFO [jobExecutor-3] START searching keywords of SearchEngine: 3
+2015-05-26 21:51:00.033 INFO [jobExecutor-1] START searching keywords of SearchEngine: 1
+2015-05-26 21:51:00.033 INFO [jobExecutor-2] START searching keywords of SearchEngine: 2
+2015-05-26 21:51:00.719 INFO [pool-2-thread-1] It's not yet time to update the competitors there are still 3 job in progress. Wait for 4 minutes before retry
+2015-05-26 21:51:09.042 INFO [jobExecutor-3] Found: 0 record to search
+2015-05-26 21:51:09.055 INFO [jobExecutor-3] Found: 1 proxy available
+2015-05-26 21:51:09.055 INFO [jobExecutor-3] FINISH searching keywords of SearchEngine: 3
+2015-05-26 22:13:00.041 INFO [jobExecutor-3] START searching keywords of SearchEngine: 3
+2015-05-26 22:13:00.041 INFO [jobExecutor-1] START searching keywords of SearchEngine: 1
+2015-05-26 22:13:00.041 INFO [jobExecutor-2] START searching keywords of SearchEngine: 2
+2015-05-26 22:13:00.790 INFO [pool-2-thread-1] It's not yet time to update the competitors there are still 3 job in progress. Wait for 4 minutes before retry
+2015-05-26 22:14:24.842 INFO [jobExecutor-1] Found: 2464 record to search
+2015-05-26 22:14:24.860 INFO [jobExecutor-1] Found: 10 proxy available
+2015-05-26 22:14:28.581 INFO [jobExecutor-3] Found: 0 record to search
+2015-05-26 22:14:28.585 INFO [jobExecutor-3] Found: 1 proxy available
+2015-05-26 22:14:28.585 INFO [jobExecutor-3] FINISH searching keywords of SearchEngine: 3
+2015-05-26 22:14:30.208 INFO [jobExecutor-2] Found: 0 record to search
+2015-05-26 22:14:30.211 INFO [jobExecutor-2] Found: 1 proxy available
+2015-05-26 22:14:30.212 INFO [jobExecutor-2] FINISH searching keywords of SearchEngine: 2
+2015-05-26 22:14:31.244 INFO [jobExecutor-1] 10 active threads. Waiting...
+2015-05-26 22:15:02.971 INFO [jobExecutor-1] 10 active threads. Waiting...
+2015-05-26 22:15:29.303 INFO [jobExecutor-1] 10 active threads. Waiting...
+2015-05-26 22:16:00.471 INFO [jobExecutor-1] 10 active threads. Waiting...
+2015-05-26 22:16:30.504 INFO [jobExecutor-1] 10 active threads. Waiting...
+2015-05-26 22:16:57.156 INFO [jobExecutor-1] 10 active threads. Waiting...
+2015-05-26 22:17:00.791 INFO [pool-2-thread-1] It's not yet time to update the competitors there are still 1 job in progress. Wait for 4 minutes before retry
+2015-05-26 22:17:28.442 INFO [jobExecutor-1] 10 active threads. Waiting...
+2015-05-26 22:17:56.298 INFO [jobExecutor-1] 10 active threads. Waiting...

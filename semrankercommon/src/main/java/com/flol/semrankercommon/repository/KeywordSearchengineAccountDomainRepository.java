@@ -19,7 +19,7 @@ public interface KeywordSearchengineAccountDomainRepository extends CrudReposito
 	@Query("from KeywordSearchengineAccountDomain where keywordSearchengine.aggregatedSearchengine.searchengineCountry.searchengine.id = :searchengine and "
 			+ "id not in "
 			+ "(select distinct kss.keywordSearchengineAccountDomain.id from KeywordScanSummary kss where "
-			+ "kss.date = :date and (kss.keywordScanSummaryStatus.id = 1 or kss.keywordScanSummaryStatus.id = 4 or (kss.keywordScanSummaryStatus.id = 5 and kss.numParseFails >= :maxParseFails))"
+			+ "kss.date = :date and (kss.keywordScanSummaryStatus.id = 1 or kss.keywordScanSummaryStatus.id = 4 or kss.numParseFails >= :maxParseFails)"
 			+ ")")
 	List<KeywordSearchengineAccountDomain> findDataToSearch(@Param("date") Date date, @Param("searchengine") Integer searchengine, @Param("maxParseFails") Integer maxParseFails);
 	
@@ -32,6 +32,5 @@ public interface KeywordSearchengineAccountDomainRepository extends CrudReposito
 	@Query("select distinct ksad.keywordSearchengine.aggregatedSearchengine.searchengineCountry.country from KeywordSearchengineAccountDomain ksad "
 			+ "where ksad.accountDomain.id = :accountDomainId")
 	List<Country> getCountryByAccountDomainId(@Param("accountDomainId") Integer accountDomainId);
-
 	
 }
