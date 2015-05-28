@@ -26,7 +26,7 @@ public interface SearchReportRepository extends CrudRepository<SearchReport, Int
 	
 	
 	
-	List<SearchReport> findByKeywordSearchengineIdAndDateClosedNotNull(Integer keywordSearchengineId);
+	List<SearchReport> findByKeywordSearchengineIdAndDateClosedNull(Integer keywordSearchengineId);
 
 	@Query(value = ""
 			+ "select sr.url.domain as domain, count(sr.url.domain.name) as commonKeywords, avg(sr.position) as avgPosition, sum(khd.avgmonthlysearches*kpv.visitFactor) as score from "

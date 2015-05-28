@@ -56,7 +56,7 @@ public class PerformanceRankingDomainController {
 //	}
 	
 	
-	@RequestMapping("/performance_ranking_domain")
+	@RequestMapping("performance_ranking_domain")
 	public String search(@ModelAttribute("performanceRankingDomainSearchForm") PerformanceRankingDomainSearchForm performanceRankingDomainSearchForm, Model model)
 	{		
 		List<PerformanceRankingDomainResultTO> returnList = getData(performanceRankingDomainSearchForm);
@@ -67,7 +67,7 @@ public class PerformanceRankingDomainController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/performance_ranking_domain/json", method = RequestMethod.GET, produces="application/json")
+	@RequestMapping(value = "performance_ranking_domain/json", method = RequestMethod.GET, produces="application/json")
 	public List<PerformanceRankingDomainResultTO> loadGraph(Model model, @ModelAttribute("performanceRankingDomainSearchForm") PerformanceRankingDomainSearchForm performanceRankingDomainSearchForm)
 	{
 		return getData(performanceRankingDomainSearchForm);

@@ -22,22 +22,28 @@
 						<div class="panel-heading" th:text="#{reports.search_criteria}">Hover</div>
 						<div class="panel-body">
 							<div class="col-lg-3">
-								<label th:text="#{reports.search_criteria.searchengine}"></label>
-								<select class="form-control" multiple="multiple" th:field="*{searchengineId}">
-									<option selected="selected" value="-1">All</option>
-									<option th:each="searchengine : ${searchengineList}" th:value="${searchengine.id}"
-										th:text="${searchengine.name}">searchengine</option>
-								</select> 
+								<div class="form-group">
+									<label th:text="#{reports.search_criteria.searchengine}"></label>
+									<select class="form-control" multiple="multiple"
+										th:field="*{searchengineId}">
+										<option selected="selected" value="-1">All</option>
+										<option th:each="searchengine : ${searchengineList}"
+											th:value="${searchengine.id}" th:text="${searchengine.name}">searchengine</option>
+									</select>
+								</div>
 							</div>
 							<div class="col-lg-3">
-								<label th:text="#{reports.search_criteria.country}"></label>
-								<select class="form-control" multiple="multiple" th:field="*{countryId}">
-									<option selected="selected" value="-1">All</option>
-									<option th:each="country : ${countryList}" th:value="${country.id}"
-										th:text="${country.name}">country</option>
-								</select> 
- 							</div>
-<!--							<div class="col-lg-3">
+								<div class="form-group">
+									<label th:text="#{reports.search_criteria.country}"></label> <select
+										class="form-control" multiple="multiple"
+										th:field="*{countryId}">
+										<option selected="selected" value="-1">All</option>
+										<option th:each="country : ${countryList}"
+											th:value="${country.id}" th:text="${country.name}">country</option>
+									</select>
+								</div>
+							</div>
+							<!--							<div class="col-lg-3">
 								<label th:text="#{reports.search_criteria.domain}"></label> 
 								<select class="form-control" multiple="multiple" th:field="*{domainId}">
 									<option selected="selected" value="-1">All</option>
@@ -45,44 +51,19 @@
 										th:text="${domain.name}">domain</option>
 								</select> 
 							</div>  -->
-							<div class="col-lg-3 form-group">
-								<label th:text="#{reports.search_criteria.date_from}"></label> 
-<!--  								<input
-									type="text" class="span2 datepicker" placeholder="Data Da"
-									id="dataDa"></input> -->
-
-
- 								<input type="text" name="dateFrom" value="10/24/1984" th:field="*{dateFrom}" class="form-control"/>
- 								
-
+							<div class="col-lg-3">
+								<div class="form-group">
+	 								<label class="control-label" th:text="#{reports.search_criteria.date_from}"></label> 
+	 								<input type="text" name="dateFrom" id="dateFrom" value="10/24/1984" th:field="*{dateFrom}" class="form-control"/>
+								</div>
 							</div>
 
-							<div class="col-lg-3 form-group">
-								<label th:text="#{reports.search_criteria.date_to}"></label> 
-
- 								<input type="text" name="dateFrom" value="10/24/1984" th:field="*{dateTo}" class="form-control"/>
- 								
-
+							<div class="col-lg-3">
+								<div class="form-group">
+	 								<label class="control-label" th:text="#{reports.search_criteria.date_to}"></label> 
+	 								<input type="text" name="dateTo" id="dateTo" value="10/24/1984" th:field="*{dateTo}" class="form-control"/>
+								</div>
 							</div>
- 								<script type="text/javascript">
-								$(function() {
-								    $('input[name="dateFrom"]').daterangepicker({
-								        singleDatePicker: true,
-								        showDropdowns: true,
-								        format: 'YYYY/MM/DD',
-								        timePicker: false
-								    });
-								});
-								$(function() {
-								    $('input[name="dateTo"]').daterangepicker({
-								        singleDatePicker: true,
-								        showDropdowns: true,
-								        format: 'YYYY/MM/DD',
-								        timePicker: false
-								    });
-								});
-								</script>
-
 						</div>
 						<div class="panel-footer" style="text-align:right">
 							<button class="btn btn-outline btn-warning" type="submit">Search...</button>
@@ -116,9 +97,9 @@
 										<td th:text="${item.engine}">1</td>
 										<td th:text="${item.country}">1</td>
 										<td th:text="${item.domain}">1</td>
-										<td th:text="${item.date}">1</td>
-										<td th:text="${item.position}">1</td>
-										<td th:text="${item.score}">1</td>
+										<td th:text="${#dates.format(item.date, #messages.msg('app.date_format'))}">1</td>
+										<td th:text="${#numbers.formatDecimal(item.position,1,'POINT',2,'COMMA')}">1</td>
+										<td th:text="${#numbers.formatDecimal(item.score,1,'POINT',2,'COMMA')}">1</td>
 									</tr>
 								</tbody>
 							</table>
@@ -144,8 +125,8 @@
 				</div>
 			</div>
 		</div>
+		<script src="../js/reports/performancerankingdomain.js"></script>  
 		<script type="text/javascript">
-
 
 		//getting JSON data from external sources
 		var json_data = (function() {
@@ -153,7 +134,7 @@
 		    $.ajax({
 		         type:'GET',
 		         data: $("#performance_ranking_domain_form").serialize(),
-		         url: 'http://localhost:8082/performance_ranking_domain/json',
+		         url: 'performance_ranking_domain/json',
 		         async: false,
 		         global: false,
 		        success: function(data) {

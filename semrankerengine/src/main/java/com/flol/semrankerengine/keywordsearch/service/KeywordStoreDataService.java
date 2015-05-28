@@ -52,7 +52,7 @@ public class KeywordStoreDataService {
     
     
     @Transactional
-	public void storeKeywordsData(List<SearchResultItemTO> items, KeywordScanSummary kss) throws KeywordStoreDataException
+	public void storeKeywordsData(List<SearchResultItemTO> items, KeywordScanSummary kss, boolean isFromData) throws KeywordStoreDataException
 	{
     	try {
     		
@@ -69,7 +69,7 @@ public class KeywordStoreDataService {
     		{
     			if(item.getPosition()!=null && item.getPosition() <= maxPosition)
     			{
-        			storeData(item, kss, domainCompetitorMap);
+        			storeData(item, kss, domainCompetitorMap, isFromData);
     			}
     		}
 		} catch (Exception e) {
@@ -81,7 +81,7 @@ public class KeywordStoreDataService {
     {
     	SearchResultItemsTO ret = new SearchResultItemsTO();
     	ret.setKeyword(keyword);
-    	List<SearchReport> searchReportList = searchReportRepository.findByKeywordSearchengineIdAndDateClosedNotNull(keywordSearchengineId);
+    	List<SearchReport> searchReportList = searchReportRepository.findByKeywordSearchengineIdAndDateClosedNull(keywordSearchengineId);
     	for(SearchReport sr : searchReportList)
     	{
     		SearchResultItemTO item = new SearchResultItemTO();
@@ -95,14 +95,17 @@ public class KeywordStoreDataService {
     	return ret;
     }
 	
-	private void storeData(SearchResultItemTO item, KeywordScanSummary keywordScanSummary, Map<Integer,Integer> domainCompetitorMap)
+	private void storeData(SearchResultItemTO item, KeywordScanSummary keywordScanSummary, Map<Integer,Integer> domainCompetitorMap, boolean isFromData)
 	{
 		// check domain
 		Domain domain = checkDomain(item.getDomain());
 		// check url
 		Url url = checkUrl(domain, item.getUrl());
 		//store search report data
-		storeSearchReport(url, item, keywordScanSummary);
+		if(!isFromData)
+		{
+			storeSearchReport(url, item, keywordScanSummary);
+		}
 		// if domain of account or competitor store data in searchreportaccount table
 		if(domain.getId().equals(keywordScanSummary.getKeywordSearchengineAccountDomain().getAccountDomain().getDomain().getId()) || domainCompetitorMap.get(domain.getId())!=null)
 		{

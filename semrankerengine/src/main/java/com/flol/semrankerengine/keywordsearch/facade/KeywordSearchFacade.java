@@ -63,7 +63,7 @@ public class KeywordSearchFacade {
 			ret = searchKeywordFromData(keywordScanSummary);
 			
 			try {
-				keywordStoreDataService.storeKeywordsData(ret.getItems(), keywordScanSummary);
+				keywordStoreDataService.storeKeywordsData(ret.getItems(), keywordScanSummary,true);
 				keywordScanSummary.setCachePage(ret.getCachePage());
 				updateKeywordScanSummary(keywordScanSummary, KeywordScanSummaryStatus.RETRIEVED_FROM_DATA);
 				log.info("KEYWORD STORED BY DATA: kw=" + keywordScanSummary.getKeywordSearchengineAccountDomain().getKeywordSearchengine().getKeyword().getText()
@@ -95,7 +95,7 @@ public class KeywordSearchFacade {
 				}
 				// store data
 				try {
-					keywordStoreDataService.storeKeywordsData(ret.getItems(), keywordScanSummary);
+					keywordStoreDataService.storeKeywordsData(ret.getItems(), keywordScanSummary,false);
 					updateKeywordScanSummary(keywordScanSummary, KeywordScanSummaryStatus.COMPLETED);
 					log.info("KEYWORD STORED BY PROXY: kw=" + keywordScanSummary.getKeywordSearchengineAccountDomain().getKeywordSearchengine().getKeyword().getText() + " "
 							+ "proxy=" + proxy.getProxy().getIp() + " se=" + keywordScanSummary.getKeywordSearchengineAccountDomain().getKeywordSearchengine().getAggregatedSearchengine().getSearchengineCountry().getName());
